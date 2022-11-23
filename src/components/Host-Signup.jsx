@@ -14,8 +14,15 @@ function HostSignup() {
 
   const handleSubmit = async event => {
     event.preventDefault()
-    const response = await axios.get("http://localhost:5005/host/signup", {email, password, firstName, lastName, country, city}, {withCredentials:true});
-    console.log(response.data)
+    const response = await fetch("http://localhost:5005/host/signup", {
+      method: "POST", 
+      headers:{
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({email, password, firstName, lastName, country, city})
+    });
+    const parsed = await response.json()
+    console.log(parsed)
   }
 
 
