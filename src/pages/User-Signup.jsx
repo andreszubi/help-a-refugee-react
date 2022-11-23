@@ -2,8 +2,11 @@ import NavBar from "../components/NavBar";
 import { useState } from "react";
 
 function UserSignup() {
-  const [email, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [profileImage, setProfileImage] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -11,7 +14,13 @@ function UserSignup() {
     const response = await fetch("http://localhost:5005/user/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({
+        email,
+        password,
+        firstName,
+        lastName,
+        img: image,
+      }),
     });
     const parsed = await response.json();
     console.log(parsed);
@@ -24,7 +33,7 @@ function UserSignup() {
       <h1>User Signup</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          Email:{" "}
+          Email:
           <input
             type="email"
             name="email"
@@ -33,9 +42,8 @@ function UserSignup() {
             required
           />
         </label>
-
         <label>
-          Password:{" "}
+          Password:
           <input
             type="password"
             name="hashedPassword"
@@ -46,15 +54,33 @@ function UserSignup() {
         </label>
 
         <label>
-          First Name: <input type="text" name="firstName" />
+          First Name:{" "}
+          <input
+            type="text"
+            name="firstName"
+            value={firstName}
+            onChange={(event) => setFirstName(event.target.value)}
+          />
         </label>
 
         <label>
-          Last Name: <input type="text" name="lastName" />
+          Last Name:{" "}
+          <input
+            type="text"
+            name="lastName"
+            value={lastName}
+            onChange={(event) => setLastName(event.target.value)}
+          />
         </label>
 
         <label>
-          Profile Picture: <input type="file" name="image" />
+          Profile Picture:{" "}
+          <input
+            type="file"
+            name="image"
+            value={profileImage}
+            onChange={(event) => setProfileImage(event.target.value)}
+          />
         </label>
 
         <button type="submit">Submit</button>
