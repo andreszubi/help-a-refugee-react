@@ -10,12 +10,13 @@ nav {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 200px;
-  background-color: #3DB2FF;
+  height: 130px;
+  background-color: #1AABE2;
   color: white;
   max-width: 3000px;
-  margin-bottom: 500px;
-  border-color: #1b76b3;
+  border-style: solid;
+ border-width: 1px;
+  border-color: #3e95ce;
 }
 
 form {
@@ -31,7 +32,8 @@ form {
   border-width: 1px;
   border-radius: 5px;
   padding: 1rem;
-  background-color: #3DB2FF;
+  background-color: #1AABE2;
+  margin-bottom: 40px;
 }
 
 form label {
@@ -46,16 +48,73 @@ input {
   border-radius: 5px;
 }
 
-button {
-  background-color: #FF2442;
+.button {
+  width: 100px;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border: 1px solid #F87474;
+  border-radius: 5px;
+  background-color: #F87474;
+  color: white;
+  font-weight: bold;
+}
+
+.signup-btns {
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 500px;
+  margin-right: 500px;
 }
 
 
 body {
+  font-family: 'Roboto-Condensed', sans-serif;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  background-color: #FFFFFF;
 }
 
+h1 {
+  font-size: 3.5em;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-weight: bolder;
+  text-shadow: #1a1a1a 1px 1px 1px;
+}
+
+h2 {
+  font-size: 1.5em;
+  padding: 60px;
+  color: white;
+  font-weight: bolder;
+  text-shadow: #1a1a1a 1px 1px 1px;
+  
+}
+
+.background-img {
+  background-image: url("/public/images/3495641.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+  
+
+}
+
+div.transbox {
+  margin: 0 30px;
+  background-color: #ffffff;
+  border: 1px solid black;
+  opacity: 0.6;
+}
+
+div.transbox p {
+  margin: 5%;
+  font-weight: bold;
+  color: #000000;
+}
