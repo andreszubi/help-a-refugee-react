@@ -48,7 +48,7 @@ function Home() {
           <p style={{width:"20vw"}}>Not a member yet? </p>
           <Link to= "/user-signup" >
             <a style={{color:"white"}}>
-              Sign up!
+              <button className="button">Sign up!</button>
             </a>
           </Link>
         </div>

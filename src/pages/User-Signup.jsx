@@ -30,6 +30,9 @@ function UserSignup() {
     <div className="Refugee-Signup">
       <NavBar />
 
+
+      <div className="background-img">
+
       <h1>User Signup</h1>
       <form onSubmit={handleSubmit}>
         <label>
@@ -83,8 +86,11 @@ function UserSignup() {
           />
         </label>
 
-        <button type="submit">Submit</button>
+        <button className="button" type="submit">Submit</button>
       </form>
+
+      </div>
+
     </div>
   );
 }

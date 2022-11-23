@@ -7,7 +7,7 @@ function NavBar() {
         
             <header>
                 <nav>
-                    <h1>Refugee Stories</h1>
+                    <Link to ="/"><h1>Refugee Stories</h1></Link>
                     <Link to= "/host-signup">
                       <button className="button" type="button">
                         Host Signup

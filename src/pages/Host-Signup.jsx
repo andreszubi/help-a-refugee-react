@@ -30,6 +30,8 @@ function HostSignup() {
     <div className="Host-Signup">
         <NavBar />
 
+        <div className="background-img">
+
       <h1>Host-Signup</h1>
       <form onSubmit={handleSubmit}>
         <label>Email: <input type="email" required name="email" value={email} onChange={event => setEmail(event.target.value)}/></label>
@@ -47,9 +49,12 @@ function HostSignup() {
         {/*<label>Profile Picture: <input type="file" name="image" value={picture} onChange={event => setPicture(event.target.value)} /></label>*/}
 
 
-        <button type="submit">Submit</button>
+        <button className="button" type="submit">Submit</button>
 
       </form>
+
+      </div>
+
     </div>
   );
 }
