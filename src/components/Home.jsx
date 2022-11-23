@@ -25,6 +25,12 @@ function Home() {
       </form>
 
 
+      
+
+      <Link to="/host-signup"><button type="button">Host Signup</button></Link>
+      <Link to="/refugee-signup"><button type="button">Refugee Signup</button></Link>
+
+
 
 
 

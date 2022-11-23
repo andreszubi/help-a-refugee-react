@@ -32,7 +32,6 @@ form {
   border-radius: 5px;
   padding: 1rem;
   background-color: #3DB2FF;
-  margin: 
 }
 
 form label {
@@ -47,7 +46,7 @@ input {
   border-radius: 5px;
 }
 
-form button {
+button {
   background-color: #FF2442;
 }
 
