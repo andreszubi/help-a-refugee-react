@@ -1,7 +1,6 @@
 
-import NavBar from "./NavBar";
+import NavBar from "../components/NavBar";
 import { useState } from "react"
-import axios from "axios";
 
 function HostSignup() {
   const [email, setEmail] = useState("")

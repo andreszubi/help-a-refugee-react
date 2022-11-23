@@ -29,19 +29,7 @@ function Home() {
             amet sapien. Morbi porttitor, urna sit amet rhoncus auctor, ipsum
             diam molestie nulla, vitae commodo nunc leo non sem. Pellentesque
             euismod, ligula in finibus molestie, felis ipsum lacinia lacus, et
-            aliquam nisl odio eget arcu. Ut feugiat eget diam nec faucibus. Sed
-            convallis, metus eu lobortis lacinia, orci arcu tempus justo,
-            vulputate malesuada metus dui ac ex. Quisque mattis, sapien sit amet
-            lacinia finibus, leo diam fermentum augue, efficitur consectetur
-            eros tellus in felis. Fusce enim lorem, tincidunt non nisl vel,
-            tincidunt molestie justo. Curabitur luctus ipsum commodo tellus
-            auctor, id fringilla tellus commodo. Vivamus at dolor neque. Donec
-            blandit iaculis elit, nec fermentum nisl imperdiet ut. Morbi id
-            vulputate lectus, a iaculis arcu. Curabitur eu vulputate velit.
-            Praesent hendrerit felis ut ex facilisis laoreet. Etiam imperdiet
-            sagittis sapien, eu ultrices neque euismod sodales. Quisque maximus
-            aliquam felis quis volutpat. Sed sit amet magna sed lectus sagittis
-            tincidunt sollicitudin nec risus. Suspendisse tincidunt.
+            aliquam nisl odio eget arcu.
           </p>
         </div>
         <form>
@@ -56,21 +44,17 @@ function Home() {
           <button className="button" type="button">
             Login
           </button>
-        </form>
-
-        <div className="signup-btns">
-          <Link to="/host-signup">
-            <button className="button" type="button">
-              Host Signup
-            </button>
-          </Link>
-
-          <Link to="/refugee-signup">
-            <button className="button" type="button">
-              Refugee Signup
-            </button>
+          <div className="signup-btns" style={{display:"flex", flexDirection:"column"}}>
+          <p style={{width:"20vw"}}>Not a member yet? </p>
+          <Link to= "/user-signup" >
+            <a style={{color:"white"}}>
+              Sign up!
+            </a>
           </Link>
         </div>
+        </form>
+
+        
       </div>
     </div>
   );
