@@ -17,6 +17,7 @@ nav {
   border-style: solid;
  border-width: 1px;
   border-color: #3e95ce;
+  padding: 0 60px 0 60px;
 }
 
 form {
@@ -34,6 +35,8 @@ form {
   padding: 1rem;
   background-color: #1AABE2;
   margin-bottom: 40px;
+  font-weight: bolder;
+  text-shadow: #1a1a1a 1px 1px 1px;
 }
 
 form label {
@@ -74,6 +77,7 @@ input {
 body {
   font-family: 'Roboto-Condensed', sans-serif;
   margin: 0;
+  padding: 0;
   background-color: #FFFFFF;
 }
 
@@ -109,13 +113,19 @@ h2 {
 
 div.transbox {
   margin: 0 30px;
-  background-color: #ffffff;
-  border: 1px solid black;
-  opacity: 0.7;
+  background-color: #F6E8CE;
+  border: 0.2px solid black;
+  opacity: 0.8;
 }
 
 div.transbox p {
   margin: 5%;
   font-weight: bold;
-  color: #000000;
+  color: black;
+}
+
+p {
+  color: white;
+  font-weight: bolder;
+  text-shadow: #1a1a1a 1px 1px 1px;
 }
