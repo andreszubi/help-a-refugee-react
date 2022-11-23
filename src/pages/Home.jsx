@@ -65,7 +65,7 @@ function Home() {
             </button>
           </Link>
 
-          <Link to="/refugee-signup">
+          <Link to="/user-signup">
             <button className="button" type="button">
               Refugee Signup
             </button>
