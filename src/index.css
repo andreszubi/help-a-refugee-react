@@ -60,8 +60,11 @@ input {
   border-radius: 5px;
   background-color: #F87474;
   color: white;
-  font-weight: bold;
+  font-weight: bolder;
+  text-shadow: #1a1a1a 1px 1px 1px;
+  box-shadow: #1a1a1a 1px 1px 1px;
 }
+
 
 .signup-btns {
   
