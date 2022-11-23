@@ -1,7 +1,6 @@
 
-import NavBar from "./NavBar";
+import NavBar from "../components/NavBar";
 import { useState } from "react"
-import axios from "axios";
 
 function HostSignup() {
   const [email, setEmail] = useState("")
@@ -14,8 +13,15 @@ function HostSignup() {
 
   const handleSubmit = async event => {
     event.preventDefault()
-    const response = await axios.get("http://localhost:5005/host/signup", {email, password, firstName, lastName, country, city}, {withCredentials:true});
-    console.log(response.data)
+    const response = await fetch("http://localhost:5005/host/signup", {
+      method: "POST", 
+      headers:{
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({email, password, firstName, lastName, country, city})
+    });
+    const parsed = await response.json()
+    console.log(parsed)
   }
 
 
