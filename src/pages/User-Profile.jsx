@@ -2,11 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import { SessionContextUser } from "../contexts/SessionContextUser";
 
 function UserProfile() {
-  const { token, currentToken } = useContext(SessionContextUser);
+  const { currentToken } = useContext(SessionContextUser);
+  console.log("token", currentToken);
+  console.log("Hello");
 
-  if (currentToken) {
-    console.log("Hello", currentToken);
-  }
+  //   if (currentToken) {
+  //     console.log(currentToken);
+  //   }
 
   return (
     <>
