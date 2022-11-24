@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import HostSignup from "./pages/Host-Signup";
 import UserSignup from "./pages/User-Signup";
 import HostLogin from "./pages/Host-Login";
+import { SessionContext } from "./contexts/SessionContext";
 // import RefugeeProfile from './components/Refugee-Profile'
 // import HostProfile from './components/Host-Profile'
 // import ListingsSearch from './components/Listings-Search'
@@ -13,6 +14,7 @@ import HostLogin from "./pages/Host-Login";
 // import Messages from './components/Messages'
 
 function App() {
+  const {isAuthenticated} = useContext(SessionContext)
   return (
     <div className="App">
       <Routes>
