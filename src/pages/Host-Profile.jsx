@@ -2,8 +2,7 @@ import {useContext, useEffect, useState} from "react"
 import {SessionContextHost} from "../contexts/SessionContextHost"
 
 function HostProfile() {
-    const {token, fetchWithToken, currentToken} = useContext(SessionContextHost);
-    console.log("the Token", token)
+    const {token, currentToken} = useContext(SessionContextHost);
     
     if (currentToken) {console.log("Hello", currentToken)}
 
@@ -24,7 +23,6 @@ function HostProfile() {
     useEffect(()=> {
         fetchListings()
         setIsLoading(false)
-        console.log(listings)
     },[])
 
     
