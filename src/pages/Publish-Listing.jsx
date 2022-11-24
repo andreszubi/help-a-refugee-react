@@ -4,10 +4,13 @@ import React from 'react';
 import NavBar from '../components/NavBar';
 import { useState } from 'react';
 import { SessionContextHost } from "../contexts/SessionContextHost";
+const { useNavigate } = ReactRouterDOM;
 
 
 function PublishListing() {
     const { token, setToken } = useContext(SessionContextHost);
+    const navigate = useNavigate();
+
     const [country, setCountry] = useState("");
     const [city, setCity] = useState("");
     const [typeOfRoom, setTypeOfRoom] = useState("");
@@ -29,8 +32,9 @@ function PublishListing() {
 
         if (parsed.status === 200) {
             setToken(parsed.token);
+            navigate("/host/listings");
         }
-        
+
     };
     return (
         <div className="PublishListing">
