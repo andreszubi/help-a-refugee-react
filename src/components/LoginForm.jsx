@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import { SessionContext } from "../contexts/SessionContextUser";
+import { SessionContextUser } from "../contexts/SessionContextUser";
 
 const LoginForm = () => {
-  const { setToken } = useContext(SessionContext);
+  const { setToken } = useContext(SessionContextUser);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
