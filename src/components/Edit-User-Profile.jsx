@@ -3,11 +3,12 @@
 
 import { useContext, useState } from "react";
 import { SessionContextUser } from "../contexts/SessionContextUser";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
 
 function EditUserProfile() {
     const { token, setToken } = useContext(SessionContextUser);
+    const navigate = useNavigate();
     
     const [email, setEmail] = useState("");
     const [hashedPassword, setHashedPassword] = useState("");
@@ -35,6 +36,7 @@ function EditUserProfile() {
 
         if (parsed.status === 200) {
         setToken(parsed.token);
+        navigate("/user/profile");
         }
     };
 
@@ -141,7 +143,7 @@ function EditUserProfile() {
                         />
                     </label>
 
-                    <Link to="/user-profile"><button classname="button" type="submit">Submit</button></Link>
+                   <button classname="button" type="submit">Submit</button>
                 </form>
             </div>
         </div>

@@ -3,11 +3,12 @@
 
 import { useContext, useState } from "react";
 import { SessionContextHost } from "../contexts/SessionContextHost";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
 
 function EditHostProfile() {
     const { token, setToken } = useContext(SessionContextHost);
+    const navigate = useNavigate();
     
     const [email, setEmail] = useState("");
     const [hashedPassword, setHashedPassword] = useState("");
@@ -36,6 +37,7 @@ function EditHostProfile() {
 
         if (parsed.status === 200) {
         setToken(parsed.token);
+        navigate("/host/profile");
         }
     };
 
@@ -143,7 +145,7 @@ function EditHostProfile() {
                     </label>
 
 
-                    <Link to="/host-profile" ><button className="button" type="submit">Edit Profile</button> </Link>
+                   <button className="button" type="submit">Edit Profile</button> 
                 </form>
             </div>
         </div>
