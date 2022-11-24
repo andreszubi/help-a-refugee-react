@@ -2,21 +2,33 @@ import {useContext, useEffect, useState} from "react"
 import {SessionContextHost} from "../contexts/SessionContextHost"
 
 function HostProfile() {
-    const {token, fetchWithToken, currentToken} = useContext(SessionContextHost);
+    const {token, currentToken} = useContext(SessionContextHost);
     
-useEffect(()=> {
+    if (currentToken) {console.log("Hello", currentToken)}
 
-  
-},[])
-if (currentToken) {console.log("Hello", currentToken)}
-
-    const [listings, setListings] = useState([{},{},{}])
+    const [listings, setListings] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-    const fetchListings = fetchWithToken ("GET", "host/listings",setListings)
+    const fetchListings = async () => {
+        const response = await fetch ("http://localhost:5005/host/listings" , {
+            method: "GET",
+            headers: {
+                Authorization : `Bearer ${token}`,
+                "Content-Type" : "application/json"
+            },
+        })    
+        const parsed = await response.json();
+        setListings(parsed)
+    }
+
+    useEffect(()=> {
+        fetchListings()
+        setIsLoading(false)
+    },[])
+
     
 
     return ( 
-        <h1>Welcome to your profile</h1>
+        <h1>Welcome to your profile, {currentToken.user.firstName}</h1>
      );
 }
 
