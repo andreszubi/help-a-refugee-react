@@ -42,6 +42,7 @@ function HostLogin() {
               id="email"
               name="email"
               value={email}
+              required
               onChange={(event) => setEmail(event.target.value)}
             />
           </label>
@@ -53,6 +54,7 @@ function HostLogin() {
               id="password"
               name="password"
               value={password}
+              required
               onChange={(event) => setPassword(event.target.value)}
             />
           </label>
