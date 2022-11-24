@@ -16,6 +16,7 @@ function EditHostProfile() {
     const [city, setCity] = useState("");
     const [country, setCountry] = useState("");
     const [image, setImage] = useState("");
+    const [aboutMe, setAboutMe] = useState("");
     
 
 
@@ -29,7 +30,7 @@ function EditHostProfile() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ email, hashedPassword, firstName, lastName, city, country, image }),
+        body: JSON.stringify({ email, hashedPassword, firstName, lastName, city, country, image aboutMe }),
         });
         const parsed = await response.json();
 
@@ -128,6 +129,19 @@ function EditHostProfile() {
                         onChange={(event) => setImage(event.target.value)}
                         />
                     </label>
+
+                    <label>
+                        About Me{" "}
+                        <input
+                        type="text"
+                        id="aboutMe"
+                        name="aboutMe"
+                        value={aboutMe}
+                        required
+                        onChange={(event) => setAboutMe(event.target.value)}
+                        />
+                    </label>
+
 
                     <Link to="/host-profile" ><button className="button" type="submit">Edit Profile</button> </Link>
                 </form>
