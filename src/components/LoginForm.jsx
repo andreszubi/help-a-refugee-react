@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
-import {SessionContextUser} from "../contexts/SessionContextUser"
+import { Link, useNavigate } from "react-router-dom";
+import { SessionContextUser } from "../contexts/SessionContextUser";
 
 const LoginForm = () => {
   const { setToken } = useContext(SessionContextUser);
@@ -8,6 +8,8 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -23,7 +25,7 @@ const LoginForm = () => {
 
     if (parsed.status === 200) {
       setToken(parsed.token);
-      Navigate("/user-profile");
+      navigate("/user-profile");
     } else {
       setError(parsed);
     }
