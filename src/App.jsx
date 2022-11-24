@@ -5,10 +5,13 @@ import Home from "./pages/Home";
 import HostSignup from "./pages/Host-Signup";
 import UserSignup from "./pages/User-Signup";
 import HostLogin from "./pages/Host-Login";
+import EditHostProfile from "./components/Edit-Host-Profile";
 // import RefugeeProfile from './components/Refugee-Profile'
 import HostProfile from './pages/Host-Profile'
+import EditUserProfile from "./components/Edit-User-Profile";
+// import HostProfile from './components/Host-Profile'
 // import ListingsSearch from './components/Listings-Search'
-// import PublishListing from './components/Publish-Listing'
+import PublishListing from "./pages/Publish-Listing"
 // import ListingDetails from './components/Listing-Details'
 // import Messages from './components/Messages'
 
@@ -23,9 +26,14 @@ function App() {
         <Route path="/host-profile" element={<HostProfile />} />
         {/* <Route path="/refugee-profile" element={<RefugeeProfile />} />
         <Route path="/listings-search" element={<ListingsSearch />} />
+        <Route path="/edit-host-profile" element={<EditHostProfile />} />
+        <Route path="/edit-user-profile" element={<EditUserProfile />} />
+        {/* <Route path="/refugee-profile" element={<RefugeeProfile />} />
+        <Route path="/host-profile" element={<HostProfile />} />
+        <Route path="/listings-search" element={<ListingsSearch />} /> */}
         <Route path="/publish-listing" element={<PublishListing />} />
-        <Route path="/listing-details" element={<ListingDetails />} />
-        <Route path="/messages" element={<Messages />} /> */}
+        {/* <Route path="/listing-details" element={<ListingDetails />} /> */}
+        {/* <Route path="/messages" element={<Messages />} /> */}
       </Routes>
     </div>
   );
