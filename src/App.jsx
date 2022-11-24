@@ -5,7 +5,8 @@ import Home from "./pages/Home";
 import HostSignup from "./pages/Host-Signup";
 import UserSignup from "./pages/User-Signup";
 import HostLogin from "./pages/Host-Login";
-import { SessionContext } from "./contexts/SessionContextHost";
+import { SessionContextUser } from "./contexts/SessionContextUser";
+import { SessionContextHost } from "./contexts/SessionContextHost";
 // import RefugeeProfile from './components/Refugee-Profile'
 // import HostProfile from './components/Host-Profile'
 // import ListingsSearch from './components/Listings-Search'

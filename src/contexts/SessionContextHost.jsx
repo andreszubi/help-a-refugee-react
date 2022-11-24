@@ -1,9 +1,9 @@
 import { useLocalStorage } from "@mantine/hooks";
 import { createContext, useEffect, useState } from "react";
 
-export const SessionContext = createContext();
+export const SessionContextHost = createContext();
 
-const SessionContextProvider = ({children}) => {
+const SessionContextHostProvider = ({children}) => {
     const [token, setToken] = useLocalStorage({key: "token", defaultValue: undefined})
     const [isAuthenticated, setIsAuthenticated] = useState(false)
 
@@ -43,10 +43,10 @@ const SessionContextProvider = ({children}) => {
     }
 
     return (
-        <SessionContext.Provider value={{token, setToken, isAuthenticated, fetchWithToken}}>
+        <SessionContextHost.Provider value={{token, setToken, isAuthenticated, fetchWithToken}}>
             {children}
-        </SessionContext.Provider>
+        </SessionContextHost.Provider>
     )
 }
 
-export default SessionContextProvider
+export default SessionContextHostProvider

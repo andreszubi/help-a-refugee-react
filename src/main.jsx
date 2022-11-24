@@ -4,18 +4,21 @@ import App from './App'
 import './index.css'
 import { MantineProvider} from '@mantine/core';
 import { BrowserRouter as Router } from 'react-router-dom'
-import SessionContextProvider from './contexts/SessionContextHost';
+import SessionContextHostProvider from './contexts/SessionContextHost';
+import SessionContextUserProvider from './contexts/SessionContextUser';
 
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <MantineProvider>
-      <SessionContextProvider>
+      <SessionContextHostProvider>
+        <SessionContextUserProvider>
       <Router>
     <App />
     </Router>
-    </SessionContextProvider>
+    </SessionContextUserProvider>
+    </SessionContextHostProvider>
     </MantineProvider>
   </React.StrictMode>
 )
