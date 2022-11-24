@@ -4,7 +4,7 @@ import React from 'react';
 import NavBar from '../components/NavBar';
 import { useState } from 'react';
 import { SessionContextHost } from "../contexts/SessionContextHost";
-const { useNavigate } = ReactRouterDOM;
+import { useNavigate } from "react-router-dom";
 
 
 function PublishListing() {

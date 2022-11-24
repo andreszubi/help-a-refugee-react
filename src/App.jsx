@@ -24,11 +24,10 @@ function App() {
         <Route path="/user-signup" element={<UserSignup />} />
         <Route path="/host-login" element={<HostLogin />} />
         <Route path="/host-profile" element={<HostProfile />} />
-        {/* <Route path="/refugee-profile" element={<RefugeeProfile />} />
-        <Route path="/listings-search" element={<ListingsSearch />} />
         <Route path="/edit-host-profile" element={<EditHostProfile />} />
         <Route path="/edit-user-profile" element={<EditUserProfile />} />
         {/* <Route path="/refugee-profile" element={<RefugeeProfile />} />
+        <Route path="/listings-search" element={<ListingsSearch />} />
         <Route path="/host-profile" element={<HostProfile />} />
         <Route path="/listings-search" element={<ListingsSearch />} /> */}
         <Route path="/publish-listing" element={<PublishListing />} />
