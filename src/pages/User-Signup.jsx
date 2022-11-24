@@ -7,6 +7,7 @@ function UserSignup() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [profileImage, setProfileImage] = useState("");
+  const [aboutMe, setAboutMe] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -19,7 +20,8 @@ function UserSignup() {
         password,
         firstName,
         lastName,
-        // img: image,
+        img: image,
+        aboutMe,
       }),
     });
     const parsed = await response.json();
@@ -75,13 +77,23 @@ function UserSignup() {
           </label>
 
           <label>
-            {/* Profile Picture:{" "}
-          <input
-            type="file"
-            name="image"
-            value={profileImage}
-            onChange={(event) => setProfileImage(event.target.value)}
-          /> */}
+            Profile Picture:{" "}
+            <input
+              type="file"
+              name="image"
+              value={profileImage}
+              onChange={(event) => setProfileImage(event.target.value)}
+            />
+          </label>
+
+          <label>
+            About me:{" "}
+            <input
+              type="text"
+              name="aboutMe"
+              value={aboutMe}
+              onChange={(event) => setAboutMe(event.target.value)}
+            />
           </label>
 
           <button className="button" type="submit">
