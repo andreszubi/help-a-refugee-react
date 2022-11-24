@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
-import { SessionContext} from "../contexts/SessionContext"
+import { SessionContext} from "../contexts/SessionContextHost"
 import {useState, useContext} from "react"
 
 function HostLogin() {

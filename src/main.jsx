@@ -4,7 +4,7 @@ import App from './App'
 import './index.css'
 import { MantineProvider} from '@mantine/core';
 import { BrowserRouter as Router } from 'react-router-dom'
-import SessionContextProvider from './contexts/SessionContext';
+import SessionContextProvider from './contexts/SessionContextHost';
 
 
 
