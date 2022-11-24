@@ -30,7 +30,7 @@ function EditHostProfile() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ email, hashedPassword, firstName, lastName, city, country, image aboutMe }),
+        body: JSON.stringify({ email, hashedPassword, firstName, lastName, city, country, image, aboutMe }),
         });
         const parsed = await response.json();
 
