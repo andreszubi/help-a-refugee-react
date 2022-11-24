@@ -20,7 +20,7 @@ function UserSignup() {
         password,
         firstName,
         lastName,
-        img: image,
+        // img: image,
         aboutMe,
       }),
     });
@@ -76,7 +76,7 @@ function UserSignup() {
             />
           </label>
 
-          <label>
+          {/* <label>
             Profile Picture:{" "}
             <input
               type="file"
@@ -84,7 +84,7 @@ function UserSignup() {
               value={profileImage}
               onChange={(event) => setProfileImage(event.target.value)}
             />
-          </label>
+          </label> */}
 
           <label>
             About me:{" "}
