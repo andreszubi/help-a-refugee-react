@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
 
 const LoginForm = () => {
@@ -11,7 +12,7 @@ const LoginForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await fetch("http://localhost:5005/auth/login", {
+    const response = await fetch("http://localhost:5005/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,6 +23,7 @@ const LoginForm = () => {
 
     if (parsed.status === 200) {
       setToken(parsed.token);
+      Navigate("/user-profile");
     } else {
       setError(parsed);
     }
