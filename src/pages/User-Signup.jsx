@@ -19,7 +19,7 @@ function UserSignup() {
         password,
         firstName,
         lastName,
-        img: image,
+        // img: image,
       }),
     });
     const parsed = await response.json();
@@ -30,67 +30,65 @@ function UserSignup() {
     <div className="Refugee-Signup">
       <NavBar />
 
-
       <div className="background-img">
+        <h1>User Signup</h1>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Email:
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Password:
+            <input
+              type="password"
+              name="hashedPassword"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              required
+            />
+          </label>
 
-      <h1>User Signup</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email:
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            name="hashedPassword"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            required
-          />
-        </label>
+          <label>
+            First Name:{" "}
+            <input
+              type="text"
+              name="firstName"
+              value={firstName}
+              onChange={(event) => setFirstName(event.target.value)}
+            />
+          </label>
 
-        <label>
-          First Name:{" "}
-          <input
-            type="text"
-            name="firstName"
-            value={firstName}
-            onChange={(event) => setFirstName(event.target.value)}
-          />
-        </label>
+          <label>
+            Last Name:{" "}
+            <input
+              type="text"
+              name="lastName"
+              value={lastName}
+              onChange={(event) => setLastName(event.target.value)}
+            />
+          </label>
 
-        <label>
-          Last Name:{" "}
-          <input
-            type="text"
-            name="lastName"
-            value={lastName}
-            onChange={(event) => setLastName(event.target.value)}
-          />
-        </label>
-
-        <label>
-          Profile Picture:{" "}
+          <label>
+            {/* Profile Picture:{" "}
           <input
             type="file"
             name="image"
             value={profileImage}
             onChange={(event) => setProfileImage(event.target.value)}
-          />
-        </label>
+          /> */}
+          </label>
 
-        <button className="button" type="submit">Submit</button>
-      </form>
-
+          <button className="button" type="submit">
+            Submit
+          </button>
+        </form>
       </div>
-
     </div>
   );
 }
