@@ -18,7 +18,7 @@ const SessionContextHostProvider = ({ children }) => {
       },
     });
     const parsed = await response.json();
-    console.log(parsed.payload);
+    //console.log(parsed.payload);
     if (parsed.message === "Token OK") {
       setIsAuthenticated(true);
       setCurrentToken(parsed.payload)
