@@ -3,10 +3,11 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
 import { useState } from 'react';
+import { SessionContextHost } from "../contexts/SessionContextHost";
 
 
 function PublishListing() {
-
+    const { token, setToken } = useContext(SessionContextHost);
     const [country, setCountry] = useState("");
     const [city, setCity] = useState("");
     const [typeOfRoom, setTypeOfRoom] = useState("");
@@ -20,11 +21,16 @@ function PublishListing() {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify({ country, city, typeOfRoom, placesAvailable, image}),
         });
         const parsed = await response.json();
-        console.log(parsed);
+
+        if (parsed.status === 200) {
+            setToken(parsed.token);
+        }
+        
     };
     return (
         <div className="PublishListing">
