@@ -1,24 +1,18 @@
-import React, { useEffect } from "react";
-import axios from "axios";
+import { useEffect, useState, useContext } from "react";
+import { useParams } from "react-router-dom";
 import NavBarUser from "../components/NavBarUser";
 import { SessionContextUser } from "../contexts/SessionContextUser";
+import { NavLink } from "react-router-dom";
 
-function ProfilePage() {
-  useEffect(() => {
-    const verifyUser = async () => {
-      const storedToken = localStorage.getItem("authToken");
-      let verifyRes = await axios.get(`http://localhost:5005/auth/verify`, {
-        headers: { authorization: `Bearer ${storedToken}` },
-      });
-      console.log("profile page", verifyRes.data);
-    };
-    verifyUser();
-  }, [])
+const UserProfilePage = () => {
+  const { isAuthenticated } = useContext(SessionContextUser);
+
   return (
-    <NavBarUser />
+    <>
+      <NavBarUser />
+      <div>ProfilePage</div>
+    </>
+  );
+};
 
-  ) 
-<div>ProfilePage</div>
-}
-
-export default ProfilePage;
+export default UserProfilePage;
