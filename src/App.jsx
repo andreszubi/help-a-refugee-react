@@ -6,7 +6,7 @@ import HostSignup from "./pages/Host-Signup";
 import UserSignup from "./pages/User-Signup";
 import HostLogin from "./pages/Host-Login";
 // import RefugeeProfile from './components/Refugee-Profile'
-// import HostProfile from './components/Host-Profile'
+import HostProfile from './pages/Host-Profile'
 // import ListingsSearch from './components/Listings-Search'
 // import PublishListing from './components/Publish-Listing'
 // import ListingDetails from './components/Listing-Details'
@@ -20,8 +20,8 @@ function App() {
         <Route path="/host-signup" element={<HostSignup />} />
         <Route path="/user-signup" element={<UserSignup />} />
         <Route path="/host-login" element={<HostLogin />} />
-        {/* <Route path="/refugee-profile" element={<RefugeeProfile />} />
         <Route path="/host-profile" element={<HostProfile />} />
+        {/* <Route path="/refugee-profile" element={<RefugeeProfile />} />
         <Route path="/listings-search" element={<ListingsSearch />} />
         <Route path="/publish-listing" element={<PublishListing />} />
         <Route path="/listing-details" element={<ListingDetails />} />

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import { SessionContextHost } from "../contexts/SessionContextHost";
 import { useState, useContext } from "react";
@@ -9,6 +9,8 @@ function HostLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState();
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -24,6 +26,7 @@ function HostLogin() {
 
     if (parsed.status === 200) {
       setToken(parsed.token);
+      navigate("/host-profile");
     } else {
       setError(parsed);
     }
