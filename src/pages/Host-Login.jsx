@@ -34,16 +34,14 @@ function HostLogin() {
 
         <div className="background-img">
         <h1>Host Login</h1>
-        <form>
+        <form onSubmit={handleSubmit}>
             <label >Email <input type="email" id="email" name="email" value={email} onChange= {event => setEmail(event.target.value)}/></label>
             
             <label>Password <input type="password" id="password" name="password" value={password} onChange= {event => setPassword(event.target.value)}/></label>
             
-            <Link to="/host-profile">
             <button className="button" type="submit">
                 Login
             </button>
-            </Link>
         </form>
 
         </div>

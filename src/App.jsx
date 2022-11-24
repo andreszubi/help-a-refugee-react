@@ -14,7 +14,6 @@ import { SessionContext } from "./contexts/SessionContext";
 // import Messages from './components/Messages'
 
 function App() {
-  const {isAuthenticated} = useContext(SessionContext)
   return (
     <div className="App">
       <Routes>
