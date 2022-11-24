@@ -44,17 +44,18 @@ function Home() {
           <button className="button" type="button">
             Login
           </button>
-          <div className="signup-btns" style={{display:"flex", flexDirection:"column"}}>
-          <p style={{width:"20vw"}}>Not a member yet? </p>
-          <Link to= "/user-signup" >
-            <a style={{color:"white"}}>
-              <button className="button">Sign up!</button>
-            </a>
-          </Link>
-        </div>
+          <div
+            className="signup-btns"
+            style={{ display: "flex", flexDirection: "column" }}
+          >
+            <p style={{ width: "20vw" }}>Not a member yet? </p>
+            <Link to="/user-signup">
+              <a style={{ color: "white" }}>
+                <button className="button">Sign up!</button>
+              </a>
+            </Link>
+          </div>
         </form>
-
-        
       </div>
     </div>
   );
