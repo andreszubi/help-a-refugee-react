@@ -24,7 +24,7 @@ function BookingConfirmation() {
                 <p>City: {token.housing.city}</p>
                 <p>Type of Room: {token.housing.typeOfRoom}</p>
                 <p>Places Available: {token.housing.placesAvailable}</p>
-                <p>Host: {owner}</p>
+                <p>Host: {token.housing.owner}</p>
 
                 <Link to="/user-profile"><button className="button">Go to your profile</button></Link>
 
