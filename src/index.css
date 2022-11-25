@@ -150,6 +150,10 @@ p {
   border: 1px solid #ccc;
   position: relative;
   border-radius: 5px;
+  margin: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
 }
 
 .dropdown-input {
@@ -168,12 +172,13 @@ p {
   border-radius: 5px;
   overflow: auto;
   max-height: 150px;
-  background-color: #fff;
+  background-color: white;
 }
 
 .dropdown-item {
   padding: 5px;
   cursor: pointer;
+  background-color: white;
 }
 
 .dropdown-item:hover {
@@ -183,4 +188,17 @@ p {
 .dropdown-item.selected {
   background-color: #0d6efd;
   color: #fff;
+}
+
+.search-box {
+  padding: 5px;
+  background-color: #eee;
+}
+.search-box input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
 }
