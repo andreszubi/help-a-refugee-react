@@ -1,8 +1,8 @@
 // Create a Publish Listing page using Housing model
 
 import React from 'react';
-import NavBar from '../components/NavBar';
-import { useState } from 'react';
+import NavBar from './NavBar';
+import { useState, useContext } from 'react';
 import { SessionContextHost } from "../contexts/SessionContextHost";
 import { useNavigate } from "react-router-dom";
 
@@ -52,7 +52,7 @@ function PublishListing() {
 
                 <label>Places Available: <input type="number" name="placesAvailable" required onChange={event => setPlacesAvailable(event.target.value)} /></label>
 
-                <label>Image: <input type="file" name="image" required onChange={event => setImage(event.target.value)} /></label>
+                <label>Image: <input type="file" name="image" onChange={event => setImage(event.target.value)} /></label>
 
 
                 <button className="button" type="submit">Submit</button>
