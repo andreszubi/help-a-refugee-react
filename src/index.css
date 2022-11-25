@@ -132,3 +132,24 @@ p {
   font-weight: bolder;
   text-shadow: #1a1a1a 1px 1px 1px;
 }
+
+.listing {
+  background-color: #1AABE2;
+  border-radius: 6px;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 5px;
+  border-color: #1b76b3;
+  border: 1px solid #1b76b3
+}
+
+.listings {
+  display: flex;
+  justify-content: space-evenly;
+}
+.listingImage {
+  width: 20vw;
+  height: 20vw;
+}
