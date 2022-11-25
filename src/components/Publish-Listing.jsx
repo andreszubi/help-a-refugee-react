@@ -38,9 +38,8 @@ function PublishListing() {
     };
     return (
         <div className="PublishListing">
-            <NavBar />
 
-            <div className="background-img">
+            <div>
                 <h1>Publish Listing</h1>
                 <form onSubmit={handleSubmit}>
                     
