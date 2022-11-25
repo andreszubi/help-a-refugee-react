@@ -1,6 +1,3 @@
-// Generate a list of listings for the users to choose from based on search criteria
-//
-
 import { useContext, useState } from "react";
 import { SessionContextUser } from "../contexts/SessionContextUser";
 import { useNavigate } from "react-router-dom";
