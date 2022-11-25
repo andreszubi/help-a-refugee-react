@@ -107,10 +107,9 @@ const ListingsSearchUser = ({
               {option.label}
             </div>
           ))}
-          ;
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 export default ListingsSearchUser;

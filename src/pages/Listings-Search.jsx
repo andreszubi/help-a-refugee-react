@@ -72,7 +72,7 @@ function ListingsSearch() {
         Submit
       </button>
     </div>
-  )
+  );
 }
 
 export default ListingsSearch;
