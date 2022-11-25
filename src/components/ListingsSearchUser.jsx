@@ -49,7 +49,7 @@ const ListingsSearchUser = ({
 
   const getOptions = () => {
     if (!searchValue) {
-      return options;
+      return options
     }
     return options.filter(
       (option) =>
