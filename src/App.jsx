@@ -14,7 +14,7 @@ import BookingConfirmation from "./pages/Booking-Confirmation";
 import ListingsSearch from "./pages/Listings-Search";
 import PublishListing from "./components/Publish-Listing";
 import EditListing from "./components/Edit-Listing";
-// import ListingDetails from './components/Listing-Details'
+import ListingDetails from "./pages/Listing-Details";
 // import Messages from './components/Messages'
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
         <Route path="/booking-confirmation" element={<BookingConfirmation />} />
         <Route path="/publish-listing" element={<PublishListing />} />
         <Route path="/edit-listing" element={<EditListing />} />
-        {/* <Route path="/listing-details" element={<ListingDetails />} /> */}
+        <Route path="/listing-details" element={<ListingDetails />} />
         {/* <Route path="/messages" element={<Messages />} /> */}
       </Routes>
     </div>
