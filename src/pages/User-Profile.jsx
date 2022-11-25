@@ -1,20 +1,44 @@
 import { useContext, useEffect, useState } from "react";
 import { SessionContextUser } from "../contexts/SessionContextUser";
 import NavBarUser from "../components/NavBarUser";
+import {
+  ActionIcon,
+  Autocomplete,
+  Button,
+  Card,
+  createStyles,
+  Modal,
+  Skeleton,
+  Text,
+} from "@mantine/core";
+// import { DialogBody } from "@mantine/core/lib/Dialog/Dialog";
 
-function UserProfile() {
+const UserProfile = () => {
   const { currentToken } = useContext(SessionContextUser);
   const [isEditing, setIsEditing] = useState(false);
-  const [email, setEmail] = useState(email.email);
+  const [email, setEmail] = useState(currentToken.user.email);
   // const [hashedPassword, setHashedPassword] = useState(has);
-  const [firstName, setFirstName] = useState(firstName.firstName);
-  const [lastName, setLastName] = useState(lastName.lastName);
-  const [image, setImage] = useState(image.image);
-  const [aboutMe, setAboutMe] = useState(aboutMe.aboutMe);
+  const [firstName, setFirstName] = useState(currentToken.user.firstName);
+  const [lastName, setLastName] = useState(currentToken.user.lastName);
+  // const [image, setImage] = useState(image.image);
+  const [aboutMe, setAboutMe] = useState(currentToken.user.aboutMe);
   console.log("token", currentToken);
   console.log("Hello");
 
-  const handleSubmit = async;
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    await fetch("http://localhost:5005/user/edit/:id", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ email, firstName, lastName, image, aboutMe }),
+    });
+
+    setIsEditing(false);
+  };
 
   //   if (currentToken) {
   //     console.log(currentToken);
@@ -24,12 +48,77 @@ function UserProfile() {
     <>
       <NavBarUser />
       <h2>Welcome to your profile, {currentToken.user.firstName}</h2>
-      <p>First Name: {currentToken.user.firstName} </p>
-      <p>Last Name: {currentToken.user.lastName} </p>
-      <p>Email: {currentToken.user.email} </p>
-      <p>About me: {currentToken.user.aboutMe} </p>
+      <Skeleton visible={isLoading}>
+        <Card shadow="sm" p="lg" radius="md" withBorder>
+          <Text fz="lg">{currentToken.user.firstName}</Text>
+          <Text>{currentToken.user.lastName}</Text>
+          <Text>{currentToken.user.email}</Text>
+          <Text>{currentToken.user.aboutMe}</Text>
+          <Button
+            color="grape"
+            radius="xl"
+            size="xs"
+            compact
+            uppercase
+            onClick={() => setIsEditing(true)}
+          >
+            Edit
+          </Button>
+          {/* <ActionIcon
+            color="red"
+            size="lg"
+            radius="xs"
+            variant="light"
+            onClick={() => deleteBeer(beer._id)}
+          >
+            <IconTrash size={26} />
+          </ActionIcon> */}
+        </Card>
+      </Skeleton>
+      <Autocomplete
+        label="Your favorite framework/library"
+        placeholder="Pick one"
+        data={["React", "Angular", "Svelte", "Vue"]}
+      />
+      <Modal
+        opened={isEditing}
+        onClose={() => setIsEditing(false)}
+        title="Edit profile"
+      >
+        <form onSubmit={handleSubmit}>
+          <label>
+            First Name :
+            <input
+              value={firstName}
+              onChange={(event) => setFirstName(event.target.value)}
+            />
+          </label>
+          <label>
+            Last Name :
+            <input
+              value={lastName}
+              onChange={(event) => setLastName(event.target.value)}
+            />
+          </label>
+          <label>
+            Email:
+            <input
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+          </label>
+          <label>
+            About me:
+            <input
+              value={aboutMe}
+              onChange={(event) => setAboutMe(event.target.value)}
+            />
+          </label>
+          <button type="submit">Update</button>
+        </form>
+      </Modal>
     </>
   );
-}
+};
 
 export default UserProfile;
