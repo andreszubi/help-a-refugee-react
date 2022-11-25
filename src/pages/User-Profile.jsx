@@ -14,29 +14,36 @@ import {
 // import { DialogBody } from "@mantine/core/lib/Dialog/Dialog";
 
 const UserProfile = () => {
-  const { currentToken } = useContext(SessionContextUser);
+  const { token, currentPayload } = useContext(SessionContextUser);
   const [isEditing, setIsEditing] = useState(false);
-  const [email, setEmail] = useState(currentToken.user.email);
+  const [email, setEmail] = useState(currentPayload.user.email);
   // const [hashedPassword, setHashedPassword] = useState(has);
-  const [firstName, setFirstName] = useState(currentToken.user.firstName);
-  const [lastName, setLastName] = useState(currentToken.user.lastName);
-  // const [image, setImage] = useState(image.image);
-  const [aboutMe, setAboutMe] = useState(currentToken.user.aboutMe);
+  const [firstName, setFirstName] = useState(currentPayload.user.firstName);
+  const [lastName, setLastName] = useState(currentPayload.user.lastName);
+  const [image, setImage] = useState(image.image);
+  const [aboutMe, setAboutMe] = useState(currentPayload.user.aboutMe);
+  const [isLoading, setIsLoading] = useState(true);
   console.log("token", currentToken);
   console.log("Hello");
 
+  const loadingTime = () => {
+    if (currentPayload) {
+      setIsLoading(false);
+    } else {
+      setIsLoading(true);
+    }
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    await fetch("http://localhost:5005/user/edit/:id", {
-      method: "PUT",
+    const response = await fetch("http://localhost:5005/user/edit/:id", {
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ email, firstName, lastName, image, aboutMe }),
     });
-
     setIsEditing(false);
   };
 
