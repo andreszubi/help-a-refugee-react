@@ -20,7 +20,7 @@ const UserProfile = () => {
   // const [hashedPassword, setHashedPassword] = useState(has);
   const [firstName, setFirstName] = useState(currentPayload.user.firstName);
   const [lastName, setLastName] = useState(currentPayload.user.lastName);
-  const [image, setImage] = useState(image.image);
+  // const [image, setImage] = useState(image.image);
   const [aboutMe, setAboutMe] = useState(currentPayload.user.aboutMe);
   const [isLoading, setIsLoading] = useState(true);
   console.log("token", currentToken);
