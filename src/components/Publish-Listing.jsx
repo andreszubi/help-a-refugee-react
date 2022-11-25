@@ -18,7 +18,7 @@ function PublishListing() {
     const [ image, setImage] = useState("");
    
 
-    const handleSubmit = async (event, setter) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const response = await fetch("http://localhost:5005/host/listings", {
             method: "POST",
@@ -32,7 +32,7 @@ function PublishListing() {
 
         if (parsed.status === 200) {
             setToken(parsed.token);
-            navigate("/host-profile");
+    
         }
 
     };
@@ -43,7 +43,7 @@ function PublishListing() {
                 <h1>Publish Listing</h1>
                 <form onSubmit={handleSubmit}>
                     
-               <label>Country: <input type="text" name="country" required onChange={event => setCountry(event.target.value)} /></label> 
+               <label>Country:: <input type="text" name="country" required onChange={event => setCountry(event.target.value)} /></label> 
 
                <label>City: <input type="text" name="city" required onChange={event => setCity(event.target.value)} /></label>   
 
