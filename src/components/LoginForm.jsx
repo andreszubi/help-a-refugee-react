@@ -63,9 +63,9 @@ const LoginForm = () => {
       >
         <p style={{ width: "20vw" }}>Not a member yet? </p>
         <Link to="/user-signup">
-          <a style={{ color: "white" }}>
+          <p style={{ color: "white" }}>
             <button className="button">Sign up!</button>
-          </a>
+          </p>
         </Link>
       </div>
     </form>

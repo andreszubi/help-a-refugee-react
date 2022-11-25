@@ -8,7 +8,7 @@ function Home() {
       <NavBar />
 
       <div className="background-img">
-        <div class="transbox">
+        <div className="transbox">
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at
             libero nec risus tincidunt luctus. Nulla tempus eu massa sed
