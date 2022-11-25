@@ -27,7 +27,6 @@ function NavBar() {
       <Link to="/refugee-profile">Refugee Profile</Link>
       <Link to="/host-profile">Host Profile</Link>
       <Link to="/listings-search">Listings Search</Link>
-      <Link to="/publish-listing">Publish Listing</Link>
       <Link to="/listing-details">Listing Details</Link>
       <Link to="/messages">Messages</Link> */}
      
