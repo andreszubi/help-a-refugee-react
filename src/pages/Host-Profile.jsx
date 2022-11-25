@@ -45,10 +45,7 @@ function HostProfile() {
 
     return ( 
         <div className="background-img">
-        <h1>Welcome to your profile, {currentToken.user.firstName}</h1>
-        
-        
-        
+        <h1>Welcome to your profile, {currentToken.user.firstName}</h1>    
         {visibleForm && <PublishListing/>}
         <button type="button" onClick={setVisibilityForm}>{visibleForm ? "Hide form" : "Add a new listing"}</button>
         <div className="listings">

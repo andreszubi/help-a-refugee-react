@@ -18,7 +18,7 @@ function PublishListing() {
     const [ image, setImage] = useState("");
    
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event, setter) => {
         event.preventDefault();
         const response = await fetch("http://localhost:5005/host/listings", {
             method: "POST",
@@ -32,7 +32,7 @@ function PublishListing() {
 
         if (parsed.status === 200) {
             setToken(parsed.token);
-            navigate("/host/listings");
+            navigate("/host-profile");
         }
 
     };
