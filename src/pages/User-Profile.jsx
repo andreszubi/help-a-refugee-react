@@ -47,6 +47,10 @@ const UserProfile = () => {
     setIsEditing(false);
   };
 
+  useEffect(() => {
+    loadingTime();
+  }, [currentPayload]);
+
   //   if (currentToken) {
   //     console.log(currentToken);
   //   }
@@ -54,13 +58,17 @@ const UserProfile = () => {
   return (
     <>
       <NavBarUser />
-      <h2>Welcome to your profile, {currentToken.user.firstName}</h2>
+      <h2>
+        {isLoading
+          ? "Loading..."
+          : `Welcome to your profile, ${currentPayload.user.firstName}`}
+      </h2>
       <Skeleton visible={isLoading}>
         <Card shadow="sm" p="lg" radius="md" withBorder>
-          <Text fz="lg">{currentToken.user.firstName}</Text>
-          <Text>{currentToken.user.lastName}</Text>
-          <Text>{currentToken.user.email}</Text>
-          <Text>{currentToken.user.aboutMe}</Text>
+          <Text fz="lg">{currentPayload.user.firstName}</Text>
+          <Text>{currentPayload.user.lastName}</Text>
+          <Text>{currentPayload.user.email}</Text>
+          <Text>{currentPayload.user.aboutMe}</Text>
           <Button
             color="grape"
             radius="xl"
