@@ -1,8 +1,12 @@
 
 import NavBar from "../components/NavBar";
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 function HostSignup() {
+
+const navigate = useNavigate()
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [firstName, setFirstName] = useState("")
@@ -22,6 +26,8 @@ function HostSignup() {
     });
     const parsed = await response.json()
     console.log(parsed)
+    navigate("/host-login")
+
   }
 
 

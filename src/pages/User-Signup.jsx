@@ -1,7 +1,10 @@
 import NavBar from "../components/NavBar";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function UserSignup() {
+const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -26,6 +29,7 @@ function UserSignup() {
     });
     const parsed = await response.json();
     console.log(parsed);
+    navigate("/");
   };
 
   return (
