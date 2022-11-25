@@ -9,21 +9,55 @@ const Icon = () => {
   );
 };
 
-const ListingsSearchUser = ({ placeHolder, options }) => {
+// onChange: This component will be used by another component and it’s theAppcomponent in this example. We need to execute a callback with the selected values so that the App can do other stuff with these values.
+// Let’s say whenever the dropdown select values change, the App.js just simply print it out to the console like this:
+
+const ListingsSearchUser = ({
+  placeHolder,
+  options,
+  isSearchable,
+  onChange,
+}) => {
   const [showMenu, setShowMenu] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(null);
+  const [selectedValue, setSelectedValue] = useState("null");
+  const [searchValue, setSearchValue] = useState("");
+  const searchRef = useRef();
+  const inputRef = useRef();
 
   useEffect(() => {
-    const handler = () => setShowMenu(false);
-
+    const handler = (e) => {
+      if (inputRef.current && !inputRef.current.contains(e.target)) {
+        setShowMenu(false);
+      }
+    };
     window.addEventListener("click", handler);
     return () => {
       window.removeEventListener("click", handler);
     };
   });
 
+  useEffect(() => {
+    setSearchValue("");
+    if (showMenu && searchRef.current) {
+      searchRef.current.focus();
+    }
+  }, [showMenu]);
+
+  const onSearch = (e) => {
+    setSearchValue(e.target.value);
+  };
+
+  const getOptions = () => {
+    if (!searchValue) {
+      return options;
+    }
+    return options.filter(
+      (option) =>
+        option.label.toLowerCase().indexOf(searchValue.toLowerCase()) >= 0
+    );
+  };
+
   const handleInputClick = (e) => {
-    e.stopPropagation();
     setShowMenu(!showMenu);
   };
 
@@ -36,6 +70,7 @@ const ListingsSearchUser = ({ placeHolder, options }) => {
 
   const onItemClick = (option) => {
     setSelectedValue(option);
+    onChange(newValue);
   };
 
   const isSelected = (option) => {
@@ -48,7 +83,7 @@ const ListingsSearchUser = ({ placeHolder, options }) => {
 
   return (
     <div className="dropdown-container">
-      <div onClick={handleInputClick} className="dropdown-input">
+      <div ref={inputRef} onClick={handleInputClick} className="dropdown-input">
         <div className="dropdown-selected-value">{getDisplay()}</div>
         <div className="dropdown-tools">
           <div className="dropdown-tool">
@@ -58,7 +93,12 @@ const ListingsSearchUser = ({ placeHolder, options }) => {
       </div>
       {showMenu && (
         <div className="dropdown-menu">
-          {options.map((option) => (
+          {isSearchable && (
+            <div className="search-box">
+              <input onChange={onSearch} value={searchValue} ref={searchRef} />
+            </div>
+          )}
+          {getOptions().map((option) => (
             <div
               onClick={() => onItemClick(option)}
               key={option.value}

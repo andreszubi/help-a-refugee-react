@@ -17,6 +17,15 @@ function ListingsSearch() {
     { value: "prague", label: "Prague" },
     { value: "warsaw", label: "Warsaw" },
   ];
+  const optionsPersons = [
+    { value: "1", label: "1" },
+    { value: "2", label: "2" },
+    { value: "3", label: "3" },
+    { value: "4", label: "4" },
+    { value: "5", label: "5" },
+    { value: "6", label: "6" },
+    { value: "7", label: "7" },
+  ];
   // const { token, setToken } = useContext(SessionContextUser);
   // const navigate = useNavigate();
 
@@ -42,48 +51,26 @@ function ListingsSearch() {
     <div className="ListingsSearch">
       <NavBarUser />
       <div className="App">
-        <ListingsSearchUser placeHolder="Select..." options={optionsCity} />
+        {" "}
+        <h3>City: </h3>
+        <ListingsSearchUser
+          isSearchable
+          placeHolder="Select..."
+          options={optionsCity}
+        />
       </div>
-      {/* <div className="background-img">
-        <h1>Search Listings</h1>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Country{" "}
-            <input
-              type="text"
-              value={country}
-              onChange={(event) => setCountry(event.target.value)}
-            />
-          </label>
-          <label>
-            City{" "}
-            <input
-              type="text"
-              value={city}
-              onChange={(event) => setCity(event.target.value)}
-            />
-          </label>
-          <label>
-            Type of Room{" "}
-            <input
-              type="text"
-              value={typeOfRoom}
-              onChange={(event) => setTypeOfRoom(event.target.value)}
-            />
-          </label>
-          <label>
-            Places Available{" "}
-            <input
-              type="number"
-              value={placesAvailable}
-              onChange={(event) => setPlacesAvailable(event.target.value)}
-            />
-          </label>
-          <button className="button" type="submit">
-            Submit
-          </button>
-        </form>
-      </div> */}
+      <div className="App">
+        {" "}
+        <h3>Quantity of people: </h3>
+        <ListingsSearchUser
+          isSearchable
+          placeHolder="Select..."
+          options={optionsPersons}
+        />
+      </div>
+      <button className="button" type="submit">
+        Submit
+      </button>
     </div>
   );
 }
