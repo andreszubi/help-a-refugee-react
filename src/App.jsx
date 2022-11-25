@@ -31,8 +31,6 @@ function App() {
         <Route path="/edit-user-profile" element={<EditUserProfile />} />
         <Route path="/listings-search" element={<ListingsSearch />} />
         <Route path="/booking-confirmation" element={<BookingConfirmation />} />
-
-        {/* <Route path="/listings-search" element={<ListingsSearch />} /> */}
         <Route path="/publish-listing" element={<PublishListing />} />
         <Route path="/edit-listing" element={<EditListing />} />
         {/* <Route path="/listing-details" element={<ListingDetails />} /> */}
