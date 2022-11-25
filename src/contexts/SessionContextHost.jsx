@@ -8,7 +8,7 @@ const SessionContextHostProvider = ({ children }) => {
     key: "token",
     defaultValue: undefined,
   });
-  const [currentToken, setCurrentToken] = useState("")
+  const [currentPayload, setCurrentPayload] = useState("")
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const verifyToken = async () => {
@@ -21,7 +21,7 @@ const SessionContextHostProvider = ({ children }) => {
     //console.log(parsed.payload);
     if (parsed.message === "Token OK") {
       setIsAuthenticated(true);
-      setCurrentToken(parsed.payload)
+      setCurrentPayload(parsed.payload)
     }
   };
   useEffect(() => {
@@ -49,7 +49,7 @@ const SessionContextHostProvider = ({ children }) => {
 
   return (
     <SessionContextHost.Provider
-      value={{ token, setToken, isAuthenticated, fetchWithToken , currentToken}}
+      value={{ token, setToken, isAuthenticated, fetchWithToken , currentPayload}}
     >
       {children}
     </SessionContextHost.Provider>
