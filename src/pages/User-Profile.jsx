@@ -11,7 +11,6 @@ import {
   Skeleton,
   Text,
 } from "@mantine/core";
-// import { DialogBody } from "@mantine/core/lib/Dialog/Dialog";
 
 const UserProfile = () => {
   const { token, currentPayload } = useContext(SessionContextUser);
@@ -23,7 +22,7 @@ const UserProfile = () => {
   // const [image, setImage] = useState(image.image);
   const [aboutMe, setAboutMe] = useState(currentPayload.user.aboutMe);
   const [isLoading, setIsLoading] = useState(true);
-  console.log("token", currentToken);
+  console.log("token", currentPayload);
   console.log("Hello");
 
   const loadingTime = () => {
@@ -37,12 +36,12 @@ const UserProfile = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const response = await fetch("http://localhost:5005/user/edit/:id", {
-      method: "GET",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ email, firstName, lastName, image, aboutMe }),
+      body: JSON.stringify({ email, firstName, lastName, aboutMe }),
     });
     setIsEditing(false);
   };
@@ -50,10 +49,6 @@ const UserProfile = () => {
   useEffect(() => {
     loadingTime();
   }, [currentPayload]);
-
-  //   if (currentToken) {
-  //     console.log(currentToken);
-  //   }
 
   return (
     <>
@@ -65,10 +60,10 @@ const UserProfile = () => {
       </h2>
       <Skeleton visible={isLoading}>
         <Card shadow="sm" p="lg" radius="md" withBorder>
-          <Text fz="lg">{currentPayload.user.firstName}</Text>
-          <Text>{currentPayload.user.lastName}</Text>
-          <Text>{currentPayload.user.email}</Text>
-          <Text>{currentPayload.user.aboutMe}</Text>
+          <Text fz="lg">First Name: {currentPayload.user.firstName}</Text>
+          <Text>Last Name: {currentPayload.user.lastName}</Text>
+          <Text>Email: {currentPayload.user.email}</Text>
+          <Text>About me:{currentPayload.user.aboutMe}</Text>
           <Button
             color="grape"
             radius="xl"
@@ -90,11 +85,6 @@ const UserProfile = () => {
           </ActionIcon> */}
         </Card>
       </Skeleton>
-      <Autocomplete
-        label="Your favorite framework/library"
-        placeholder="Pick one"
-        data={["React", "Angular", "Svelte", "Vue"]}
-      />
       <Modal
         opened={isEditing}
         onClose={() => setIsEditing(false)}
