@@ -11,7 +11,7 @@ import HostProfile from "./pages/Host-Profile";
 import EditUserProfile from "./components/Edit-User-Profile";
 // import HostProfile from './components/Host-Profile'
 import ListingsSearch from "./pages/Listings-Search";
-import PublishListing from "./pages/Publish-Listing";
+import PublishListing from "./components/Publish-Listing";
 import EditListing from "./components/Edit-Listing";
 // import ListingDetails from './components/Listing-Details'
 // import Messages from './components/Messages'
