@@ -55,6 +55,7 @@ const SessionContextUserProvider = ({ children }) => {
         isAuthenticated,
         fetchWithToken,
         currentPayload,
+        setCurrentPayload,
       }}
     >
       {children}
