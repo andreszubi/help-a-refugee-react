@@ -2,7 +2,7 @@
 import NavBar from "../components/NavBar";
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import axios from 'axios';
+import axios from "axios";
 
 function HostSignup() {
 
@@ -33,24 +33,17 @@ const navigate = useNavigate()
   const handleSubmit = async event => {
     event.preventDefault();
     const image = event.target.imageUrl.files[0];
-    const formData = new FormData();
-    formData.append("imageUrl", image);
-    formData.append("email", email);
-    formData.append("password", password);
-    formData.append("firstName", firstName);
-    formData.append("lastName", lastName);
-    formData.append("country", country);
-    formData.append("city", city)
-    const response = await axios({
-      method: "post", url: "http://localhost:5005/host/signup",
-      data: formData, headers: {"Content-Type": "multipart/form-data"}
-    })
-    console.log(response.data)
+    const fData = new FormData();
+    fData.append("imageUrl", image);
+    fData.append("email", email);
+    fData.append("password", password);
+    fData.append("firstName", firstName);
+    fData.append("lastName", lastName);
+    fData.append("country", country);
+    fData.append("city", city)
+    await axios.post("https://localhost:5005/host/signup", fData)
     navigate("/host-login")
-
   }
-
-
 
   return (
     <div className="Host-Signup">
