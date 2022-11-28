@@ -3,7 +3,7 @@ import { SessionContextUser } from "../contexts/SessionContextUser";
 import { useNavigate } from "react-router-dom";
 import NavBarUser from "../components/NavBarUser";
 import ListingsSearchUser from "../components/ListingsSearchUser";
-import AllListings from "../components/AllListings";
+// import AllListings from "../components/AllListings";
 
 function ListingsSearch() {
   const [listings, setListings] = useState;
@@ -66,3 +66,48 @@ function ListingsSearch() {
 }
 
 export default ListingsSearch;
+
+// import { useState } from "react";
+// import ListingBox from "../components/Listing";
+// import Search from "../components/Search";
+
+// function ListingsSearch() {
+//   const [listings, setListings] = useState("");
+//   const [query, setQuery] = useState("");
+
+//   const fetchListings = async () => {
+//     const response = await fetch("http://localhost:5005/user/listings", {
+//       method: "GET",
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//         "Content-Type": "application/json",
+//       },
+//     });
+//     const parsed = await response.json();
+//     setListings(parsed);
+//   };
+
+//   return (
+//     <div className="App">
+//       <div>
+//         <Search query={query} setQuery={setQuery} />
+//         <div>
+//           <h1>Food List</h1>
+//         </div>
+//         {listings
+//           .filter((listing) =>
+//             listing.city.toLowerCase().includes(query.toLowerCase())
+//           )
+//           .map((listing) => {
+//             return (
+//               <div key={_id}>
+//                 <ListingBox listing={listing} listings={listings} />
+//               </div>
+//             );
+//           })}
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default ListingsSearch;

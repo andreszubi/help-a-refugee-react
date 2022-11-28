@@ -8,7 +8,6 @@ import HostLogin from "./pages/Host-Login";
 import EditHostProfile from "./components/Edit-Host-Profile";
 import UserProfile from "./pages/User-Profile";
 import HostProfile from "./pages/Host-Profile";
-import EditUserProfile from "./components/Edit-User-Profile";
 import BookingConfirmation from "./pages/Booking-Confirmation";
 // import HostProfile from './components/Host-Profile'
 import ListingsSearch from "./pages/Listings-Search";
@@ -16,8 +15,8 @@ import EditListing from "./pages/Edit-Listing";
 import ListingDetails from "./pages/Listing-Details";
 // import Messages from './components/Messages'
 
-import socketIO from 'socket.io-client';
-const socket = socketIO('http://localhost:5173');
+// import socketIO from "socket.io-client";
+// const socket = socketIO("http://localhost:5173");
 
 function App() {
   return (
@@ -30,7 +29,6 @@ function App() {
         <Route path="/host-profile" element={<HostProfile />} />
         <Route path="/user-profile" element={<UserProfile />} />
         <Route path="/edit-host-profile" element={<EditHostProfile />} />
-        <Route path="/edit-user-profile" element={<EditUserProfile />} />
         <Route path="/listings-search" element={<ListingsSearch />} />
         <Route path="/booking-confirmation" element={<BookingConfirmation />} />
 
@@ -43,7 +41,5 @@ function App() {
   );
 }
 export default App;
-
-
 
 //test
