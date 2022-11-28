@@ -124,6 +124,12 @@ p {
   text-shadow: #1a1a1a 1px 1px 1px;
 }
 
+.searchOptions {
+  display: flex;
+  direction: row;
+  align-items: center;
+}
+
 .listing {
   background-color: #1aabe2;
   border-radius: 6px;
@@ -148,12 +154,14 @@ p {
 .dropdown-container {
   text-align: left;
   border: 1px solid #ccc;
+  display: flex;
   position: relative;
   border-radius: 5px;
   margin: 15px;
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto;
+  margin-right: auto; */
   width: 200px;
+  background-color: white;
 }
 
 .dropdown-input {

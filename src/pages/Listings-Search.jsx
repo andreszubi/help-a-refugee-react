@@ -47,7 +47,7 @@ function ListingsSearch() {
   return (
     <div className="ListingsSearch">
       <NavBarUser />
-      <div className="App">
+      <div className="searchOptions">
         {" "}
         <h3>City: </h3>
         <ListingsSearchUser
@@ -55,9 +55,6 @@ function ListingsSearch() {
           placeHolder="Select..."
           options={optionsCity}
         />
-      </div>
-      <div className="App">
-        {" "}
         <h3>Quantity of people: </h3>
         <ListingsSearchUser
           isSearchable

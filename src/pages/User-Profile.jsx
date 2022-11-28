@@ -63,21 +63,21 @@ const UserProfile = () => {
   };
 
   //*DELETE USER*//
-  const deleteUser = async (id, event) => {
-    event.preventDefault();
-    const response = await fetch(
-      `http://localhost:5005/user/user/${currentUser.user._id}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const parsed = await response.json();
-    navigate("/");
-  };
+  // const deleteUser = async (id, event) => {
+  //   event.preventDefault();
+  //   const response = await fetch(
+  //     `http://localhost:5005/user/user/${currentUser.user._id}`,
+  //     {
+  //       method: "DELETE",
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //         "Content-Type": "application/json",
+  //       },
+  //     }
+  //   );
+  //   const parsed = await response.json();
+  //   navigate("/");
+  // };
 
   useEffect(() => {
     loadingTime();
@@ -109,13 +109,13 @@ const UserProfile = () => {
           >
             Edit profile{" "}
           </button>
-          <button
+          {/* <button
             className="button"
             type="submit"
             onClick={(event) => deleteUser(currentUser.user._id, event)}
           >
             Delete profile
-          </button>
+          </button> */}
         </Card>
       </Skeleton>
       <Modal
