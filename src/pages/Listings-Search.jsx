@@ -3,6 +3,7 @@ import { SessionContextUser } from "../contexts/SessionContextUser";
 import { useNavigate } from "react-router-dom";
 import NavBarUser from "../components/NavBarUser";
 import ListingsSearchUser from "../components/ListingsSearchUser";
+import AllListings from "../components/AllListings";
 
 function ListingsSearch() {
   const optionsCity = [
@@ -64,6 +65,10 @@ function ListingsSearch() {
       </div>
       <button className="button" type="submit">
         Submit
+      </button>
+      <AllListings />
+      <button className="button" type="submit">
+        Book now
       </button>
     </div>
   );

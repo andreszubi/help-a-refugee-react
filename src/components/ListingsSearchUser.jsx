@@ -17,6 +17,8 @@ const ListingsSearchUser = ({
   options,
   isSearchable,
   onChange,
+  query,
+  setQuery,
 }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState("null");
@@ -44,12 +46,14 @@ const ListingsSearchUser = ({
   }, [showMenu]);
 
   const onSearch = (e) => {
+    e.preventDefault();
     setSearchValue(e.target.value);
+    setQuery(e.target.value);
   };
 
   const getOptions = () => {
     if (!searchValue) {
-      return options
+      return options;
     }
     return options.filter(
       (option) =>
@@ -110,6 +114,6 @@ const ListingsSearchUser = ({
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 export default ListingsSearchUser;
