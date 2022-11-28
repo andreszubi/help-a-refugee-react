@@ -11,6 +11,7 @@ function HostProfile() {
     const [newTypeOfRoom, setNewTypeOfRoom] = useState("");
     const [ newPlacesAvailable, setNewPlacesAvailable] = useState("");
     const [ newImage, setNewImage] = useState("")
+    const [editId, setEditId] = useState("");
     const [listings, setListings] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [isEditing, setIsEditing] = useState(false)
@@ -47,13 +48,32 @@ function HostProfile() {
             },
             body: JSON.stringify({newCountry, newCity, newTypeOfRoom, newPlacesAvailable, newImage})
         });
-        fetchListings()
+        fetchListings();
+        setNewCountry("");
+        setNewCity("");
+        setNewPlacesAvailable("");
+        setNewTypeOfRoom("");
+        setNewImage("")
+    }
+
+    const handleModal = (id) => {
+        const listing = listings.filter(e=> 
+            e._id === id
+        )[0]
+        setNewCountry(listing.country);
+        setNewCity(listing.city);
+        setNewTypeOfRoom(listing.typeOfRoom);
+        setNewPlacesAvailable(listing.placesAvailable);
+        setNewImage(listing.image);
+        setEditId(id)
+        setIsEditing(true)
     }
 
 
 
     const deleteListing = async (id, event) => {
         event.preventDefault()
+        console.log(id)
         const response = await fetch (`http://localhost:5005/host/listings/${id}`, {
             method: "DELETE",
             headers: {
@@ -66,9 +86,9 @@ function HostProfile() {
         fetchListings() 
     }
 
-    const handleEditDetails = async (event, id) => {
+    const handleEditDetails = async (event) => {
         event.preventDefault()
-        const response = await fetch (`http://localhost:5005/host/listings/${id}`, {
+        const response = await fetch (`http://localhost:5005/host/listings/${editId}`, {
             method: "PUT",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -76,8 +96,16 @@ function HostProfile() {
             },
             body: JSON.stringify({newCountry, newCity, newTypeOfRoom, newPlacesAvailable, newImage}),
         });
-        fetchListings();
+        const updatedListing = await response.json();
         setIsEditing(false);
+        fetchListings();
+        setNewCountry("");
+        setNewCity("");
+        setNewPlacesAvailable("");
+        setNewTypeOfRoom("");
+        setNewImage("");
+        setEditId("")
+        
     }
 
     const setVisibilityForm = () => {
@@ -135,11 +163,11 @@ function HostProfile() {
                         <Text fz="lg">City: {city}</Text>
                         <Text fz="lg">Type of room: {typeOfRoom}</Text>
                         <Text fz="lg">Rooms available: {placesAvailable}</Text>
-                        <button className="button" type="submit" onClick={() => setIsEditing(true)}>Edit details</button>
+                        <button className="button" type="submit" onClick={() => handleModal(_id)}>Edit details</button>
                     </Card>
                 </Skeleton>
                 <Modal opened={isEditing} onClose={()=>setIsEditing(false)} title="Edit listing">
-                    <form onSubmit={(event) => handleEditDetails(event, _id)}>
+                    <form onSubmit={handleEditDetails}>
                         <label>
                             Country: <input value={newCountry} onChange={(event) => setNewCountry(event.target.value)}/>
                         </label>
@@ -157,11 +185,6 @@ function HostProfile() {
                         </button>
                     </form>
                 </Modal>
-                
-                
-                {/*<Link to={`/edit-listing/${_id}`}>
-                    <button type="button">Edit details</button>
-           </Link>*/}
             </div>
            ))} 
         </div>
