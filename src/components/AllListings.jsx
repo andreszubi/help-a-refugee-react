@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { SessionContextUser } from "../contexts/SessionContextUser";
+import ListingBox from "./ListingBox";
 
 const ListingsSearchUser = ({ query, setQuery }) => {
   const { token, currentUser, setCurrentUser } = useContext(SessionContextUser);
@@ -54,11 +55,7 @@ const ListingsSearchUser = ({ query, setQuery }) => {
             return listing.city.toLowerCase().includes(search.toLowerCase());
           })
           .map((e) => {
-            return (
-              <div key={e._id}>
-                <h3>{e.city}</h3>
-              </div>
-            );
+            return <ListingBox listing={e} />;
           })}
     </>
   );

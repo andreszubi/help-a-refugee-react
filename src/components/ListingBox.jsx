@@ -5,7 +5,7 @@ function ListingBox({ listing }) {
         title={listing.country}
         style={{ width: 230, height: 300, margin: 10 }}
       >
-        <img src={listing.image} height={60} alt="food" />
+        <img src={listing.image} height={60} alt="flat" />
         <p>
           Location: {listing.city}, {listing.country}
         </p>
