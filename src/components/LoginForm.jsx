@@ -62,7 +62,7 @@ const LoginForm = () => {
         style={{ display: "flex", flexDirection: "column" }}
       >
         <p style={{ width: "20vw" }}>Not a member yet? </p>
-        <Link to="/user-signup">
+        <Link to={"/user-signup"}>
           <p style={{ color: "white" }}>
             <button className="button">Sign up!</button>
           </p>

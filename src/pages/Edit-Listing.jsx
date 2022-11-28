@@ -3,13 +3,13 @@
 
 import { useContext, useState } from "react";
 import { SessionContextHost } from "../contexts/SessionContextHost";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import NavBar from "../components/NavBar";
 
 function EditListing() {
     const { token, setToken } = useContext(SessionContextHost);
     const navigate = useNavigate();
-
+    const {id} = useParams();
     const [country, setCountry] = useState("");
     const [city, setCity] = useState("");
     const [typeOfRoom, setTypeOfRoom] = useState("");
@@ -18,7 +18,7 @@ function EditListing() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const response = await fetch("http://localhost:5005/host/listings/:id", {
+        const response = await fetch(`http://localhost:5005/host/listings/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -26,17 +26,12 @@ function EditListing() {
             },
             body: JSON.stringify({ country, city, typeOfRoom, placesAvailable, image }),
         });
-        const parsed = await response.json();
-
-        if (parsed.status === 200) {
-            setToken(parsed.token);
-            navigate("/host-profile");
-        }
+        navigate("/host-profile")
     };
 
  const handleDelete = async (event) => {
         event.preventDefault();
-        const response = await fetch("http://localhost:5005/host/listings/:id", {
+        const response = await fetch(`http://localhost:5005/host/listings/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -100,7 +95,6 @@ function EditListing() {
                         <input
                             type="file"
                             name="image"
-                            required
                             onChange={(event) => setImage(event.target.value)}
                         />
                     </label>
