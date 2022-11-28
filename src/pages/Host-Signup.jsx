@@ -33,6 +33,7 @@ const navigate = useNavigate()
   const handleSubmit = async event => {
     event.preventDefault();
     const image = event.target.imageUrl.files[0];
+    console.log(image)
     const fData = new FormData();
     fData.append("imageUrl", image);
     fData.append("email", email);
@@ -41,7 +42,11 @@ const navigate = useNavigate()
     fData.append("lastName", lastName);
     fData.append("country", country);
     fData.append("city", city)
-    await axios.post("https://localhost:5005/host/signup", fData)
+    const response = await fetch("http://localhost:5005/host/signup", {
+      method: "POST",
+      body: fData
+    });
+    const parsed = await response.json()
     navigate("/host-login")
   }
 
