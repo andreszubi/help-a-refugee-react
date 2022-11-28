@@ -2,12 +2,12 @@
 //
 
 import { useContext, useState } from "react";
-import { SessionContextUser } from "../contexts/SessionContextUser";
+import { SessionContextHost } from "../contexts/SessionContextHost";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
 
 function EditListing() {
-    const { token, setToken } = useContext(SessionContextUser);
+    const { token, setToken } = useContext(SessionContextHost);
     const navigate = useNavigate();
 
     const [country, setCountry] = useState("");
@@ -18,7 +18,7 @@ function EditListing() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const response = await fetch("http://localhost:5005/user/listings/:id", {
+        const response = await fetch("http://localhost:5005/host/listings/:id", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -30,13 +30,13 @@ function EditListing() {
 
         if (parsed.status === 200) {
             setToken(parsed.token);
-            navigate("/user/listings");
+            navigate("/host-profile");
         }
     };
 
  const handleDelete = async (event) => {
         event.preventDefault();
-        const response = await fetch("http://localhost:5005/user/listings/:id", {
+        const response = await fetch("http://localhost:5005/host/listings/:id", {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -47,7 +47,7 @@ function EditListing() {
 
         if (parsed.status === 200) {
             setToken(parsed.token);
-            navigate("/user/listings");
+            navigate("/host-profile");
         }
     };
 
