@@ -74,7 +74,7 @@ const ListingsSearchUser = ({
 
   const onItemClick = (option) => {
     setSelectedValue(option);
-    onChange(newValue);
+    // onChange(newValue);
   };
 
   const isSelected = (option) => {
