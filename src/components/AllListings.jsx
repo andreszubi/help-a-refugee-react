@@ -5,11 +5,6 @@ import ListingBox from "./ListingBox";
 const ListingsSearchUser = ({ query, setQuery }) => {
   const { token, currentUser, setCurrentUser } = useContext(SessionContextUser);
   const [search, setSearch] = useState("");
-  // const [country, setCountry] = useState("");
-  // const [city, setCity] = useState("");
-  // const [typeOfRoom, setTypeOfRoom] = useState("");
-  // const [ placesAvailable, setPlacesAvailable] = useState("");
-  // const [ image, setImage] = useState("")
   const [listings, setListings] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 

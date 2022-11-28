@@ -19,7 +19,7 @@ const UserProfile = () => {
     if (currentUser.user._id) {
       const fetchUser = async () => {
         const response = await fetch(
-          `http://localhost:5005/user/${currentUser.user._id}`,
+          `http://localhost:5005/user/user/${currentUser.user._id}`,
           {
             method: "GET",
             headers: {
@@ -46,7 +46,7 @@ const UserProfile = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const response = await fetch(
-      `http://localhost:5005/user/edit/${currentUser.user._id}`,
+      `http://localhost:5005/user/user/edit/${currentUser.user._id}`,
       {
         method: "PUT",
         headers: {
