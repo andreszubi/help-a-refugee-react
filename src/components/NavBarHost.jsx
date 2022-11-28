@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 
-function NavBarUser() {
-  const navigate=useNavigate()
+function NavBarHost() {
+    const navigate=useNavigate()
     const logout = () => {
         localStorage.removeItem("token")
         navigate("/")
@@ -24,4 +24,4 @@ function NavBarUser() {
   );
 }
 
-export default NavBarUser;
+export default NavBarHost;

@@ -1,6 +1,7 @@
 import { Card, Modal, Skeleton, Text } from "@mantine/core";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import NavBarHost from "../components/NavBarHost";
 import { SessionContextHost } from "../contexts/SessionContextHost";
 
 function HostProfile() {
@@ -131,7 +132,8 @@ function HostProfile() {
 
     
 
-    return ( 
+    return ( <>
+    <NavBarHost />
         <div className="background-img">
           <h1>  {isLoading ? "Loading..." : `Welcome to your profile, ${currentPayload.user.firstName}` }</h1>  
          
@@ -239,6 +241,7 @@ function HostProfile() {
         )}
       </div>
     </div>
+    </>
   );
 }
 
