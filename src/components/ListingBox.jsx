@@ -1,16 +1,19 @@
 function ListingBox({ listing }) {
   return (
-    <div>
-      <div
-        title={listing.country}
-        style={{ width: 230, height: 300, margin: 10 }}
-      >
-        <img src={listing.image} height={60} alt="flat" />
-        <p>
-          Location: {listing.city}, {listing.country}
-        </p>
-        <p>Type of room: {listing.typeOfRoom}</p>
-        <p>Places available: {listing.placesAvailable}</p>
+    <div className="searchResults">
+      <div className="card">
+        <div className="firstinfo">
+          <img className="userImg" src={listing.image} />
+        </div>
+        <div className="profileinfo">
+          <h2 className="names">
+            Location: {listing.city}, {listing.country}
+          </h2>
+          <h3 className="extraInf">Type of room: {listing.typeOfRoom}</h3>
+          <h3 className="extraInf">
+            Places available: {listing.placesAvailable}
+          </h3>
+        </div>
         <button>Reserve</button>
       </div>
     </div>

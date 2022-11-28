@@ -42,14 +42,8 @@ function ListingsSearch() {
   return (
     <div className="ListingsSearch">
       <NavBarUser />
-      <div>
-        <h3>Housing list</h3>
-      </div>
       {listings.filter((listing) => listing.city.toLowerCase().includes())}
       <AllListings />
-      <button className="button" type="submit">
-        Book now
-      </button>
     </div>
   );
 }

@@ -49,14 +49,19 @@ const ListingsSearchUser = ({ query, setQuery }) => {
           setSearch(e.target.value);
         }}
       />
-      {listings &&
-        listings
-          .filter((listing) => {
-            return listing.city.toLowerCase().includes(search.toLowerCase());
-          })
-          .map((e) => {
-            return <ListingBox listing={e} />;
-          })}
+      <div>
+        <h3>Housing list</h3>
+      </div>
+      <div className="allListings">
+        {listings &&
+          listings
+            .filter((listing) => {
+              return listing.city.toLowerCase().includes(search.toLowerCase());
+            })
+            .map((e) => {
+              return <ListingBox listing={e} />;
+            })}
+      </div>
     </>
   );
 };
