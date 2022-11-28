@@ -15,10 +15,10 @@
     "@mantine/hooks": "^5.8.2",
     "@mantine/modals": "^5.8.2",
     "axios": "^1.2.0",
+    "framer-motion": "^7.6.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.3",
-    "socket.io-client": "^4.5.4",
     "use-context": "^0.0.1"
   },
   "devDependencies": {

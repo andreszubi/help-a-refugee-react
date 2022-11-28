@@ -3,8 +3,10 @@ import { SessionContextUser } from "../contexts/SessionContextUser";
 import { useNavigate } from "react-router-dom";
 import NavBarUser from "../components/NavBarUser";
 import ListingsSearchUser from "../components/ListingsSearchUser";
+import AllListings from "../components/AllListings";
 
 function ListingsSearch() {
+  const [listings, setListings] = useState;
   const optionsCity = [
     { value: "berlin", label: "Berlin" },
     { value: "frankfurt", label: "Frankfurt" },
@@ -14,15 +16,7 @@ function ListingsSearch() {
     { value: "prague", label: "Prague" },
     { value: "warsaw", label: "Warsaw" },
   ];
-  const optionsPersons = [
-    { value: "1", label: "1" },
-    { value: "2", label: "2" },
-    { value: "3", label: "3" },
-    { value: "4", label: "4" },
-    { value: "5", label: "5" },
-    { value: "6", label: "6" },
-    { value: "7", label: "7" },
-  ];
+
   // const { token, setToken } = useContext(SessionContextUser);
   // const navigate = useNavigate();
 
@@ -55,15 +49,17 @@ function ListingsSearch() {
           placeHolder="Select..."
           options={optionsCity}
         />
-        <h3>Quantity of people: </h3>
-        <ListingsSearchUser
-          isSearchable
-          placeHolder="Select..."
-          options={optionsPersons}
-        />
       </div>
       <button className="button" type="submit">
         Submit
+      </button>
+      <div>
+        <h3>Housing list</h3>
+      </div>
+      {listings.filter((listing) => listing.city.toLowerCase().includes())}
+      <AllListings />
+      <button className="button" type="submit">
+        Book now
       </button>
     </div>
   );
