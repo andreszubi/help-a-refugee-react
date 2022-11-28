@@ -72,7 +72,7 @@ function ListingDetails() {
         <NavBarUser />
         <div className="background-img">
             <div className="listing">
-        <h2> Listing Details</h2>
+        <h2>Listing Details</h2>
         <img src={listing.image} alt="house" className="listingImage" />
         <p>City: {listing.city}</p>
         <p>Country: {listing.country} </p>
