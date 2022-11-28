@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { SessionContextUser } from "../contexts/SessionContextUser";
 import { useNavigate } from "react-router-dom";
 import NavBarUser from "../components/NavBarUser";
-import ListingsSearchUser from "../components/ListingsSearchUser";
+// import ListingsSearchUser from "../components/ListingsSearchUser";
 import AllListings from "../components/AllListings";
 
 function ListingsSearch() {
@@ -42,18 +42,6 @@ function ListingsSearch() {
   return (
     <div className="ListingsSearch">
       <NavBarUser />
-      <div className="searchOptions">
-        {" "}
-        <h3>City: </h3>
-        <ListingsSearchUser
-          isSearchable
-          placeHolder="Select..."
-          options={optionsCity}
-        />
-      </div>
-      <button className="button" type="submit">
-        Submit
-      </button>
       <div>
         <h3>Housing list</h3>
       </div>
