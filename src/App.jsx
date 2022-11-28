@@ -16,6 +16,9 @@ import EditListing from "./components/Edit-Listing";
 import ListingDetails from "./pages/Listing-Details";
 // import Messages from './components/Messages'
 
+import socketIO from 'socket.io-client';
+const socket = socketIO('http://localhost:5173');
+
 function App() {
   return (
     <div className="App">
