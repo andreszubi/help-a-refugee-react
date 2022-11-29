@@ -16,7 +16,7 @@ const UserProfile = () => {
 
   //* GET USER*//
   const loadingTime = () => {
-    if (currentUser.user._id) {
+    if (currentUser) {
       const fetchUser = async () => {
         const response = await fetch(
           `http://localhost:5005/user/user/${currentUser.user._id}`,
@@ -50,7 +50,6 @@ const UserProfile = () => {
     const fData = new FormData();
     fData.append("imageUrl", image);
     fData.append("email", email);
-    // fData.append("password", password);
     fData.append("firstName", firstName);
     fData.append("lastName", lastName);
     fData.append("aboutMe", aboutMe);
@@ -65,8 +64,6 @@ const UserProfile = () => {
       }
     );
     const updatedUser = await response.json();
-
-    console.log(updatedUser.user);
     setCurrentUser(updatedUser);
     setIsEditing(false);
   };
@@ -88,7 +85,7 @@ const UserProfile = () => {
           <h1>"Loading..."</h1>
         ) : (
           <div>
-            <h3>`Welcome to your profile, ${currentUser.user.firstName}`</h3>
+            <h3>Welcome to your profile, {currentUser.user.firstName}</h3>
             <img src={currentUser.user.image} alt="user photo" />
           </div>
         )}
