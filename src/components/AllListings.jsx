@@ -54,7 +54,7 @@ const ListingsSearchUser = ({ query, setQuery }) => {
               return listing.city.toLowerCase().includes(search.toLowerCase());
             })
             .map((e) => {
-              return <ListingBox listing={e} />;
+              return <ListingBox listing={e} key={e._id}/>;
             })}
       </div>
     </>

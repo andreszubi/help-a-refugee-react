@@ -13,6 +13,7 @@ function ListingBox({ listing }) {
           <h3 className="extraInf">
             Places available: {listing.placesAvailable}
           </h3>
+          <h3>Owner: {listing.owner.firstName} {listing.owner.lastName}</h3>
         </div>
         <button>Reserve</button>
       </div>

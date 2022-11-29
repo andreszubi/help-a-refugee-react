@@ -49,7 +49,7 @@ const SessionContextHostProvider = ({ children }) => {
 
   return (
     <SessionContextHost.Provider
-      value={{ token, setToken, isAuthenticated, fetchWithToken , currentPayload}}
+      value={{ token, setToken, isAuthenticated, fetchWithToken , currentPayload, setCurrentPayload}}
     >
       {children}
     </SessionContextHost.Provider>

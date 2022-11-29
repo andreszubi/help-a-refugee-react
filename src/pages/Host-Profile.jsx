@@ -5,7 +5,7 @@ import NavBarHost from "../components/NavBarHost";
 import { SessionContextHost } from "../contexts/SessionContextHost";
 
 function HostProfile() {
-    const {token, currentPayload} = useContext(SessionContextHost);
+    const {token, currentPayload, setCurrentPayload} = useContext(SessionContextHost);
     const [visibleForm, setVisibleForm] = useState(false)
     const [newCountry, setNewCountry] = useState("");
     const [newCity, setNewCity] = useState("");
