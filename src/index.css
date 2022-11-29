@@ -2,27 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 130px;
-  background-color: #1aabe2;
-  color: white;
-  max-width: 3000px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #3e95ce;
-  padding: 0 60px 0 60px;
-} */
-
-#root {
-  margin: none;
-  padding: none;
-  overflow-y: hidden;
-}
-
 .app {
   margin: none;
   padding: none;
@@ -31,11 +10,11 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   margin: 0;
-  /* overflow: hidden; */
+  padding: 0;
 }
 
 .container {
-  background-color: #fbde59;
+  background-color: #eef1ff;
   min-height: 100vh;
 }
 
@@ -47,13 +26,15 @@ form {
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
-  border-color: #1b76b3;
+  border-color: transparent;
   border-style: solid;
   border-width: 1px;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 1rem;
-  background-color: #1aabe2;
+  background-color: #aac4ff;
+  margin-top: 40px;
   margin-bottom: 40px;
+  margin-right: 40px;
   font-weight: bolder;
   text-shadow: #1a1a1a 1px 1px 1px;
 }
@@ -71,27 +52,40 @@ input {
   color: black;
 }
 
-/* .button {
-  width: 100px;
-  padding: 0.8rem;
-  margin: 0.5rem 0;
-  border: 1px solid #f87474;
-  border-radius: 5px;
-  background-color: #f87474;
-  color: white;
-  font-weight: bolder;
-  text-shadow: #1a1a1a 1px 1px 1px;
-  box-shadow: #1a1a1a 1px 1px 1px;
-} */
+.transbox {
+  display: flex;
+  align-content: flex-end;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  opacity: 0.8;
+  background-color: #def5e5;
+}
+
+div.transbox {
+  margin: 0 30px;
+
+  /* border: 0.2px solid black; */
+}
+
+div.transbox p {
+  margin: 5%;
+  font-weight: bold;
+  color: black;
+}
 
 .NavBar {
-  background-color: #0c043c;
+  background-color: #b1b2ff;
   color: white;
   display: flex;
   align-content: flex-end;
   justify-content: space-between;
   align-items: center;
-  padding-left: 10px;
+  padding-left: 20px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-right: 20px;
+  margin-bottom: 30px;
 }
 
 .button {
@@ -151,13 +145,6 @@ input {
   margin-right: 500px;
 }
 
-body {
-  font-family: "Roboto-Condensed", sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #ffffff;
-}
-
 h1 {
   font-size: 3.5em;
   font-weight: 700;
@@ -175,30 +162,15 @@ h2 {
   font-weight: bolder;
   text-shadow: #1a1a1a 1px 1px 1px;
 }
-.background-clr {
-  background-color: #0c043c;
-}
 
 .background-img {
-  background-image: url("/public/images/PeopleBack.png");
-  background-size: cover;
+  background-image: url("/public/images/PeopleImg.png");
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  height: 100vh;
+  /* padding-top: 30px; */
+  height: 120vh;
   width: 100%;
-}
-
-div.transbox {
-  margin: 0 30px;
-  background-color: #f6e8ce;
-  border: 0.2px solid black;
-  opacity: 0.8;
-}
-
-div.transbox p {
-  margin: 5%;
-  font-weight: bold;
-  color: black;
 }
 
 p {
