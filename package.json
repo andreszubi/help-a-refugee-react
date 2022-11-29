@@ -16,12 +16,14 @@
     "@mantine/modals": "^5.8.2",
     "axios": "^1.2.0",
     "cloudinary": "^1.32.0",
+    "esbuild": "^0.15.16",
     "framer-motion": "^7.6.12",
     "multer": "^1.4.5-lts.1",
     "multer-storage-cloudinary": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.3",
+    "socket.io-client": "^4.5.4",
     "use-context": "^0.0.1"
   },
   "devDependencies": {
