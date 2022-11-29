@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function UserSignup() {
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,18 +14,17 @@ const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    const image = event.target.imageUrl.files[0];
+    const fData = new FormData();
+    fData.append("imageUrl", image);
+    fData.append("email", email);
+    fData.append("password", password);
+    fData.append("firstName", firstName);
+    fData.append("lastName", lastName);
+    fData.append("aboutMe", aboutMe);
     const response = await fetch("http://localhost:5005/user/signup", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email,
-        password,
-        firstName,
-        lastName,
-        // img: image,
-        aboutMe,
-      }),
+      body: fData,
     });
     const parsed = await response.json();
     console.log(parsed);
@@ -38,7 +37,7 @@ const navigate = useNavigate();
 
       <div className="background-img">
         <h1>User Signup</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
           <label>
             Email:
             <input
@@ -80,15 +79,10 @@ const navigate = useNavigate();
             />
           </label>
 
-          {/* <label>
+          <label>
             Profile Picture:{" "}
-            <input
-              type="file"
-              name="image"
-              value={profileImage}
-              onChange={(event) => setProfileImage(event.target.value)}
-            />
-          </label> */}
+            <input type="file" name="imageUrl" accept="image/png, image/jpg" />
+          </label>
 
           <label>
             About me:{" "}

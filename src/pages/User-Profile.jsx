@@ -10,7 +10,7 @@ const UserProfile = () => {
   const [email, setEmail] = useState("");
   // const [hashedPassword, setHashedPassword] = useState(has);
   const [aboutMe, setAboutMe] = useState("");
-  // const [image, setImage] = useState(image.image);
+  const [image, setImage] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -34,6 +34,7 @@ const UserProfile = () => {
         setFirstName(parsed.firstName);
         setLastName(parsed.lastName);
         setAboutMe(parsed.aboutMe);
+        setImage(parsed.image);
       };
       fetchUser();
       setIsLoading(false);
@@ -45,15 +46,19 @@ const UserProfile = () => {
   //*EDIT USER*//
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const image = event.target.imageUrl.files[0];
+    const fData = new FormData();
+    fData.append("imageUrl", image);
+    fData.append("email", email);
+    // fData.append("password", password);
+    fData.append("firstName", firstName);
+    fData.append("lastName", lastName);
+    fData.append("aboutMe", aboutMe);
     const response = await fetch(
       `http://localhost:5005/user/user/edit/${currentUser.user._id}`,
       {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ email, firstName, lastName, aboutMe }),
+        body: fData,
       }
     );
     const updatedUser = await response.json();
@@ -61,23 +66,6 @@ const UserProfile = () => {
     setCurrentUser(updatedUser);
     setIsEditing(false);
   };
-
-  //*DELETE USER*//
-  // const deleteUser = async (id, event) => {
-  //   event.preventDefault();
-  //   const response = await fetch(
-  //     `http://localhost:5005/user/user/${currentUser.user._id}`,
-  //     {
-  //       method: "DELETE",
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //         "Content-Type": "application/json",
-  //       },
-  //     }
-  //   );
-  //   const parsed = await response.json();
-  //   navigate("/");
-  // };
 
   useEffect(() => {
     loadingTime();
@@ -92,9 +80,14 @@ const UserProfile = () => {
     <>
       <NavBarUser />
       <h2>
-        {isLoading
-          ? "Loading..."
-          : `Welcome to your profile, ${currentUser.user.firstName}`}
+        {isLoading ? (
+          <h1>"Loading..."</h1>
+        ) : (
+          <div>
+            <h3>`Welcome to your profile, ${currentUser.user.firstName}`</h3>
+            <img src={currentUser.user.image} alt="user photo" />
+          </div>
+        )}
       </h2>
       <Skeleton visible={isLoading}>
         <Card shadow="sm" p="lg" radius="md" withBorder>
@@ -109,13 +102,6 @@ const UserProfile = () => {
           >
             Edit profile{" "}
           </button>
-          {/* <button
-            className="button"
-            type="submit"
-            onClick={(event) => deleteUser(currentUser.user._id, event)}
-          >
-            Delete profile
-          </button> */}
         </Card>
       </Skeleton>
       <Modal
@@ -124,6 +110,10 @@ const UserProfile = () => {
         title="Edit profile"
       >
         <form onSubmit={handleSubmit}>
+          <label>
+            Profile Picture:{" "}
+            <input type="file" name="imageUrl" accept="image/png, image/jpg" />
+          </label>
           <label>
             First Name :
             <input
