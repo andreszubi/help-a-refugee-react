@@ -88,7 +88,6 @@ const UserProfile = () => {
           <h1>"Loading..."</h1>
         ) : (
           <div>
-            {console.log("the curretn user", currentUser)}
             <h3>`Welcome to your profile, ${currentUser.user.firstName}`</h3>
             <img src={currentUser.user.image} alt="user photo" />
           </div>
