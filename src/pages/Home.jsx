@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import LoginForm from "../components/LoginForm";
+import Footer from "../components/Footer";
 
 function Home() {
   return (
@@ -9,22 +10,23 @@ function Home() {
         <NavBar />
 
         <div className="transbox">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at
-            libero nec risus tincidunt luctus. Nulla tempus eu massa sed
-            efficitur. Proin interdum quis velit blandit vulputate. Duis tempus
-            vehicula augue, eget tincidunt lectus. Ut vel sapien ut diam
-            volutpat volutpat. In aliquet lectus eu massa pulvinar, quis
-            hendrerit elit congue. Nulla augue nunc, consequat a mattis id,
-            egestas in ligula. Pellentesque sodales dignissim dictum. Class
-            aptent taciti sociosqu ad litora torquent per conubia nostra, per
-          </p>
+          <div className="textBox font-link">
+            <h1>Host a refugee in your home</h1>
+            <p className="textLanding2">
+              The Host a Refugee Network helps men, women and children who are
+              fleeing for their lives to rebuild their lives. We have have been
+              helping refugees and minority ethnic communities since 2016. We
+              pioneered Room for Refugees, the oldest and longest established
+              refugee hosting programme in the U.K. with 17,000 volunteer hosts.
+            </p>
+          </div>
           <div>
             {" "}
             <LoginForm />{" "}
           </div>
         </div>
         <div className="background-img"></div>
+        <Footer />
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
-import NavBar from "../components/NavBar";
+import NavBarMain from "../components/NavBarMain";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 function UserSignup() {
   const navigate = useNavigate();
@@ -32,12 +33,18 @@ function UserSignup() {
   };
 
   return (
-    <div className="Refugee-Signup">
-      <NavBar />
-
-      <div className="background-img">
-        <h1>User Signup</h1>
-        <form onSubmit={handleSubmit} encType="multipart/form-data">
+    <div className="container">
+      <NavBarMain />
+      <div className="transbox2">
+        <h1 className="textBox font-link largeTextSignUp ">Need help?</h1>{" "}
+        <h2 className="mediumTextSignUp">
+          Sign up as an user and start looking for a host
+        </h2>
+        <form
+          onSubmit={handleSubmit}
+          encType="multipart/form-data"
+          className="signUpForm"
+        >
           <label>
             Email:
             <input
@@ -99,6 +106,9 @@ function UserSignup() {
           </button>
         </form>
       </div>
+      {/* </div> */}
+      <div className="background-img2"></div>
+      <Footer />
     </div>
   );
 }

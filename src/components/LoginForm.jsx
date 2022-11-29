@@ -34,6 +34,7 @@ const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       {error?.message && <p>error.message</p>}
+      <h2 className="largeTextForm">Get help now</h2>
       <label>
         Email
         <input
@@ -61,12 +62,15 @@ const LoginForm = () => {
         className="signup-btns"
         style={{ display: "flex", flexDirection: "column" }}
       >
-        <p style={{ width: "20vw" }}>Not a member yet? </p>
-        <Link to={"/user-signup"}>
-          <p style={{ color: "white" }}>
-            <button className="button">Sign up!</button>
-          </p>
-        </Link>
+        <p style={{ width: "20vw" }}>
+          Not a member yet? Sign up{" "}
+          <Link to={"/user-signup"} className="signUpLink">
+            here!
+            {/* <p style={{ color: "white" }}>
+              <button className="button">Sign up!</button>
+            </p> */}
+          </Link>{" "}
+        </p>
       </div>
     </form>
   );

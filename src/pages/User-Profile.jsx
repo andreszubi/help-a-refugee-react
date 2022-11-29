@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { SessionContextUser } from "../contexts/SessionContextUser";
 import NavBarUser from "../components/NavBarUser";
 import { Card, Modal, Skeleton, Text } from "@mantine/core";
+import Footer from "../components/Footer";
 
 const UserProfile = () => {
   const { token, currentUser, setCurrentUser } = useContext(SessionContextUser);
@@ -78,75 +79,83 @@ const UserProfile = () => {
   }
 
   return (
-    <>
+    <div className="container">
       <NavBarUser />
       {isLoading ? (
-          <h2>"Loading..."</h2>
-        ) : (
-          <div>
-            <h2>Welcome to your profile, {currentUser.user.firstName}</h2>
-            <img src={currentUser.user.image} alt="user photo" />
-          
-      <Skeleton visible={isLoading}>
-        <Card shadow="sm" p="lg" radius="md" withBorder>
-          <Text fz="lg">First Name: {currentUser.user.firstName}</Text>
-          <Text>Last Name: {currentUser.user.lastName}</Text>
-          <Text>Email: {currentUser.user.email}</Text>
-          <Text>About me:{currentUser.user.aboutMe}</Text>
-          <button
-            className="button"
-            type="submit"
-            onClick={() => setIsEditing(true)}
+        <h2>"Loading..."</h2>
+      ) : (
+        <div>
+          <div className="font-link largeTextSignUp">
+            <h1>Welcome to your profile, {currentUser.user.firstName}</h1>{" "}
+          </div>
+
+          <Skeleton visible={isLoading}>
+            <Card shadow="sm" p="lg" radius="md" withBorder>
+              <img src={currentUser.user.image} alt="user photo" />
+              <Text fz="lg">First Name: {currentUser.user.firstName}</Text>
+              <Text>Last Name: {currentUser.user.lastName}</Text>
+              <Text>Email: {currentUser.user.email}</Text>
+              <Text>About me:{currentUser.user.aboutMe}</Text>
+              <button
+                className="button"
+                type="submit"
+                onClick={() => setIsEditing(true)}
+              >
+                Edit profile{" "}
+              </button>
+            </Card>
+          </Skeleton>
+          <Modal
+            opened={isEditing}
+            onClose={() => setIsEditing(false)}
+            title="Edit profile"
           >
-            Edit profile{" "}
-          </button>
-        </Card>
-      </Skeleton>
-      <Modal
-        opened={isEditing}
-        onClose={() => setIsEditing(false)}
-        title="Edit profile"
-      >
-        <form onSubmit={handleSubmit}>
-          <label>
-            Profile Picture:{" "}
-            <input type="file" name="imageUrl" accept="image/png, image/jpg" />
-          </label>
-          <label>
-            First Name :
-            <input
-              value={firstName}
-              onChange={(event) => setFirstName(event.target.value)}
-            />
-          </label>
-          <label>
-            Last Name :
-            <input
-              value={lastName}
-              onChange={(event) => setLastName(event.target.value)}
-            />
-          </label>
-          <label>
-            Email:
-            <input
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-          </label>
-          <label>
-            About me:
-            <input
-              value={aboutMe}
-              onChange={(event) => setAboutMe(event.target.value)}
-            />
-          </label>
-          <button className="button" type="submit">
-            Update
-          </button>
-        </form>
-      </Modal>
-      </div>)}
-    </>
+            <form onSubmit={handleSubmit}>
+              <label>
+                Profile Picture:{" "}
+                <input
+                  type="file"
+                  name="imageUrl"
+                  accept="image/png, image/jpg"
+                />
+              </label>
+              <label>
+                First Name :
+                <input
+                  value={firstName}
+                  onChange={(event) => setFirstName(event.target.value)}
+                />
+              </label>
+              <label>
+                Last Name :
+                <input
+                  value={lastName}
+                  onChange={(event) => setLastName(event.target.value)}
+                />
+              </label>
+              <label>
+                Email:
+                <input
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                />
+              </label>
+              <label>
+                About me:
+                <input
+                  value={aboutMe}
+                  onChange={(event) => setAboutMe(event.target.value)}
+                />
+              </label>
+              <button className="button" type="submit">
+                Update
+              </button>
+            </form>
+          </Modal>
+        </div>
+      )}
+      <Footer />
+    </div>
   );
 };
 
