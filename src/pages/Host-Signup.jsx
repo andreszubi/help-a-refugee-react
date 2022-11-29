@@ -14,7 +14,7 @@ const navigate = useNavigate()
   const [lastName, setLastName] = useState("")
   const [country, setCountry] = useState("")
   const [city, setCity] = useState("")
-  const [imageUrl, setImageUrl] = useState("")
+  const [aboutMe, setAboutMe] = useState("")
 
 
   /*const handleFileUpload = async value => {
@@ -33,7 +33,6 @@ const navigate = useNavigate()
   const handleSubmit = async event => {
     event.preventDefault();
     const image = event.target.imageUrl.files[0];
-    console.log(image)
     const fData = new FormData();
     fData.append("imageUrl", image);
     fData.append("email", email);
@@ -41,7 +40,8 @@ const navigate = useNavigate()
     fData.append("firstName", firstName);
     fData.append("lastName", lastName);
     fData.append("country", country);
-    fData.append("city", city)
+    fData.append("city", city);
+    fData.append("aboutMe", aboutMe);
     const response = await fetch("http://localhost:5005/host/signup", {
       method: "POST",
       body: fData
@@ -69,6 +69,8 @@ const navigate = useNavigate()
         <label>Country: <input type="text" name="country" value={country} onChange={event => setCountry(event.target.value)} /> </label>
 
         <label>City: <input type="text" name="city" value={city} onChange={event => setCity(event.target.value)} /></label>
+
+        <label>About me: <input type="text" name="aboutMe" value={aboutMe} onChange={event => setAboutMe(event.target.value)} /></label>
 
         <label>Profile Picture: <input type="file" name="imageUrl" accept="image/png, image/jpg"/></label>
 

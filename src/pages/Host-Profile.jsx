@@ -1,4 +1,4 @@
-import { Card, Modal, Skeleton, Text } from "@mantine/core";
+import { Card, Modal, Skeleton, Text, Image } from "@mantine/core";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import NavBarHost from "../components/NavBarHost";
@@ -11,7 +11,7 @@ function HostProfile() {
     const [newCity, setNewCity] = useState("");
     const [newTypeOfRoom, setNewTypeOfRoom] = useState("");
     const [ newPlacesAvailable, setNewPlacesAvailable] = useState("");
-    const [ newImage, setNewImage] = useState("")
+    const [newImage, setNewImage] = useState("")
     const [editId, setEditId] = useState("");
     const [listings, setListings] = useState([])
     const [isLoading, setIsLoading] = useState(true)
@@ -49,13 +49,19 @@ function HostProfile() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        const image = event.target.imageUrl.files[0];
+        const fData = new FormData();
+        fData.append("imageUrl", image)
+        fData.append("country", newCountry);
+        fData.append("city", newCity);
+        fData.append("typeOfRoom", newTypeOfRoom);
+        fData.append("placesAvailable", newPlacesAvailable);
         const response = await fetch("http://localhost:5005/host/listings", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`
             },
-            body: JSON.stringify({newCountry, newCity, newTypeOfRoom, newPlacesAvailable, newImage})
+            body: fData
         });
         fetchListings();
         setNewCountry("");
@@ -96,14 +102,20 @@ function HostProfile() {
     }
 
     const handleEditDetails = async (event) => {
-        event.preventDefault()
+        event.preventDefault();
+        const image = event.target.imageUrl.files[0];
+        const fData = new FormData();
+        fData.append("imageUrl", image);
+        fData.append("country", newCountry);
+        fData.append("city", newCity);
+        fData.append("typeOfRoom", newTypeOfRoom);
+        fData.append("placesAvailable", newPlacesAvailable);
         const response = await fetch (`http://localhost:5005/host/listings/${editId}`, {
             method: "PUT",
             headers: {
                 Authorization: `Bearer ${token}`,
-                "Content-Type" : "application/json"
             },
-            body: JSON.stringify({newCountry, newCity, newTypeOfRoom, newPlacesAvailable, newImage}),
+            body: fData
         });
         const updatedListing = await response.json();
         setIsEditing(false);
@@ -135,8 +147,13 @@ function HostProfile() {
     return ( <>
     <NavBarHost />
         <div className="background-img">
-          <h1>  {isLoading ? "Loading..." : `Welcome to your profile, ${currentPayload.user.firstName}` }</h1>  
-         
+         {isLoading ? 
+         <h1>   "Loading..." </h1>    
+         : 
+         (<div style={{display:"flex", gap: "50px"}}>
+         <h1>Welcome to your profile, {currentPayload.user.firstName}</h1>
+         <img src={currentPayload.user.image} style={{width:"20vw", height:"30vh", margin:"0", padding:"0"}}/>
+         </div>)}
         {visibleForm && 
         <div className="PublishListing">
           <div>
@@ -188,8 +205,8 @@ function HostProfile() {
                 Image:{" "}
                 <input
                   type="file"
-                  name="newImage"
-                  onChange={(event) => setNewImage(event.target.value)}
+                  name="imageUrl"
+                  accept="image/png, image/jpg"
                 />
               </label>
 
@@ -209,12 +226,13 @@ function HostProfile() {
             <div key={_id} className="listing">
                 <button type ="button" onClick={event => deleteListing(_id, event)}>Remove listing</button>
                 <Skeleton visible={isLoading}>
-                    <Card shadow="sm" p="lg" radius="md" withBorder>
+                    <Card shadow="sm" p="lg" radius="md" withBorder style={{display:"flex", flexDirection:"column"}}>
                         <Text fz="lg">Country: {country}</Text>
                         <Text fz="lg">City: {city}</Text>
                         <Text fz="lg">Type of room: {typeOfRoom}</Text>
                         <Text fz="lg">Rooms available: {placesAvailable}</Text>
-                        <button className="button" type="submit" onClick={() => handleModal(_id)}>Edit details</button>
+                        <Image radius="md"  width={200} height={80} src={image} alt="House" style={{alignSelf:"center"}}/> 
+                        <button className="button" type="submit" onClick={() => handleModal(_id)} style={{alignSelf:"center"}}>Edit details</button>
                     </Card>
                 </Skeleton>
                 <Modal opened={isEditing} onClose={()=>setIsEditing(false)} title="Edit listing">
@@ -231,6 +249,10 @@ function HostProfile() {
                         <label>
                             Rooms available: <input value={newPlacesAvailable} onChange={(event) => setNewPlacesAvailable(event.target.value)}/>
                         </label>
+                        <label>
+                            Image: <input type="file" name="imageUrl" accept="image/png, image/jpg" onChange={(event) => setNewImage(event.target.image.files[0])}/>
+                        </label>
+                        
                         <button className="button" type="submit">
                             Update
                         </button>
