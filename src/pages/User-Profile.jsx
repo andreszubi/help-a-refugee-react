@@ -58,11 +58,15 @@ const UserProfile = () => {
       `http://localhost:5005/user/user/edit/${currentUser.user._id}`,
       {
         method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         body: fData,
       }
     );
     const updatedUser = await response.json();
-    console.log(updatedUser);
+
+    console.log(updatedUser.user);
     setCurrentUser(updatedUser);
     setIsEditing(false);
   };
@@ -84,6 +88,7 @@ const UserProfile = () => {
           <h1>"Loading..."</h1>
         ) : (
           <div>
+            {console.log("the curretn user", currentUser)}
             <h3>`Welcome to your profile, ${currentUser.user.firstName}`</h3>
             <img src={currentUser.user.image} alt="user photo" />
           </div>
