@@ -1,6 +1,7 @@
 import { Card, Modal, Skeleton, Text, Image } from "@mantine/core";
+import { useLocalStorage } from "@mantine/hooks";
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import NavBarHost from "../components/NavBarHost";
 import { SessionContextHost } from "../contexts/SessionContextHost";
 
@@ -16,7 +17,6 @@ function HostProfile() {
     const [listings, setListings] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isEditing, setIsEditing] = useState(false);
-    const [newUserImage, setNewUserImage] = useState("");
     const [newEmail, setNewEmail] = useState("");
     const [newFirstName, setNewFirstName] = useState("");
     const [newLastName, setNewLastName] = useState("");
@@ -24,9 +24,7 @@ function HostProfile() {
     const [newUserCountry, setNewUserCountry] = useState("");
     const [newAboutMe, setNewAboutMe] = useState("");
     const [isEditingUser, setIsEditingUser] = useState(false);
-
-    
-
+  
   const loadingTime = () => {
     if (currentPayload) {
       setIsLoading(false);
@@ -182,7 +180,9 @@ function HostProfile() {
             fetchListings()
         }
     }, [isLoading])
-
+    useEffect(()=> {
+      loadingTime()
+    }, [])
 
     
 
@@ -192,10 +192,10 @@ function HostProfile() {
          {isLoading ? 
          <h1>   "Loading..." </h1>    
          : 
-         (<div style={{display:"flex", gap: "50px"}}>
+         (<div>
          <h1>Welcome to your profile, {currentPayload.user.firstName}</h1>
          <img src={currentPayload.user.image} style={{width:"20vw", height:"30vh", margin:"0", padding:"0"}}/>
-         </div>)}
+         
          <Skeleton visible={isLoading}>
           <Card shadow="sm" p="lg" radius="md" withBorder>
             <Text fz="lg">Full name: {currentPayload.user.firstName} {currentPayload.user.lastName}</Text>
@@ -341,6 +341,7 @@ function HostProfile() {
           )
         )}
       </div>
+      </div>)}
     </div>
     </>
   );

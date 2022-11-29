@@ -9,10 +9,11 @@ import EditHostProfile from "./components/Edit-Host-Profile";
 import UserProfile from "./pages/User-Profile";
 import HostProfile from "./pages/Host-Profile";
 import BookingConfirmation from "./pages/Booking-Confirmation";
-// import HostProfile from './components/Host-Profile'
 import ListingsSearch from "./pages/Listings-Search";
 import EditListing from "./pages/Edit-Listing";
 import ListingDetails from "./pages/Listing-Details";
+import PrivateRouteHost from "./components/PrivateRouteHost";
+
 // import Messages from './components/Messages'
 
 // import socketIO from "socket.io-client";
@@ -25,7 +26,12 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/host-signup" element={<HostSignup />} />
         <Route path="/user-signup" element={<UserSignup />} />
-        <Route path="/host-login" element={<HostLogin />} />
+        <Route path="/host-login" element={
+          <PrivateRouteHost>
+            <HostLogin />
+          </PrivateRouteHost>
+        } 
+        />
         <Route path="/host-profile" element={<HostProfile />} />
         <Route path="/user-profile" element={<UserProfile />} />
         <Route path="/edit-host-profile" element={<EditHostProfile />} />
@@ -42,4 +48,3 @@ function App() {
 }
 export default App;
 
-//test

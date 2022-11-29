@@ -80,16 +80,13 @@ const UserProfile = () => {
   return (
     <>
       <NavBarUser />
-      <h2>
-        {isLoading ? (
-          <h1>"Loading..."</h1>
+      {isLoading ? (
+          <h2>"Loading..."</h2>
         ) : (
           <div>
-            <h3>Welcome to your profile, {currentUser.user.firstName}</h3>
+            <h2>Welcome to your profile, {currentUser.user.firstName}</h2>
             <img src={currentUser.user.image} alt="user photo" />
-          </div>
-        )}
-      </h2>
+          
       <Skeleton visible={isLoading}>
         <Card shadow="sm" p="lg" radius="md" withBorder>
           <Text fz="lg">First Name: {currentUser.user.firstName}</Text>
@@ -148,6 +145,7 @@ const UserProfile = () => {
           </button>
         </form>
       </Modal>
+      </div>)}
     </>
   );
 };
