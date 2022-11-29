@@ -250,7 +250,7 @@ function HostProfile() {
                             Rooms available: <input value={newPlacesAvailable} onChange={(event) => setNewPlacesAvailable(event.target.value)}/>
                         </label>
                         <label>
-                            Image: <input type="file" name="imageUrl" accept="image/png, image/jpg" onChange={(event) => setNewImage(event.target.image.files[0])}/>
+                            Image: <input type="file" name="imageUrl" accept="image/png, image/jpg"/>
                         </label>
                         
                         <button className="button" type="submit">
