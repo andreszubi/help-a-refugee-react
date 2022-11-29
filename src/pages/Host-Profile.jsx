@@ -17,7 +17,6 @@ function HostProfile() {
     const [listings, setListings] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isEditing, setIsEditing] = useState(false);
-    const [newUserImage, setNewUserImage] = useState("");
     const [newEmail, setNewEmail] = useState("");
     const [newFirstName, setNewFirstName] = useState("");
     const [newLastName, setNewLastName] = useState("");
