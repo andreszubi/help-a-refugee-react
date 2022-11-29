@@ -13,9 +13,18 @@ function HostProfile() {
     const [ newPlacesAvailable, setNewPlacesAvailable] = useState("");
     const [newImage, setNewImage] = useState("")
     const [editId, setEditId] = useState("");
-    const [listings, setListings] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
-    const [isEditing, setIsEditing] = useState(false)
+    const [listings, setListings] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [isEditing, setIsEditing] = useState(false);
+    const [newUserImage, setNewUserImage] = useState("");
+    const [newEmail, setNewEmail] = useState("");
+    const [newFirstName, setNewFirstName] = useState("");
+    const [newLastName, setNewLastName] = useState("");
+    const [newUserCity, setNewUserCity] = useState("");
+    const [newUserCountry, setNewUserCountry] = useState("");
+    const [newAboutMe, setNewAboutMe] = useState("");
+    const [isEditingUser, setIsEditingUser] = useState(false);
+
     
 
   const loadingTime = () => {
@@ -71,7 +80,7 @@ function HostProfile() {
         setNewImage("")
     }
 
-    const handleModal = (id) => {
+    const handleModalListing = (id) => {
         const listing = listings.filter(e=> 
             e._id === id
         )[0]
@@ -84,11 +93,19 @@ function HostProfile() {
         setIsEditing(true)
     }
 
+    const handleModalUser = () => {
+      setNewEmail(currentPayload.user.email)
+      setNewFirstName(currentPayload.user.firstName)
+      setNewLastName(currentPayload.user.lastName)
+      setNewUserCountry(currentPayload.user.country)
+      setNewUserCity(currentPayload.user.city)
+      setNewAboutMe(currentPayload.user.aboutMe)
+      setIsEditingUser(true)
+    }
 
 
     const deleteListing = async (id, event) => {
         event.preventDefault()
-        console.log(id)
         const response = await fetch (`http://localhost:5005/host/listings/${id}`, {
             method: "DELETE",
             headers: {
@@ -129,6 +146,31 @@ function HostProfile() {
         
     }
 
+    const handleEditUser = async (event) => {
+      event.preventDefault();
+      const image = event.target.imageUrl.files[0];
+      const fData = new FormData();
+      fData.append("imageUrl", image);
+      fData.append("email", newEmail);
+      fData.append("firstName", newFirstName);
+      fData.append("lastName", newLastName);
+      fData.append("country", newUserCountry);
+      fData.append("city", newUserCity);
+      fData.append("aboutMe", newAboutMe);
+      const response = await fetch(`http://localhost:5005/host/host/edit/${currentPayload.user._id}`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: fData,
+      }
+      );
+      const updatedHost = await response.json()
+      setCurrentPayload(updatedHost);
+      setIsEditingUser(false)
+    }
+
     const setVisibilityForm = () => {
         setVisibleForm(!visibleForm)}
 
@@ -154,6 +196,43 @@ function HostProfile() {
          <h1>Welcome to your profile, {currentPayload.user.firstName}</h1>
          <img src={currentPayload.user.image} style={{width:"20vw", height:"30vh", margin:"0", padding:"0"}}/>
          </div>)}
+         <Skeleton visible={isLoading}>
+          <Card shadow="sm" p="lg" radius="md" withBorder>
+            <Text fz="lg">Full name: {currentPayload.user.firstName} {currentPayload.user.lastName}</Text>
+            <Text>Email: {currentPayload.user.email}</Text>
+            <Text>Address: {currentPayload.user.city}, {currentPayload.user.country}</Text>
+            <Text>About me: {currentPayload.user.aboutMe}</Text>
+            <button className="button" type="submit" onClick={()=>handleModalUser()}>Edit your profile!</button>
+          </Card>
+         </Skeleton>
+         <Modal opened={isEditingUser} onClose={()=>setIsEditingUser(false)} title="Edit profile">
+          <form onSubmit={handleEditUser}>
+            <label>Profile Picture:{" "}
+            <input type="file" name="imageUrl" accept="image/png, image/jpg"/>
+            </label>
+            <label>First name:
+              <input value={newEmail} onChange={(event) => setNewEmail(event.target.value)}/>
+            </label>
+            <label>
+              <input value={newFirstName} onChange={(event) => setNewFirstName(event.target.value)}/>
+            </label>
+            <label>Last name:
+              <input value={newLastName} onChange={(event) => setNewLastName(event.target.value)}/>
+            </label>
+            <label>Country:
+              <input value={newUserCountry} onChange={(event) => setNewUserCountry(event.target.value)}/>
+            </label>
+            <label>City:
+              <input value={newUserCity} onChange={(event) => setNewUserCity(event.target.value)}/>
+            </label>
+            <label>About me:
+              <input value={newAboutMe} onChange={(event) => setNewAboutMe(event.target.value)}/>
+            </label>
+            <button className="button" type="submit">
+              Update
+            </button>
+          </form>
+         </Modal>
         {visibleForm && 
         <div className="PublishListing">
           <div>
@@ -232,7 +311,7 @@ function HostProfile() {
                         <Text fz="lg">Type of room: {typeOfRoom}</Text>
                         <Text fz="lg">Rooms available: {placesAvailable}</Text>
                         <Image radius="md"  width={200} height={80} src={image} alt="House" style={{alignSelf:"center"}}/> 
-                        <button className="button" type="submit" onClick={() => handleModal(_id)} style={{alignSelf:"center"}}>Edit details</button>
+                        <button className="button" type="submit" onClick={() => handleModalListing(_id)} style={{alignSelf:"center"}}>Edit details</button>
                     </Card>
                 </Skeleton>
                 <Modal opened={isEditing} onClose={()=>setIsEditing(false)} title="Edit listing">
