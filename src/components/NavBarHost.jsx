@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import logo from "../images/Logo2.png";
 
 function NavBarHost() {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ function NavBarHost() {
     <nav className="NavBar">
       <div>
         <Link to="/">
-          <img src="../public/images/Logo2.png" alt="brandLogo" />
+          <img src={logo} alt="brandLogo" />
         </Link>
       </div>
       <div className="buttons">
