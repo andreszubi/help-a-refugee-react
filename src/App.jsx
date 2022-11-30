@@ -27,12 +27,12 @@ function App() {
         <Route path="/host-signup" element={<HostSignup />} />
         <Route path="/user-signup" element={<UserSignup />} />
         <Route path="/host-login" element={
-          <PrivateRouteHost>
+          
             <HostLogin />
-          </PrivateRouteHost>
+          
         } 
         />
-        <Route path="/host-profile" element={<HostProfile />} />
+        <Route path="/host-profile" element={<PrivateRouteHost><HostProfile /></PrivateRouteHost>} />
         <Route path="/user-profile" element={<UserProfile />} />
         <Route path="/edit-host-profile" element={<EditHostProfile />} />
         <Route path="/listings-search" element={<ListingsSearch />} />

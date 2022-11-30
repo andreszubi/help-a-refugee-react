@@ -1,6 +1,41 @@
-function ListingBox({ listing }) {
+import { useContext, useEffect, useState } from "react";
+import { SessionContextUser } from "../contexts/SessionContextUser";
+
+function ListingBox({ listing}) {
+  const {token, currentUser} = useContext(SessionContextUser);
+  const [isLoading, setIsLoading] = useState(true)
+  let userId;
+  const loadingTime = () => {
+    if (currentUser) {
+      setIsLoading(false);
+      return userId = currentUser.user._id
+    } else {
+      setIsLoading(true);
+    }
+  };
+  useEffect(()=> {
+    loadingTime()
+  },[currentUser])
+
+  const handleRent = async (event, id)=> {
+    event.preventDefault()
+    const response = await fetch(`http://localhost:5005/user/listings/${id}`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: userId
+    });
+    const parsed = await response.json();
+  }
+
   return (
-    <div className="searchResults">
+    <>{isLoading ?
+      <h1>Loading...</h1>
+      :
+    (<div className="searchResults">
       <div className="card">
         <div className="firstinfo">
           <img className="userImg" src={listing.image} />
@@ -15,9 +50,11 @@ function ListingBox({ listing }) {
           </h3>
           <h3>Owner: {listing.owner.firstName} {listing.owner.lastName}</h3>
         </div>
-        <button>Reserve</button>
+        <button type="button" onClick={(event) =>handleRent(event, listing._id)}>Reserve</button>
       </div>
-    </div>
+    </div>)
+    }</>
+    
   );
 }
 
