@@ -10,10 +10,10 @@
   background-color: #495056;
 }
 
-.app {
+/* .app {
   margin: none;
   padding: none;
-}
+} */
 
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -307,6 +307,15 @@ div.transbox,
   flex-direction: column;
   margin-bottom: 50px;
   width: 80%;
+  margin-left: auto;
+  margin-right: 0px;
+}
+.profileFull2 {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 50px;
+  width: 80%;
   margin-left: 50px;
 }
 
@@ -371,7 +380,7 @@ div.transbox,
 }
 
 .listing {
-  background-color: #9ed5c5;
+  background-color: #def5e5;
   border-radius: 6px;
   margin: 5px;
   display: flex;

@@ -210,7 +210,7 @@ function HostProfile() {
             </div>
             <div className="hostProfAll">
               <Skeleton visible={isLoading}>
-                <div className="profileFull">
+                <div className="profileFull2">
                   <Card shadow="sm" p="lg" radius="md" withBorder>
                     <div className="profileInfo">
                       <img

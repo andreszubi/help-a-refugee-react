@@ -23,10 +23,13 @@ function UserSignup() {
     fData.append("firstName", firstName);
     fData.append("lastName", lastName);
     fData.append("aboutMe", aboutMe);
-    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/user/signup`, {
-      method: "POST",
-      body: fData,
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_REACT_APP_API_URL}/user/signup`,
+      {
+        method: "POST",
+        body: fData,
+      }
+    );
     const parsed = await response.json();
     console.log(parsed);
     navigate("/");
@@ -65,7 +68,6 @@ function UserSignup() {
               required
             />
           </label>
-
           <label>
             First Name:{" "}
             <input
@@ -75,7 +77,6 @@ function UserSignup() {
               onChange={(event) => setFirstName(event.target.value)}
             />
           </label>
-
           <label>
             Last Name:{" "}
             <input
@@ -85,12 +86,6 @@ function UserSignup() {
               onChange={(event) => setLastName(event.target.value)}
             />
           </label>
-
-          <label>
-            Profile Picture:{" "}
-            <input type="file" name="imageUrl" accept="image/png, image/jpg" />
-          </label>
-
           <label>
             About me:{" "}
             <input
@@ -100,7 +95,10 @@ function UserSignup() {
               onChange={(event) => setAboutMe(event.target.value)}
             />
           </label>
-
+          <label>
+            Profile Picture:{" "}
+            <input type="file" name="imageUrl" accept="image/png, image/jpg" />
+          </label>
           <button className="button" type="submit">
             Submit
           </button>

@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import { SessionContextHost } from "../contexts/SessionContextHost";
 import { useState, useContext } from "react";
+import Footer from "../components/Footer";
 
 function HostLogin() {
   const { setToken } = useContext(SessionContextHost);
@@ -15,13 +16,16 @@ function HostLogin() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/host/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_REACT_APP_API_URL}/host/login`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      }
+    );
     const parsed = await response.json();
 
     if (parsed.status === 200) {
@@ -32,12 +36,11 @@ function HostLogin() {
     }
   };
   return (
-    <div className="HostLogin">
+    <div className="container">
       <NavBar />
-
-      <div className="background-img">
-        <h1>Host Login</h1>
-        <form onSubmit={handleSubmit}>
+      <div className="transbox2">
+        <h1 className="textBox font-link largeTextSignUp ">Log in as a host</h1>
+        <form className="signUpForm" onSubmit={handleSubmit}>
           <label>
             Email{" "}
             <input
@@ -61,12 +64,13 @@ function HostLogin() {
               onChange={(event) => setPassword(event.target.value)}
             />
           </label>
-
           <button className="button" type="submit">
             Login
           </button>
         </form>
       </div>
+      <div className="background-img2"></div>
+      <Footer />
     </div>
   );
 }

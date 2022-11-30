@@ -1,36 +1,20 @@
-
 import NavBar from "../components/NavBar";
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 function HostSignup() {
+  const navigate = useNavigate();
 
-const navigate = useNavigate()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [country, setCountry] = useState("");
+  const [city, setCity] = useState("");
+  const [aboutMe, setAboutMe] = useState("");
 
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
-  const [country, setCountry] = useState("")
-  const [city, setCity] = useState("")
-  const [aboutMe, setAboutMe] = useState("")
-
-
-  /*const handleFileUpload = async value => {
-    setImageUrl(value)
-    const response = await fetch (`${import.meta.env.VITE_REACT_APP_API_URL}/host/upload` , {
-      method: "POST",
-      headers: {
-        "Content-Type" : "application/json"
-      },
-      body: JSON.stringify({imageUrl})
-    });
-    const parsed = await response.json();
-    console.log(parsed)
-  }*/
-
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const image = event.target.imageUrl.files[0];
     const fData = new FormData();
@@ -42,45 +26,106 @@ const navigate = useNavigate()
     fData.append("country", country);
     fData.append("city", city);
     fData.append("aboutMe", aboutMe);
-    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/host/signup`, {
-      method: "POST",
-      body: fData
-    });
-    const parsed = await response.json()
-    navigate("/host-login")
-  }
+    const response = await fetch(
+      `${import.meta.env.VITE_REACT_APP_API_URL}/host/signup`,
+      {
+        method: "POST",
+        body: fData,
+      }
+    );
+    const parsed = await response.json();
+    navigate("/host-login");
+  };
 
   return (
-    <div className="Host-Signup">
-        <NavBar />
-
-        <div className="background-img">
-
-      <h1>Host-Signup</h1>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <label>Email: <input type="email" required name="email" value={email} onChange={event => setEmail(event.target.value)}/></label>
-
-        <label>Password: <input type="password" required name="password" value={password} onChange={event => setPassword(event.target.value)} /></label>
-
-        <label>First Name: <input type="text" name="firstName" value={firstName} onChange={event => setFirstName(event.target.value)} /></label>
-
-        <label>Last Name: <input type="text" name="lastName" value={lastName} onChange={event => setLastName(event.target.value)} /></label>
-
-        <label>Country: <input type="text" name="country" value={country} onChange={event => setCountry(event.target.value)} /> </label>
-
-        <label>City: <input type="text" name="city" value={city} onChange={event => setCity(event.target.value)} /></label>
-
-        <label>About me: <input type="text" name="aboutMe" value={aboutMe} onChange={event => setAboutMe(event.target.value)} /></label>
-
-        <label>Profile Picture: <input type="file" name="imageUrl" accept="image/png, image/jpg"/></label>
-
-
-        <button className="button" type="submit">Submit</button>
-
-      </form>
-
+    <div className="container">
+      <NavBar />
+      <div className="transbox2">
+        <h1 className="textBox font-link largeTextSignUp ">Want to help?</h1>{" "}
+        <h2 className="mediumTextSignUp">
+          Sign up as a host and start helping out!
+        </h2>
+        <form
+          onSubmit={handleSubmit}
+          encType="multipart/form-data"
+          className="signUpForm"
+        >
+          <label>
+            Email:{" "}
+            <input
+              type="email"
+              required
+              name="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+          </label>
+          <label>
+            Password:{" "}
+            <input
+              type="password"
+              required
+              name="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+          </label>
+          <label>
+            First Name:{" "}
+            <input
+              type="text"
+              name="firstName"
+              value={firstName}
+              onChange={(event) => setFirstName(event.target.value)}
+            />
+          </label>
+          <label>
+            Last Name:{" "}
+            <input
+              type="text"
+              name="lastName"
+              value={lastName}
+              onChange={(event) => setLastName(event.target.value)}
+            />
+          </label>
+          <label>
+            Country:{" "}
+            <input
+              type="text"
+              name="country"
+              value={country}
+              onChange={(event) => setCountry(event.target.value)}
+            />{" "}
+          </label>
+          <label>
+            City:{" "}
+            <input
+              type="text"
+              name="city"
+              value={city}
+              onChange={(event) => setCity(event.target.value)}
+            />
+          </label>
+          <label>
+            About me:{" "}
+            <input
+              type="text"
+              name="aboutMe"
+              value={aboutMe}
+              onChange={(event) => setAboutMe(event.target.value)}
+            />
+          </label>
+          <label>
+            Profile Picture:{" "}
+            <input type="file" name="imageUrl" accept="image/png, image/jpg" />
+          </label>
+          <button className="button" type="submit">
+            Submit
+          </button>
+        </form>
       </div>
-
+      <div className="background-img"></div>
+      <Footer />
     </div>
   );
 }
