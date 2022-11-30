@@ -18,7 +18,7 @@ function EditListing() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/host/listings/${id}`, {
+        const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/host/listings/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -31,7 +31,7 @@ function EditListing() {
 
  const handleDelete = async (event) => {
         event.preventDefault();
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/host/listings/${id}`, {
+        const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/host/listings/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",

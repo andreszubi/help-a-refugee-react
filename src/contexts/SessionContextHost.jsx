@@ -13,7 +13,7 @@ const SessionContextHostProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const verifyToken = async () => {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/host/verify`, {
+    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/host/verify`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -37,7 +37,7 @@ const SessionContextHostProvider = ({ children }) => {
 
   function fetchWithToken(method, endpoint, callback, body = null) {
     async () => {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/${endpoint}`, {
+      const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/${endpoint}`, {
         method,
         headers: {
           Authorization: `Bearer ${token}`,

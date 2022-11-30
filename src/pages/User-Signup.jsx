@@ -23,7 +23,7 @@ function UserSignup() {
     fData.append("firstName", firstName);
     fData.append("lastName", lastName);
     fData.append("aboutMe", aboutMe);
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/user/signup`, {
+    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/user/signup`, {
       method: "POST",
       body: fData,
     });

@@ -37,7 +37,7 @@ function HostProfile() {
   };
 
   const fetchListings = async () => {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/host/listings`, {
+    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/host/listings`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -66,7 +66,7 @@ function HostProfile() {
         fData.append("city", newCity);
         fData.append("typeOfRoom", newTypeOfRoom);
         fData.append("placesAvailable", newPlacesAvailable);
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/host/listings`, {
+        const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/host/listings`, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${token}`
@@ -107,7 +107,7 @@ function HostProfile() {
 
     const deleteListing = async (id, event) => {
         event.preventDefault()
-        const response = await fetch (`${process.env.REACT_APP_API_URL}/host/listings/${id}`, {
+        const response = await fetch (`${import.meta.env.VITE_REACT_APP_API_URL}/host/listings/${id}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -128,7 +128,7 @@ function HostProfile() {
         fData.append("city", newCity);
         fData.append("typeOfRoom", newTypeOfRoom);
         fData.append("placesAvailable", newPlacesAvailable);
-        const response = await fetch (`${process.env.REACT_APP_API_URL}/host/listings/${editId}`, {
+        const response = await fetch (`${import.meta.env.VITE_REACT_APP_API_URL}/host/listings/${editId}`, {
             method: "PUT",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -159,7 +159,7 @@ function HostProfile() {
       fData.append("country", newUserCountry);
       fData.append("city", newUserCity);
       fData.append("aboutMe", newAboutMe);
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/host/host/edit/${currentPayload.user._id}`,
+      const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/host/host/edit/${currentPayload.user._id}`,
       {
         method: "PUT",
         headers: {

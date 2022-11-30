@@ -14,7 +14,7 @@ const LoginForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/user/login`, {
+    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

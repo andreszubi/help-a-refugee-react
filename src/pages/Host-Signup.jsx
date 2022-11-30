@@ -19,7 +19,7 @@ const navigate = useNavigate()
 
   /*const handleFileUpload = async value => {
     setImageUrl(value)
-    const response = await fetch (`${process.env.REACT_APP_API_URL}/host/upload` , {
+    const response = await fetch (`${import.meta.env.VITE_REACT_APP_API_URL}/host/upload` , {
       method: "POST",
       headers: {
         "Content-Type" : "application/json"
@@ -42,7 +42,7 @@ const navigate = useNavigate()
     fData.append("country", country);
     fData.append("city", city);
     fData.append("aboutMe", aboutMe);
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/host/signup`, {
+    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/host/signup`, {
       method: "POST",
       body: fData
     });

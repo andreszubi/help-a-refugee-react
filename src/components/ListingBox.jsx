@@ -22,7 +22,7 @@ function ListingBox({ listing}) {
   const handleRent = async (event, id)=> {
     event.preventDefault();
     console.log(userId);
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/user/listings/${id}`,
+    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/user/listings/${id}`,
     {
       method: "PUT",
       headers: {
