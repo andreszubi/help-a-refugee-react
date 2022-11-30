@@ -1,14 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { SessionContextUser } from "../contexts/SessionContextUser";
+import {useNavigate} from "react-router-dom"
 
 function ListingBox({ listing}) {
   const {token, currentUser} = useContext(SessionContextUser);
   const [isLoading, setIsLoading] = useState(true)
-  let userId;
+  const [userId, setUserId] = useState("")
+  const navigate = useNavigate()
   const loadingTime = () => {
     if (currentUser) {
       setIsLoading(false);
-      return userId = currentUser.user._id
+      setUserId(currentUser.user._id)
     } else {
       setIsLoading(true);
     }
@@ -18,15 +20,16 @@ function ListingBox({ listing}) {
   },[currentUser])
 
   const handleRent = async (event, id)=> {
-    event.preventDefault()
-    const response = await fetch(`http://localhost:5005/user/listings/${id}`,
+    event.preventDefault();
+    console.log(userId);
+    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/user/listings/${id}`,
     {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json"
       },
-      body: userId
+      body: JSON.stringify({userId})
     });
     const parsed = await response.json();
   }
@@ -50,7 +53,8 @@ function ListingBox({ listing}) {
           </h3>
           <h3>Owner: {listing.owner.firstName} {listing.owner.lastName}</h3>
         </div>
-        <button type="button" onClick={(event) =>handleRent(event, listing._id)}>Reserve</button>
+        {listing.usedBy ? <h3>Already in use!</h3>:<button type="button" onClick={(event) =>handleRent(event, listing._id)}>Reserve</button> }
+        
       </div>
     </div>)
     }</>

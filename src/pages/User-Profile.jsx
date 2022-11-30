@@ -22,7 +22,7 @@ const UserProfile = () => {
     if (currentUser) {
       const fetchUser = async () => {
         const response = await fetch(
-          `http://localhost:5005/user/user/${currentUser.user._id}`,
+          `${import.meta.env.VITE_REACT_APP_API_URL}/user/user/${currentUser.user._id}`,
           {
             method: "GET",
             headers: {
@@ -57,7 +57,7 @@ const UserProfile = () => {
     fData.append("lastName", lastName);
     fData.append("aboutMe", aboutMe);
     const response = await fetch(
-      `http://localhost:5005/user/user/edit/${currentUser.user._id}`,
+      `${import.meta.env.VITE_REACT_APP_API_URL}/user/user/edit/${currentUser.user._id}`,
       {
         method: "PUT",
         headers: {

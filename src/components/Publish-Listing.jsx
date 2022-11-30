@@ -20,7 +20,7 @@ function PublishListing() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const response = await fetch("http://localhost:5005/host/listings", {
+        const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/host/listings`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

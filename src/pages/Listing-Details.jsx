@@ -19,7 +19,7 @@ function ListingDetails() {
     console.log("Hello");
     
     useEffect(() => {
-        fetch(`http://localhost:3000/listings/${id}`)
+        fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/listings/${id}`)
         .then((r) => r.json())
         .then((listing) => {
             setListing(listing);
@@ -28,7 +28,7 @@ function ListingDetails() {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch(`http://localhost:3000/listings/${id}`, {
+        const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/listings/${id}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -46,7 +46,7 @@ function ListingDetails() {
 
     const handleMessage = async (e) => {
         e.preventDefault();
-        const response = await fetch(`http://localhost:3000/messages/${id}`, {
+        const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/messages/${id}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -25,7 +25,7 @@ function EditHostProfile() {
     const handleSubmit = async (event) => {
         event.preventDefault();
     
-        const response = await fetch("http://localhost:5005/host/edit/:id", {
+        const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/host/edit/:id`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
