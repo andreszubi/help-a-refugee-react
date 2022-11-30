@@ -14,6 +14,7 @@ const UserProfile = () => {
   const [image, setImage] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const place ="profile"
 
   //* GET USER*//
   const loadingTime = () => {
@@ -80,7 +81,7 @@ const UserProfile = () => {
 
   return (
     <div className="container">
-      <NavBarUser />
+      <NavBarUser place={place}/>
       {isLoading ? (
         <h2>"Loading..."</h2>
       ) : (

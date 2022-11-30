@@ -4,6 +4,6 @@ import { SessionContextHost } from "../contexts/SessionContextHost";
 
 function PrivateRouteHost({children}) {
     const {isAuthenticated} = useContext(SessionContextHost)
-    return ( isAuthenticated ? <>{children}</> : <Navigate to="/" />);
+    return ( isAuthenticated ? <>{children}</> : <Navigate to="host-login" />);
 }
 export default PrivateRouteHost;

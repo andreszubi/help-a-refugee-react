@@ -10,6 +10,7 @@ const SessionContextHostProvider = ({ children }) => {
   });
   const [currentPayload, setCurrentPayload] = useState("")
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const verifyToken = async () => {
     const response = await fetch("http://localhost:5005/host/verify", {
@@ -23,7 +24,9 @@ const SessionContextHostProvider = ({ children }) => {
       setIsAuthenticated(true);
       setCurrentPayload(parsed.payload)
     }
+    setIsLoading(false)
   };
+
   useEffect(() => {
     if (token) {
       verifyToken();
@@ -49,7 +52,7 @@ const SessionContextHostProvider = ({ children }) => {
 
   return (
     <SessionContextHost.Provider
-      value={{ token, setToken, isAuthenticated, fetchWithToken , currentPayload, setCurrentPayload}}
+      value={{ token, setToken, isAuthenticated, fetchWithToken , currentPayload, setCurrentPayload, isLoading, setIsLoading}}
     >
       {children}
     </SessionContextHost.Provider>

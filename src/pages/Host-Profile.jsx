@@ -6,7 +6,7 @@ import NavBarHost from "../components/NavBarHost";
 import { SessionContextHost } from "../contexts/SessionContextHost";
 
 function HostProfile() {
-    const {token, currentPayload, setCurrentPayload} = useContext(SessionContextHost);
+    const {token, currentPayload, setCurrentPayload, isLoading, setIsLoading} = useContext(SessionContextHost);
     const [visibleForm, setVisibleForm] = useState(false)
     const [newCountry, setNewCountry] = useState("");
     const [newCity, setNewCity] = useState("");
@@ -15,7 +15,7 @@ function HostProfile() {
     const [newImage, setNewImage] = useState("")
     const [editId, setEditId] = useState("");
     const [listings, setListings] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    //const [isLoading, setIsLoading] = useState(true);
     const [isEditing, setIsEditing] = useState(false);
     const [newEmail, setNewEmail] = useState("");
     const [newFirstName, setNewFirstName] = useState("");

@@ -9,6 +9,7 @@ function ListingsSearch() {
 
   const { token, setToken } = useContext(SessionContextUser);
   const navigate = useNavigate();
+  const place = "search"
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -31,7 +32,7 @@ function ListingsSearch() {
 
   return (
     <div className="ListingsSearch">
-      <NavBarUser />
+      <NavBarUser place ={place}/>
       {listings.filter((listing) => listing.city.toLowerCase().includes())}
       <AllListings />
     </div>

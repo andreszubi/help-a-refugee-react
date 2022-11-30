@@ -33,7 +33,6 @@ const ListingsSearchUser = ({ query, setQuery }) => {
       },
     });
     const parsed = await response.json();
-    console.log(parsed);
     setListings(parsed);
   };
 
