@@ -1,26 +1,24 @@
 import { Link, useNavigate } from "react-router-dom";
 
 function NavBarHost() {
-    const navigate=useNavigate()
-    const logout = () => {
-        localStorage.removeItem("token")
-        navigate("/")
-    }
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
   return (
-    <div className="NavBar">
-      <header>
-        <nav>
-          <Link to="/listings-search">
-            <button className="button" type="submit">
-              Search for a host
-            </button>
-          </Link>
-            <button className="button" type="submit" onClick={logout}>
-              Logout
-            </button>
-        </nav>
-      </header>
-    </div>
+    <nav className="NavBar">
+      <div>
+        <Link to="/">
+          <img src="../public/images/Logo2.png" alt="brandLogo" />
+        </Link>
+      </div>
+      <div className="buttons">
+        <button className="button" type="submit" onClick={logout}>
+          Logout
+        </button>
+      </div>
+    </nav>
   );
 }
 

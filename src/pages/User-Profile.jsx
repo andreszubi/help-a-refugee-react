@@ -5,7 +5,8 @@ import { Card, Modal, Skeleton, Text } from "@mantine/core";
 import Footer from "../components/Footer";
 
 const UserProfile = () => {
-  const { token, currentUser, setCurrentUser } = useContext(SessionContextUser);
+  const { token, currentUser, setCurrentUser, isLoading, setIsLoading } =
+    useContext(SessionContextUser);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ const UserProfile = () => {
   const [aboutMe, setAboutMe] = useState("");
   const [image, setImage] = useState("");
   const [isEditing, setIsEditing] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
   const place = "profile";
 
   //* GET USER*//
@@ -74,11 +75,6 @@ const UserProfile = () => {
     loadingTime();
   }, [currentUser]);
 
-  //* ADD WAITING THINGY*//
-  if (!currentUser) {
-    return <p>Loading...</p>;
-  }
-
   return (
     <div className="container">
       <NavBarUser place={place} />
@@ -89,30 +85,49 @@ const UserProfile = () => {
           <div className="font-link largeTextSignUp">
             <h1>Welcome to your profile, {currentUser.user.firstName}</h1>{" "}
           </div>
-          <div className="profileInfo">
-            <Skeleton visible={isLoading}>
+
+          <Skeleton visible={isLoading}>
+            <div className="profileFull">
               <Card shadow="sm" p="lg" radius="md" withBorder>
-                <img src={currentUser.user.image} alt="user photo" />
-                <Text fz="lg">First Name: {currentUser.user.firstName}</Text>
-                <Text>Last Name: {currentUser.user.lastName}</Text>
-                <Text>Email: {currentUser.user.email}</Text>
-                <Text>About me:{currentUser.user.aboutMe}</Text>
-                <button
-                  className="button"
-                  type="submit"
-                  onClick={() => setIsEditing(true)}
-                >
-                  Edit profile{" "}
-                </button>
+                <div className="profileInfo">
+                  <img
+                    className="profileImage"
+                    src={currentUser.user.image}
+                    alt="user photo"
+                  />
+                  <div className="allProfileText">
+                    <Text className="profileText">
+                      First Name: {currentUser.user.firstName}
+                    </Text>
+                    <Text className="profileText">
+                      Last Name: {currentUser.user.lastName}
+                    </Text>
+                    <Text className="profileText">
+                      Email: {currentUser.user.email}
+                    </Text>
+                    <Text className="profileText">
+                      About me:
+                      {currentUser.user.aboutMe}
+                    </Text>
+                    <button
+                      className="button profButton"
+                      type="submit"
+                      onClick={() => setIsEditing(true)}
+                    >
+                      Edit profile{" "}
+                    </button>
+                  </div>
+                </div>
               </Card>
-            </Skeleton>
-          </div>
+            </div>
+          </Skeleton>
+
           <Modal
             opened={isEditing}
             onClose={() => setIsEditing(false)}
             title="Edit profile"
           >
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="formEdit">
               <label>
                 Profile Picture:{" "}
                 <input

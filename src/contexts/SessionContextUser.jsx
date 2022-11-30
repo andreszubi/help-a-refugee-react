@@ -10,6 +10,7 @@ const SessionContextUserProvider = ({ children }) => {
   });
   const [currentUser, setCurrentUser] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const verifyToken = async () => {
     const response = await fetch("http://localhost:5005/user/verify", {
@@ -23,6 +24,7 @@ const SessionContextUserProvider = ({ children }) => {
       setIsAuthenticated(true);
       setCurrentUser(parsed.payload);
     }
+    setIsLoading(false);
   };
   useEffect(() => {
     if (token) {
@@ -56,6 +58,8 @@ const SessionContextUserProvider = ({ children }) => {
         fetchWithToken,
         currentUser,
         setCurrentUser,
+        isLoading,
+        setIsLoading,
       }}
     >
       {children}
