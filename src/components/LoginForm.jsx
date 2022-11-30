@@ -23,7 +23,7 @@ const LoginForm = () => {
     });
     const parsed = await response.json();
 
-    if (parsed.status === 200) {
+    if (parsed.status === 201) {
       setToken(parsed.token);
       navigate("/user-profile");
     } else {
