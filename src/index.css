@@ -294,6 +294,10 @@ div.transbox,
   width: 100%;
 }
 
+.logo {
+  background-image: url("/public/images/Logo2.png");
+}
+
 .textLanding2 {
   /* color: white; */
   text-align: left;

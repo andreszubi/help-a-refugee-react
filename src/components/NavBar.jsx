@@ -5,7 +5,7 @@ function NavBar() {
     <nav className="NavBar">
       <div>
         <Link to="/">
-          <img src="../public/images/Logo2.png" alt="brandLogo" />
+          <img src="./public/images/Logo2.png" alt="brandLogo" />
         </Link>
       </div>
       <div className="buttons">
