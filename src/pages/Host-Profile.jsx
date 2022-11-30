@@ -15,7 +15,6 @@ function HostProfile() {
     const [newImage, setNewImage] = useState("")
     const [editId, setEditId] = useState("");
     const [listings, setListings] = useState([]);
-    //const [isLoading, setIsLoading] = useState(true);
     const [isEditing, setIsEditing] = useState(false);
     const [newEmail, setNewEmail] = useState("");
     const [newFirstName, setNewFirstName] = useState("");
@@ -24,6 +23,10 @@ function HostProfile() {
     const [newUserCountry, setNewUserCountry] = useState("");
     const [newAboutMe, setNewAboutMe] = useState("");
     const [isEditingUser, setIsEditingUser] = useState(false);
+
+    const setVisibilityForm = () => {
+      setVisibleForm(!visibleForm)
+    }
   
   const loadingTime = () => {
     if (currentPayload) {
@@ -141,6 +144,7 @@ function HostProfile() {
         setNewTypeOfRoom("");
         setNewImage("");
         setEditId("")
+        setVisibilityForm()
         
     }
 
@@ -169,8 +173,7 @@ function HostProfile() {
       setIsEditingUser(false)
     }
 
-    const setVisibilityForm = () => {
-        setVisibleForm(!visibleForm)}
+   
 
     useEffect(()=> {
         loadingTime()  
