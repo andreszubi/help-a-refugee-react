@@ -15,7 +15,7 @@ function HostLogin() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await fetch("http://localhost:5005/host/login", {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/host/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

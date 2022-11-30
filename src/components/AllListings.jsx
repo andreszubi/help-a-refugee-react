@@ -24,7 +24,7 @@ const ListingsSearchUser = () => {
   }, []);
 
   const fetchListings = async () => {
-    const response = await fetch("http://localhost:5005/user/listings", {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/user/listings`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

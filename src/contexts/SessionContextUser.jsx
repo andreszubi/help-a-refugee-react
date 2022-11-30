@@ -12,7 +12,7 @@ const SessionContextUserProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const verifyToken = async () => {
-    const response = await fetch("http://localhost:5005/user/verify", {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/user/verify`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -34,7 +34,7 @@ const SessionContextUserProvider = ({ children }) => {
 
   function fetchWithToken(method, endpoint, callback, body = null) {
     async () => {
-      const response = await fetch(`http://localhost:5005/${endpoint}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/${endpoint}`, {
         method,
         headers: {
           Authorization: `Bearer ${token}`,

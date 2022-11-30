@@ -14,10 +14,6 @@ import EditListing from "./pages/Edit-Listing";
 import ListingDetails from "./pages/Listing-Details";
 import PrivateRouteHost from "./components/PrivateRouteHost";
 
-// import Messages from './components/Messages'
-
-// import socketIO from "socket.io-client";
-// const socket = socketIO("http://localhost:5173");
 
 function App() {
   return (
