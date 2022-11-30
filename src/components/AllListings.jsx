@@ -2,12 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import { SessionContextUser } from "../contexts/SessionContextUser";
 import ListingBox from "./ListingBox";
 
-const ListingsSearchUser = ({ query, setQuery }) => {
-  const { token, currentUser, setCurrentUser } = useContext(SessionContextUser);
+const ListingsSearchUser = () => {
+  const { token, currentUser } = useContext(SessionContextUser);
   const [search, setSearch] = useState("");
   const [listings, setListings] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
   const loadingTime = () => {
     if (currentUser) {
       setIsLoading(false);
@@ -16,10 +15,10 @@ const ListingsSearchUser = ({ query, setQuery }) => {
     }
   };
 
-  const handleChange = (event) => {
-    event.preventDefault();
-    setQuery(event.target.value);
-  };
+  useEffect(()=> {
+    loadingTime()
+  },[currentUser])
+
   useEffect(() => {
     fetchListings();
   }, []);
@@ -37,7 +36,10 @@ const ListingsSearchUser = ({ query, setQuery }) => {
   };
 
   return (
-    <>
+    <>{isLoading ? 
+      <h1>Loading...</h1>
+      : 
+    (<div>
       <input
         onChange={(e) => {
           setSearch(e.target.value);
@@ -53,9 +55,11 @@ const ListingsSearchUser = ({ query, setQuery }) => {
               return listing.city.toLowerCase().includes(search.toLowerCase());
             })
             .map((e) => {
-              return <ListingBox listing={e} key={e._id}/>;
+              return <ListingBox listing={e} key={e._id} />;
             })}
       </div>
+      </div>)
+      }
     </>
   );
 };

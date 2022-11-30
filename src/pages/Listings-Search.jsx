@@ -1,40 +1,37 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SessionContextUser } from "../contexts/SessionContextUser";
-import { useNavigate } from "react-router-dom";
 import NavBarUser from "../components/NavBarUser";
 import AllListings from "../components/AllListings";
 
 function ListingsSearch() {
-  const [listings, setListings] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const { token, setToken } = useContext(SessionContextUser);
-  const navigate = useNavigate();
+  const { token, setToken, currentUser } = useContext(SessionContextUser);
   const place = "search"
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const response = await fetch("http://localhost:5005/user/listings", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ country, city, typeOfRoom, placesAvailable }),
-    });
-    const parsed = await response.json();
-
-    if (parsed.status === 200) {
-      setL;
-      setToken(parsed.token);
-      navigate("/user/listings");
+  
+  const loadingTime = () => {
+    if (currentUser) {
+      setIsLoading(false);
+    } else {
+      setIsLoading(true);
     }
   };
 
+  useEffect(()=> {
+    loadingTime()
+  },[currentUser])
+
+
+
   return (
     <div className="ListingsSearch">
+      {isLoading ? (<h1>Loading...</h1>)
+      : (<>
       <NavBarUser place ={place}/>
-      {listings.filter((listing) => listing.city.toLowerCase().includes())}
       <AllListings />
+      </>)
+      }
+      
     </div>
   );
 }

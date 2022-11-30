@@ -190,7 +190,7 @@ function HostProfile() {
     <NavBarHost />
         <div className="background-img">
          {isLoading ? 
-         <h1>   "Loading..." </h1>    
+         <h1>   Loading... </h1>    
          : 
          (<div>
          <h1>Welcome to your profile, {currentPayload.user.firstName}</h1>
