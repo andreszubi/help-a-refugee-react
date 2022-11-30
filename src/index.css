@@ -275,7 +275,7 @@ div.transbox,
 }
 
 .background-img {
-  background-image: url("/public/images/PeopleImg.png");
+  background-image: url("/images/PeopleImg.png");
   background-size: 85%;
   background-repeat: no-repeat;
   background-position: center;
@@ -285,17 +285,13 @@ div.transbox,
 }
 
 .background-img2 {
-  background-image: url("/public/images/PeopleImg2.png");
+  background-image: url("/images/PeopleImg2.png");
   background-size: 85%;
   background-repeat: no-repeat;
   background-position: center;
   /* padding-top: 30px; */
   height: 100vh;
   width: 100%;
-}
-
-.logo {
-  background-image: url("/public/images/Logo2.png");
 }
 
 .textLanding2 {
