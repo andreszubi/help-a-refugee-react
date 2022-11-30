@@ -14,7 +14,7 @@ const UserProfile = () => {
   const [image, setImage] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const place ="profile"
+  const place = "profile";
 
   //* GET USER*//
   const loadingTime = () => {
@@ -81,7 +81,7 @@ const UserProfile = () => {
 
   return (
     <div className="container">
-      <NavBarUser place={place}/>
+      <NavBarUser place={place} />
       {isLoading ? (
         <h2>"Loading..."</h2>
       ) : (
@@ -89,23 +89,24 @@ const UserProfile = () => {
           <div className="font-link largeTextSignUp">
             <h1>Welcome to your profile, {currentUser.user.firstName}</h1>{" "}
           </div>
-
-          <Skeleton visible={isLoading}>
-            <Card shadow="sm" p="lg" radius="md" withBorder>
-              <img src={currentUser.user.image} alt="user photo" />
-              <Text fz="lg">First Name: {currentUser.user.firstName}</Text>
-              <Text>Last Name: {currentUser.user.lastName}</Text>
-              <Text>Email: {currentUser.user.email}</Text>
-              <Text>About me:{currentUser.user.aboutMe}</Text>
-              <button
-                className="button"
-                type="submit"
-                onClick={() => setIsEditing(true)}
-              >
-                Edit profile{" "}
-              </button>
-            </Card>
-          </Skeleton>
+          <div className="profileInfo">
+            <Skeleton visible={isLoading}>
+              <Card shadow="sm" p="lg" radius="md" withBorder>
+                <img src={currentUser.user.image} alt="user photo" />
+                <Text fz="lg">First Name: {currentUser.user.firstName}</Text>
+                <Text>Last Name: {currentUser.user.lastName}</Text>
+                <Text>Email: {currentUser.user.email}</Text>
+                <Text>About me:{currentUser.user.aboutMe}</Text>
+                <button
+                  className="button"
+                  type="submit"
+                  onClick={() => setIsEditing(true)}
+                >
+                  Edit profile{" "}
+                </button>
+              </Card>
+            </Skeleton>
+          </div>
           <Modal
             opened={isEditing}
             onClose={() => setIsEditing(false)}
