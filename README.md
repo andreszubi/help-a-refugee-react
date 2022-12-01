@@ -9,10 +9,6 @@ On the website anyone can sign up to be become a host and publish a room, apartm
 Refugees will be able to make a profile on this website for free and to search for a home that they can easily book by just a click of a button. This will send an email to the host with the refugee’s information and then they may contact them to help facilitate details to help them.
 
 
-
-# User Stories
-
-
 # Backlog
 Nodemailer
 Upload Images
@@ -63,24 +59,135 @@ Session Context User
 
 
 # Models
-User
-Host
-Housing
+User: 
+
+const UserSchema = new Schema(
+  {
+    email: {
+      type: String,
+      required: [true, "Email is required."],
+      unique: true,
+      lowercase: true,
+      trim: true,
+    },
+    hashedPassword: {
+      type: String,
+      required: [true, "Password is required."],
+    },
+    firstName: {
+      type: String,
+    },
+    lastName: {
+      type: String,
+    },
+    image: {
+      type: String,
+    },
+    aboutMe: {
+      type: String,
+    }
+  }
+
+
+Host :
+
+const HostSchema = new Schema(
+  {
+    email: {
+      type: String,
+      required: [true, "Email is required."],
+      unique: true,
+      lowercase: true,
+      trim: true,
+    },
+    hashedPassword: {
+      type: String,
+      required: [true, "Password is required."],
+    },
+    firstName: {
+      type: String,
+    },
+    lastName: {
+      type: String,
+    },
+    city: {
+      type: String,
+    },
+    country: {
+      type: String,
+    },
+    image: {
+      type: String,
+    },
+    aboutMe: {
+      type: String,
+    },
+    
+  }
+);
+
+
+Housing: 
+
+const HousingSchema = new Schema(
+  {
+    country: {
+      type: String,
+      required: [true, "Country is required"],
+    },
+
+    city: {
+      type: String,
+      required: [true, "City is required."],
+    },
+    typeOfRoom: {
+      type: String,
+      required: [true, "Type of room is required."],
+    },
+    placesAvailable: {
+      type: Number,
+      required: [true, "For how many people do you have space?"],
+    },
+    image: {
+      type: String,
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "Host",
+    },
+    usedBy: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  }
+);
 
 # Trello
-Trello : https://trello.com/b/pE82zedM/project-3
+Trello :
+
+ https://trello.com/b/pE82zedM/project-3
 
 
 
-# Git & Cyclic
-Repository link:
+# Github
+
+Front-End: 
+https://github.com/andreszubi/help-a-refugee-react
+
+Back-End: 
+
+https://github.com/B4n3l1ng/help-a-refugee-backend
 
 
 
 Deploy link:
 
-Front-End : https://preeminent-baklava-807d8a.netlify.app/
+Front-End :
 
-Back-End :   https://puce-shiny-magpie.cyclic.app/
+ https://preeminent-baklava-807d8a.netlify.app/
+
+Back-End :   
+
+https://puce-shiny-magpie.cyclic.app/
 
 # Slides
