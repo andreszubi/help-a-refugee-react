@@ -2,6 +2,7 @@ import NavBar from "../components/NavBar";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import { Alert } from '@mantine/core';
 
 function HostSignup() {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ function HostSignup() {
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
   const [aboutMe, setAboutMe] = useState("");
+  const [errorMessage, setErrorMessage] = useState()
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -34,7 +36,11 @@ function HostSignup() {
       }
     );
     const parsed = await response.json();
-    navigate("/host-login");
+    if (response.status===405) {
+      setErrorMessage((parsed.message));
+    } else if (response.status===201) {
+      navigate("/host-login");
+    }
   };
 
   return (
@@ -45,6 +51,7 @@ function HostSignup() {
         <h2 className="mediumTextSignUp">
           Sign up as a host and start helping out!
         </h2>
+        
         <form
           onSubmit={handleSubmit}
           encType="multipart/form-data"
@@ -119,9 +126,13 @@ function HostSignup() {
             Profile Picture:{" "}
             <input type="file" name="imageUrl" accept="image/png, image/jpg" />
           </label>
+          {errorMessage ? (<Alert title="Bummer!" color="red">
+      There's an existing account using that email, please try again!
+    </Alert>): ""}
           <button className="button" type="submit">
             Submit
           </button>
+          
         </form>
       </div>
       <div className="background-img"></div>
