@@ -5,7 +5,7 @@ import NavBarMain from "../components/NavBarMain";
 function ErrorPage() {
   return (
     <>
-      <div className="container">
+      <div className="appContainer">
         <div className="Home">
           <NavBarMain />
           <div className="notPass">

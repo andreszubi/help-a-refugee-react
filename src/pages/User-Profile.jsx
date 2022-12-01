@@ -80,7 +80,7 @@ const UserProfile = () => {
 
   return (
     <div>
-      <div className="container">
+      <div className="appContainer">
         <NavBarUser place={place} />
         {isLoading ? (
           <div>

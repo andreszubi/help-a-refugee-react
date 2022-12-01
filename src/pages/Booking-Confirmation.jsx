@@ -4,8 +4,9 @@ import NavBarMain from "../components/NavBarMain";
 function BookingConfirmation() {
   return (
     <>
-      <div className="container">
+      <div className="appContainer">
         <NavBarMain />
+        {/* <div className="background-img"> */}
         <h1 className="largeTextSignUp3">Reservation confirmed!</h1>
         <h2 className="mediumTextSignUp2">
           Your host has received your reservation and will contact you by email

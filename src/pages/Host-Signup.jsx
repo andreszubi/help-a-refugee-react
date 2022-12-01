@@ -44,7 +44,7 @@ function HostSignup() {
   };
 
   return (
-    <div className="container">
+    <div className="appContainer">
       <NavBar />
       <div className="transbox2">
         <h1 className="textBox font-link largeTextSignUp ">Want to help?</h1>{" "}

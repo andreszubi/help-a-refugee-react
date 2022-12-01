@@ -37,7 +37,7 @@ function HostLogin() {
     }
   };
   return (
-    <div className="container">
+    <div className="appContainer">
       <NavBar />
       <div className="transbox2">
         <h1 className="textBox font-link largeTextSignUp ">Log in as a host</h1>
