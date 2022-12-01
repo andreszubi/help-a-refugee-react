@@ -498,3 +498,7 @@ div.transbox,
 .firstinfo {
   margin-bottom: 20px;
 }
+
+.listingInUse {
+  color: #f66465;
+}
