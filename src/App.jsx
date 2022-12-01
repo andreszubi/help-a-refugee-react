@@ -14,7 +14,7 @@ import EditListing from "./pages/Edit-Listing";
 import ListingDetails from "./pages/Listing-Details";
 import PrivateRouteHost from "./components/PrivateRouteHost";
 import PrivateRouteUser from "./components/PrivateRouteUser";
-import ErrorPage from "./components/ErrorPage";
+// import ErrorPage from "./components/ErrorPage";
 
 function App() {
   return (
@@ -47,7 +47,7 @@ function App() {
         {/* <Route path="/listings-search" element={<ListingsSearch />} /> */}
         <Route path="/edit-listing/:id" element={<EditListing />} />
         <Route path="/listing-details" element={<ListingDetails />} />
-        <Route path="/error-page" element={<ErrorPage />} />
+        {/* <Route path="/error-page" element={<ErrorPage />} /> */}
       </Routes>
     </div>
   );

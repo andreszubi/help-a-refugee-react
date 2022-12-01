@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { SessionContextUser } from "../contexts/SessionContextUser";
 import { useNavigate } from "react-router-dom";
+import { Loader } from "@mantine/core";
 
 function ListingBox({ listing }) {
   const { token, currentUser } = useContext(SessionContextUser);
@@ -39,7 +40,9 @@ function ListingBox({ listing }) {
   return (
     <>
       {isLoading ? (
-        <h1>Loading...</h1>
+        <div>
+          <Loader color="grape" />
+        </div>
       ) : (
         <div className="searchResults">
           <div className="card">
@@ -61,7 +64,7 @@ function ListingBox({ listing }) {
               </h3>
             </div>
             {listing.usedBy ? (
-              <h3>Already in use!</h3>
+              <h3 className="listingInUse">Already in use!</h3>
             ) : (
               <button
                 className="button"

@@ -3,6 +3,7 @@ import { SessionContextUser } from "../contexts/SessionContextUser";
 import NavBarUser from "../components/NavBarUser";
 import AllListings from "../components/AllListings";
 import Footer from "../components/Footer";
+import { Loader } from "@mantine/core";
 
 function ListingsSearch() {
   const [isLoading, setIsLoading] = useState(true);
@@ -25,7 +26,9 @@ function ListingsSearch() {
   return (
     <div className="ListingsSearch">
       {isLoading ? (
-        <h1>Loading...</h1>
+        <div>
+          <Loader color="grape" />
+        </div>
       ) : (
         <>
           <NavBarUser place={place} />

@@ -3,6 +3,7 @@ import { SessionContextUser } from "../contexts/SessionContextUser";
 import NavBarUser from "../components/NavBarUser";
 import { Card, Modal, Skeleton, Text } from "@mantine/core";
 import Footer from "../components/Footer";
+import { Loader } from "@mantine/core";
 
 const UserProfile = () => {
   const { token, currentUser, setCurrentUser, isLoading, setIsLoading } =
@@ -22,7 +23,9 @@ const UserProfile = () => {
     if (currentUser) {
       const fetchUser = async () => {
         const response = await fetch(
-          `${import.meta.env.VITE_REACT_APP_API_URL}/user/user/${currentUser.user._id}`,
+          `${import.meta.env.VITE_REACT_APP_API_URL}/user/user/${
+            currentUser.user._id
+          }`,
           {
             method: "GET",
             headers: {
@@ -57,7 +60,9 @@ const UserProfile = () => {
     fData.append("lastName", lastName);
     fData.append("aboutMe", aboutMe);
     const response = await fetch(
-      `${import.meta.env.VITE_REACT_APP_API_URL}/user/user/edit/${currentUser.user._id}`,
+      `${import.meta.env.VITE_REACT_APP_API_URL}/user/user/edit/${
+        currentUser.user._id
+      }`,
       {
         method: "PUT",
         headers: {
@@ -79,7 +84,9 @@ const UserProfile = () => {
     <div className="container">
       <NavBarUser place={place} />
       {isLoading ? (
-        <h2>"Loading..."</h2>
+        <div>
+          <Loader color="grape" />
+        </div>
       ) : (
         <div>
           <div className="font-link largeTextSignUp">
