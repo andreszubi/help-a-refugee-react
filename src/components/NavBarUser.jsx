@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import logo from "../images/Logo2.png";
 
 function NavBarUser({ place }) {
   const navigate = useNavigate();

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import logo from "../images/Logo2.png";
 
 function NavBarMain() {
   return (
