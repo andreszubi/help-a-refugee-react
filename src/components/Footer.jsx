@@ -4,8 +4,8 @@ function Footer() {
       <div className="text-center p-4 footerBack">
         <div className="flex justify-center mb-6">
           <a
-            href="#!"
-            type="button"
+            href="https://www.facebook.com/"
+            type="button" target="_blank"
             className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
           >
             <svg
@@ -25,8 +25,8 @@ function Footer() {
             </svg>
           </a>
           <a
-            href="#!"
-            type="button"
+            href="https://www.twitter.com/"
+            type="button" target="_blank"
             className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
           >
             <svg
@@ -46,8 +46,8 @@ function Footer() {
             </svg>
           </a>
           <a
-            href="#!"
-            type="button"
+            href="https:///www.google.com"
+            type="button" target="_blank"
             className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
           >
             <svg
@@ -67,8 +67,8 @@ function Footer() {
             </svg>
           </a>
           <a
-            href="#!"
-            type="button"
+            href="https://www.instagram.com/"
+            type="button" target="_blank"
             className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
           >
             <svg
@@ -88,8 +88,8 @@ function Footer() {
             </svg>
           </a>
           <a
-            href="#!"
-            type="button"
+            href="https://www.linkedin.com/"
+            type="button" target="_blank"
             className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
           >
             <svg
@@ -109,8 +109,8 @@ function Footer() {
             </svg>
           </a>
           <a
-            href="#!"
-            type="button"
+            href="https://www.github.com"
+            type="button" target="_blank"
             className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
           >
             <svg
@@ -130,10 +130,7 @@ function Footer() {
             </svg>
           </a>
         </div>
-        © 2022 Copyright:
-        <a className="text-whitehite" href="https://tailwind-elements.com/">
-          The Fellowship
-        </a>
+        © 2022 Copyright: The Fellowship
       </div>
     </footer>
   );

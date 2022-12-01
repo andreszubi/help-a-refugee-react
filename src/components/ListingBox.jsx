@@ -35,6 +35,10 @@ function ListingBox({ listing }) {
       }
     );
     const parsed = await response.json();
+    console.log(parsed)
+    if (response.status===200) {
+      navigate("/booking-confirmation")
+    }
   };
 
   return (

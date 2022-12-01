@@ -127,7 +127,7 @@ function HostSignup() {
             <input type="file" name="imageUrl" accept="image/png, image/jpg" />
           </label>
           {errorMessage ? (<Alert title="Bummer!" color="red">
-      There's an existing account using that email, please try again!
+      {errorMessage} Please try again!
     </Alert>): ""}
           <button className="button" type="submit">
             Submit

@@ -3,6 +3,7 @@ import NavBar from "../components/NavBar";
 import { SessionContextHost } from "../contexts/SessionContextHost";
 import { useState, useContext } from "react";
 import Footer from "../components/Footer";
+import { Alert } from "@mantine/core";
 
 function HostLogin() {
   const { setToken } = useContext(SessionContextHost);
@@ -28,11 +29,11 @@ function HostLogin() {
     );
     const parsed = await response.json();
 
-    if (parsed.status === 200) {
+    if (response.status === 200) {
       setToken(parsed.token);
       navigate("/host-profile");
-    } else {
-      setError(parsed);
+    } else if (response.status === 400 || response.status===404) {
+      setError(parsed.message);
     }
   };
   return (
@@ -64,6 +65,9 @@ function HostLogin() {
               onChange={(event) => setPassword(event.target.value)}
             />
           </label>
+          {error ? (<Alert title="Bummer!" color="red">
+      {error} Please try again!
+    </Alert>): ""}
           <button className="button" type="submit">
             Login
           </button>
