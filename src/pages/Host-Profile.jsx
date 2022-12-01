@@ -199,7 +199,7 @@ function HostProfile() {
   }, []);
 
   return (
-    <div className="container">
+    <div className="appContainer">
       <NavBarHost />
       <div>
         {isLoading ? (

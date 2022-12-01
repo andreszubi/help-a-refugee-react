@@ -32,7 +32,7 @@ function ListingsSearch() {
       ) : (
         <>
           <NavBarUser place={place} />
-          <div className="container">
+          <div className="appContainer">
             <h1 className="largeTextSignUp2">Search for a host</h1>
             <AllListings />
           </div>
