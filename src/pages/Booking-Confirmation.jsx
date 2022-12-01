@@ -1,14 +1,12 @@
 //Create a page that displays that the booking has been confirmed and the user can see the details of the booking.
 //
-import { useContext, useState } from "react";
-import { SessionContextUser } from "../contexts/SessionContextUser";
-import NavBarUser from "../components/NavBar";
 import Footer from "../components/Footer";
+import NavBarMain from "../components/NavBarMain";
 
 function BookingConfirmation() {
-  return (
+  return (<>
     <div className="container">
-      <NavBarUser />
+      <NavBarMain />
       {/* <div className="background-img"> */}
       <h1 className="largeTextSignUp3">Reservation confirmed!</h1>
       <h2 className="mediumTextSignUp2">
@@ -19,8 +17,10 @@ function BookingConfirmation() {
         Keep safe and we hope that everything works out.
       </h2>
       <div className="background-img2"></div>
-      <Footer />
+      
     </div>
+    <Footer />
+    </>
   );
 }
 

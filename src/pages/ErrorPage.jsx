@@ -1,20 +1,24 @@
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import errorImg from "../images/errorImg.png";
-
+import { Link } from "react-router-dom";
+import NavBarMain from "../components/NavBarMain";
 function ErrorPage() {
-  return (
+  return (<>
     <div className="container">
       <div className="Home">
-        <NavBar />
-        <div>
-          <Link to="/">
+        <NavBarMain />
+        <div className="notPass">
+          <Link to="/" className="notPassLink">
             <img src={errorImg} alt="errorImage" />
           </Link>
         </div>
-        <Footer />
+        
       </div>
+      
     </div>
+    <Footer />
+    </>
   );
 }
 
