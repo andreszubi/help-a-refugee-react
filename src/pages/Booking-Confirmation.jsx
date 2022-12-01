@@ -2,37 +2,26 @@
 //
 import { useContext, useState } from "react";
 import { SessionContextUser } from "../contexts/SessionContextUser";
-import { Link } from "react-router-dom";
-import NavBar from "../components/NavBar";
+import NavBarUser from "../components/NavBar";
+import Footer from "../components/Footer";
 
 function BookingConfirmation() {
-    const { token} = useContext(SessionContextUser);
-   
-
-    return (
-        <div className="BookingConfirmation">
-            <NavBar />
-            <div className="background-img">
-                <h1>Booking Confirmation</h1>
-                <h2> Thank you for trusting us, your booking has been comfirmed!</h2>
-                <h3>Booking Details</h3>
-                <img 
-                  src="{image}"
-                    alt="image of listing"
-                />
-                <p>Country: {token.housing.country}</p>
-                <p>City: {token.housing.city}</p>
-                <p>Type of Room: {token.housing.typeOfRoom}</p>
-                <p>Places Available: {token.housing.placesAvailable}</p>
-                <p>Host: {token.housing.owner}</p>
-
-                <Link to="/user-profile"><button className="button">Go to your profile</button></Link>
-
-            </div>
-        </div>
-
-
-    );
+  return (
+    <div className="container">
+      <NavBarUser />
+      {/* <div className="background-img"> */}
+      <h1 className="largeTextSignUp3">Reservation confirmed!</h1>
+      <h2 className="mediumTextSignUp2">
+        Your host has received your reservation and will contact you by email to
+        arrange all the details.
+      </h2>
+      <h2 className="mediumTextSignUp3">
+        Keep safe and we hope that everything works out.
+      </h2>
+      <div className="background-img2"></div>
+      <Footer />
+    </div>
+  );
 }
 
 export default BookingConfirmation;

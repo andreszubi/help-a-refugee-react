@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { SessionContextUser } from "../contexts/SessionContextUser";
 import ListingBox from "./ListingBox";
+import { Loader } from "@mantine/core";
 
 const ListingsSearchUser = () => {
   const { token, currentUser } = useContext(SessionContextUser);
@@ -41,7 +42,9 @@ const ListingsSearchUser = () => {
   return (
     <>
       {isLoading ? (
-        <h1>Loading...</h1>
+        <div>
+          <Loader color="grape" />
+        </div>
       ) : (
         <div>
           <input

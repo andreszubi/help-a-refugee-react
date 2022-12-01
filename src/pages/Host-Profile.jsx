@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import NavBarHost from "../components/NavBarHost";
 import { SessionContextHost } from "../contexts/SessionContextHost";
 import Footer from "../components/Footer";
+import { Loader } from "@mantine/core";
 
 function HostProfile() {
   const { token, currentPayload, setCurrentPayload, isLoading, setIsLoading } =
@@ -202,7 +203,9 @@ function HostProfile() {
       <NavBarHost />
       <div>
         {isLoading ? (
-          <h1> Loading... </h1>
+          <div>
+            <Loader color="grape" />
+          </div>
         ) : (
           <div>
             <div className="font-link largeTextSignUp">
