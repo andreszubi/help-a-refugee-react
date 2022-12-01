@@ -251,7 +251,6 @@ function HostProfile() {
               <Modal
                 opened={isEditingUser}
                 onClose={() => setIsEditingUser(false)}
-                // title="Edit Profile"
                 className="editProfileTxt"
               >
                 <form className="formEdit" onSubmit={handleEditUser}>

@@ -15,19 +15,22 @@ const LoginForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/user/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_REACT_APP_API_URL}/user/login`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      }
+    );
     const parsed = await response.json();
 
     if (response.status === 200) {
       setToken(parsed.token);
       navigate("/user-profile");
-    } else if (response.status===400 || response.status===404){
+    } else if (response.status === 400 || response.status === 404) {
       setError(parsed.message);
     }
   };
@@ -56,9 +59,13 @@ const LoginForm = () => {
           required
         />
       </label>
-      {error ? (<Alert title="Bummer!" color="red">
-      {error} Please try again!
-    </Alert>): ""}
+      {error ? (
+        <Alert title="Bummer!" color="red">
+          {error} Please try again!
+        </Alert>
+      ) : (
+        ""
+      )}
       <button className="button" type="submit">
         Login
       </button>
@@ -70,9 +77,6 @@ const LoginForm = () => {
           Not a member yet? Sign up{" "}
           <Link to={"/user-signup"} className="signUpLink">
             here!
-            {/* <p style={{ color: "white" }}>
-              <button className="button">Sign up!</button>
-            </p> */}
           </Link>{" "}
         </p>
       </div>

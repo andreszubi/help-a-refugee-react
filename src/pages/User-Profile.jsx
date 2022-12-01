@@ -11,11 +11,9 @@ const UserProfile = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  // const [hashedPassword, setHashedPassword] = useState(has);
   const [aboutMe, setAboutMe] = useState("");
   const [image, setImage] = useState("");
   const [isEditing, setIsEditing] = useState(false);
-  // const [isLoading, setIsLoading] = useState(true);
   const place = "profile";
 
   //* GET USER*//
