@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 
 function Home() {
   return (
-    <div className="container">
+    <div className="appContainer">
       <div className="Home">
         <NavBar />
 
