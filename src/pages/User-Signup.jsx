@@ -2,6 +2,7 @@ import NavBarMain from "../components/NavBarMain";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import { Alert } from '@mantine/core';
 
 function UserSignup() {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ function UserSignup() {
   const [lastName, setLastName] = useState("");
   const [profileImage, setProfileImage] = useState("");
   const [aboutMe, setAboutMe] = useState("");
+  const [errorMessage, setErrorMessage] = useState()
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -31,8 +33,11 @@ function UserSignup() {
       }
     );
     const parsed = await response.json();
-    console.log(parsed);
-    navigate("/");
+    if (response.status===405) {
+      setErrorMessage((parsed.message))
+    } else if (response.status===201) {
+      navigate("/");
+    }
   };
 
   return (
@@ -99,6 +104,9 @@ function UserSignup() {
             Profile Picture:{" "}
             <input type="file" name="imageUrl" accept="image/png, image/jpg" />
           </label>
+          {errorMessage ? (<Alert title="Bummer!" color="red">
+      {errorMessage} Please try again!
+    </Alert>): ""}
           <button className="button" type="submit">
             Submit
           </button>

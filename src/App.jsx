@@ -41,7 +41,12 @@ function App() {
           }
         />
         <Route path="/edit-host-profile" element={<EditHostProfile />} />
-        <Route path="/listings-search" element={<ListingsSearch />} />
+        <Route path="/listings-search" element={
+        <PrivateRouteUser>
+          <ListingsSearch />
+        </PrivateRouteUser>
+        } 
+        />
         <Route path="/booking-confirmation" element={<BookingConfirmation />} />
 
         {/* <Route path="/listings-search" element={<ListingsSearch />} /> */}

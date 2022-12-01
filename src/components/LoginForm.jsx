@@ -1,3 +1,4 @@
+import { Alert } from "@mantine/core";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SessionContextUser } from "../contexts/SessionContextUser";
@@ -23,11 +24,11 @@ const LoginForm = () => {
     });
     const parsed = await response.json();
 
-    if (parsed.status === 200) {
+    if (response.status === 200) {
       setToken(parsed.token);
       navigate("/user-profile");
-    } else {
-      setError(parsed);
+    } else if (response.status===400 || response.status===404){
+      setError(parsed.message);
     }
   };
 
@@ -55,6 +56,9 @@ const LoginForm = () => {
           required
         />
       </label>
+      {error ? (<Alert title="Bummer!" color="red">
+      {error} Please try again!
+    </Alert>): ""}
       <button className="button" type="submit">
         Login
       </button>
