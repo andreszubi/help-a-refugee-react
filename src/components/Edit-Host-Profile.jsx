@@ -153,5 +153,3 @@ function EditHostProfile() {
 }
 
 export default EditHostProfile;
-
-

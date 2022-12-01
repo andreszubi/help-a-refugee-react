@@ -542,3 +542,13 @@ div.transbox,
 .listingInUse {
   color: #f66465;
 }
+
+
+.notPass {
+  display: flex;
+  justify-content: center;
+}
+
+.notPassLink {
+  margin-top: 10vh;
+}
