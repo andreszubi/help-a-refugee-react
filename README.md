@@ -180,14 +180,16 @@ https://github.com/B4n3l1ng/help-a-refugee-backend
 
 
 
-Deploy link:
+Deploy links:
 
 Front-End :
 
- https://preeminent-baklava-807d8a.netlify.app/
+ https://host-a-refugee.netlify.app
 
 Back-End :   
 
 https://puce-shiny-magpie.cyclic.app/
 
 # Slides
+
+https://docs.google.com/presentation/d/1U3pGyXWFXnbkNH9pVKRyl7c9EF-wsl7mPNCYsIjzvUU/edit?usp=sharing
