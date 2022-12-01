@@ -229,6 +229,15 @@ input {
   margin-bottom: 30px;
 }
 
+.largeTextSignUp2 {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  /* margin-top: 40px;
+  margin-bottom: 30px; */
+}
+
 .mediumTextSignUp {
   font-size: 2.5em;
 }
@@ -308,7 +317,7 @@ div.transbox,
   margin-bottom: 50px;
   width: 80%;
   margin-left: auto;
-  margin-right: 0px;
+  margin-right: auto;
 }
 .profileFull2 {
   display: flex;
@@ -379,6 +388,11 @@ div.transbox,
   align-items: center;
 }
 
+.searchBar {
+  width: 50%;
+  margin-bottom: 60px;
+}
+
 .listing {
   background-color: #def5e5;
   border-radius: 6px;
@@ -403,6 +417,7 @@ div.transbox,
   align-items: flex-start;
   width: 30vw;
   margin-left: 20px;
+  margin-bottom: 20px;
 }
 
 .listings {
@@ -439,6 +454,7 @@ div.transbox,
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 70px;
 }
 
 .card {
@@ -472,13 +488,13 @@ div.transbox,
   padding: 5px 0px;
 }
 
-.extraInf {
-  font-style: italic;
-}
-
 .allListings {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
+}
+
+.firstinfo {
+  margin-bottom: 20px;
 }

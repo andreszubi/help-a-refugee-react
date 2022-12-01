@@ -24,7 +24,7 @@ function NavBarUser({ place }) {
         ) : (
           <Link to="/user-profile">
             <button className="button" type="submit">
-              Profile page
+              Profile
             </button>
           </Link>
         )}

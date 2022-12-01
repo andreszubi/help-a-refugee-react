@@ -15,51 +15,59 @@ const ListingsSearchUser = () => {
     }
   };
 
-  useEffect(()=> {
-    loadingTime()
-  },[currentUser])
+  useEffect(() => {
+    loadingTime();
+  }, [currentUser]);
 
   useEffect(() => {
     fetchListings();
   }, []);
 
   const fetchListings = async () => {
-    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/user/listings`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_REACT_APP_API_URL}/user/listings`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const parsed = await response.json();
     setListings(parsed);
   };
 
   return (
-    <>{isLoading ? 
-      <h1>Loading...</h1>
-      : 
-    (<div>
-      <input
-        onChange={(e) => {
-          setSearch(e.target.value);
-        }}
-      />
-      <div>
-        <h3>Housing list</h3>
-      </div>
-      <div className="allListings">
-        {listings &&
-          listings
-            .filter((listing) => {
-              return listing.city.toLowerCase().includes(search.toLowerCase());
-            })
-            .map((e) => {
-              return <ListingBox listing={e} key={e._id} />;
-            })}
-      </div>
-      </div>)
-      }
+    <>
+      {isLoading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <div>
+          <input
+            className="searchBar"
+            placeholder="Search for a city..."
+            onChange={(e) => {
+              setSearch(e.target.value);
+            }}
+          />
+          <div>
+            <h3>Housing offered</h3>
+          </div>
+          <div className="allListings">
+            {listings &&
+              listings
+                .filter((listing) => {
+                  return listing.city
+                    .toLowerCase()
+                    .includes(search.toLowerCase());
+                })
+                .map((e) => {
+                  return <ListingBox listing={e} key={e._id} />;
+                })}
+          </div>
+        </div>
+      )}
     </>
   );
 };
