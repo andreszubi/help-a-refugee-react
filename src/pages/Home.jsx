@@ -11,13 +11,14 @@ function Home() {
 
         <div className="transbox">
           <div className="textBox font-link">
-            <h1>Host a refugee in your home</h1>
+            <h1 className="hostTitle">Host a refugee in your home</h1>
             <p className="textLanding2">
-              The Host a Refugee Network helps men, women and children who are
-              fleeing for their lives to rebuild their lives. We have have been
-              helping refugees and minority ethnic communities since 2016. We
-              pioneered Room for Refugees, the oldest and longest established
-              refugee hosting programme in the U.K. with 17,000 volunteer hosts.
+              The Host a Refugee Network helps women, children and men to find a to find a safe place to stay.<br></br>
+               Whether they are running from war, persecution or natural disaster, we help them to find a safe place to stay.<br></br>
+              Our mission is to help people find a stable home and a safe place to stay in order to rebuild their lives <br></br>
+               which would enable them to persue a better future.
+              By hosting a refugee in your home, you can help them <br></br>
+               to rebuild their lives and help them to persue a better future.
             </p>
           </div>
           <div>

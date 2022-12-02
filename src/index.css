@@ -26,6 +26,10 @@ body {
   padding: 0;
 }
 
+.hostTitle {
+  margin-bottom: 30px;
+}
+
 .appContainer {
   background-color: #eef1ff;
   min-height: 100vh;
@@ -350,10 +354,10 @@ div.transbox,
 }
 
 .textLanding2 {
-  /* color: white; */
+  margin-left: 30px;
+  line-height: 1.8em;
   text-align: left;
-  /* font-weight: 800; */
-  /* text-shadow: #1a1a1a 1px 1px 1px;  */
+
 }
 
 .profileFull {
