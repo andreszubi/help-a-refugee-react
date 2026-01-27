@@ -1,4 +1,4 @@
-import { Card, Modal, Text, Image } from "@mantine/core";
+import { Modal, Text } from "@mantine/core";
 import { useContext, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import NavBarHost from "../components/NavBarHost";
@@ -261,63 +261,80 @@ function HostProfile() {
           </motion.div>
           
           <div className="hostProfAll flex flex-col lg:flex-row gap-8 w-full" style={{ position: 'relative', zIndex: 1, padding: 0 }}>
-            {/* Profile Card */}
+            {/* Profile Card - Glass style matching home page */}
             <motion.div 
-              className="w-full lg:w-1/3"
+              className="w-full lg:w-auto"
               variants={itemVariants}
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(240, 253, 250, 0.12) 100%)',
+                backdropFilter: 'blur(8px) saturate(130%)',
+                WebkitBackdropFilter: 'blur(8px) saturate(130%)',
+                borderRadius: '28px',
+                padding: '1.5rem 2rem',
+                boxShadow: '0 20px 60px rgba(13, 148, 136, 0.03)',
+                position: 'relative',
+                overflow: 'hidden',
+                maxWidth: '320px',
+                alignSelf: 'flex-start'
+              }}
             >
-              <Card 
-                shadow="xl" 
-                p="xl" 
-                radius="lg"
-                style={{ background: 'rgba(255, 255, 255, 0.12)', backdropFilter: 'blur(8px)' }}
-              >
-                <div className="profileInfo">
-                  <motion.img
-                    className="profileImage"
-                    src={currentPayload?.user?.image}
-                    alt="Profile"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  <div className="allProfileText w-full">
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-2">
-                        <span style={{ color: '#0d9488', fontWeight: '600', textShadow: '0 1px 3px rgba(255, 255, 255, 0.95), 0 0 8px rgba(255, 255, 255, 0.5)' }}>Name:</span>
-                        <Text className="profileText">
-                          {currentPayload?.user?.firstName} {currentPayload?.user?.lastName}
-                        </Text>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span style={{ color: '#0d9488', fontWeight: '600', textShadow: '0 1px 3px rgba(255, 255, 255, 0.95), 0 0 8px rgba(255, 255, 255, 0.5)' }}>Email:</span>
-                        <Text className="profileText">{currentPayload?.user?.email}</Text>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span style={{ color: '#0d9488', fontWeight: '600', textShadow: '0 1px 3px rgba(255, 255, 255, 0.95), 0 0 8px rgba(255, 255, 255, 0.5)' }}>Location:</span>
-                        <Text className="profileText">
-                          {currentPayload?.user?.city}, {currentPayload?.user?.country}
-                        </Text>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <span style={{ color: '#0d9488', fontWeight: '600', textShadow: '0 1px 3px rgba(255, 255, 255, 0.95), 0 0 8px rgba(255, 255, 255, 0.5)' }}>About:</span>
-                        <Text className="profileText">
-                          {currentPayload?.user?.aboutMe || "No bio yet"}
-                        </Text>
-                      </div>
+              {/* Wave shimmer effect */}
+              <div style={{
+                position: 'absolute',
+                top: '-50%',
+                left: '-50%',
+                width: '200%',
+                height: '200%',
+                background: 'linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.3) 25%, transparent 50%, rgba(255, 255, 255, 0.2) 75%, transparent 100%)',
+                animation: 'waveShimmer 10s linear infinite',
+                pointerEvents: 'none'
+              }} />
+              
+              <div className="profileInfo" style={{ position: 'relative', zIndex: 1 }}>
+                <motion.img
+                  className="profileImage"
+                  src={currentPayload?.user?.image}
+                  alt="Profile"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                />
+                <div className="allProfileText w-full">
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2">
+                      <span style={{ color: '#0d9488', fontWeight: '600', textShadow: '0 1px 3px rgba(255, 255, 255, 0.95), 0 0 8px rgba(255, 255, 255, 0.5)' }}>Name:</span>
+                      <Text style={{ color: '#1e3a3a', textShadow: '0 1px 3px rgba(255, 255, 255, 0.95), 0 0 8px rgba(255, 255, 255, 0.5)' }}>
+                        {currentPayload?.user?.firstName} {currentPayload?.user?.lastName}
+                      </Text>
                     </div>
-                    
-                    <motion.button
-                      className="button w-full mt-6"
-                      type="button"
-                      onClick={() => handleModalUser()}
-                      whileHover={{ y: -3, scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      Edit Profile
-                    </motion.button>
+                    <div className="flex items-center gap-2">
+                      <span style={{ color: '#0d9488', fontWeight: '600', textShadow: '0 1px 3px rgba(255, 255, 255, 0.95), 0 0 8px rgba(255, 255, 255, 0.5)' }}>Email:</span>
+                      <Text style={{ color: '#1e3a3a', textShadow: '0 1px 3px rgba(255, 255, 255, 0.95), 0 0 8px rgba(255, 255, 255, 0.5)' }}>{currentPayload?.user?.email}</Text>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span style={{ color: '#0d9488', fontWeight: '600', textShadow: '0 1px 3px rgba(255, 255, 255, 0.95), 0 0 8px rgba(255, 255, 255, 0.5)' }}>Location:</span>
+                      <Text style={{ color: '#1e3a3a', textShadow: '0 1px 3px rgba(255, 255, 255, 0.95), 0 0 8px rgba(255, 255, 255, 0.5)' }}>
+                        {currentPayload?.user?.city}, {currentPayload?.user?.country}
+                      </Text>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span style={{ color: '#0d9488', fontWeight: '600', textShadow: '0 1px 3px rgba(255, 255, 255, 0.95), 0 0 8px rgba(255, 255, 255, 0.5)' }}>About:</span>
+                      <Text style={{ color: '#1e3a3a', textShadow: '0 1px 3px rgba(255, 255, 255, 0.95), 0 0 8px rgba(255, 255, 255, 0.5)' }}>
+                        {currentPayload?.user?.aboutMe || "No bio yet"}
+                      </Text>
+                    </div>
                   </div>
+                  
+                  <motion.button
+                    className="button w-full mt-6"
+                    type="button"
+                    onClick={() => handleModalUser()}
+                    whileHover={{ y: -3, scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Edit Profile
+                  </motion.button>
                 </div>
-              </Card>
+              </div>
             </motion.div>
 
             {/* Edit Profile Modal */}
@@ -397,7 +414,14 @@ function HostProfile() {
               variants={itemVariants}
             >
               <div className="flex justify-between items-center mb-6">
-                <h2 style={{ fontSize: '1.5rem', fontWeight: '700', color: '#134e4a', textShadow: '0 1px 3px rgba(255, 255, 255, 0.95), 0 0 8px rgba(255, 255, 255, 0.5)' }}>Your Listings</h2>
+                <h2 style={{ 
+                  fontSize: 'clamp(1.5rem, 3vw, 2.25rem)',
+                  fontWeight: '700',
+                  background: 'linear-gradient(135deg, #0f766e 0%, #0d9488 50%, #06b6d4 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text'
+                }}>Your Listings</h2>
                 <motion.button
                   className="button"
                   type="button"
@@ -413,147 +437,334 @@ function HostProfile() {
               <AnimatePresence>
                 {visibleForm && (
                   <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
                     className="mb-6"
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center'
+                    }}
                   >
-                    <Card 
-                      shadow="lg" 
-                      p="xl" 
-                      radius="lg"
-                      style={{ background: 'rgba(255, 255, 255, 0.12)', backdropFilter: 'blur(8px)' }}
+                    <div
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(240, 253, 250, 0.12) 100%)',
+                        backdropFilter: 'blur(8px) saturate(130%)',
+                        WebkitBackdropFilter: 'blur(8px) saturate(130%)',
+                        borderRadius: '28px',
+                        padding: '2rem',
+                        boxShadow: '0 20px 60px rgba(13, 148, 136, 0.03)',
+                        position: 'relative',
+                        overflow: 'hidden',
+                        width: '100%',
+                        maxWidth: '480px'
+                      }}
                     >
-                      <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: '#134e4a', marginBottom: '1rem', textShadow: '0 1px 3px rgba(255, 255, 255, 0.95), 0 0 8px rgba(255, 255, 255, 0.5)' }}>Publish New Listing</h3>
-                      <form className="formEdit space-y-4" onSubmit={(event) => handleSubmit(event)} style={{ background: 'transparent', padding: 0, boxShadow: 'none' }}>
-                        <label>
-                          Country
-                          <input
-                            type="text"
-                            name="newCountry"
-                            required
-                            value={newCountry}
-                            onChange={(event) => setNewCountry(event.target.value)}
-                            placeholder="e.g., Germany"
-                          />
-                        </label>
-                        <label>
-                          City
-                          <input
-                            type="text"
-                            name="newCity"
-                            required
-                            value={newCity}
-                            onChange={(event) => setNewCity(event.target.value)}
-                            placeholder="e.g., Berlin"
-                          />
-                        </label>
-                        <label>
-                          Type of Room
-                          <input
-                            type="text"
-                            name="newTypeOfRoom"
-                            required
-                            value={newTypeOfRoom}
-                            onChange={(event) => setNewTypeOfRoom(event.target.value)}
-                            placeholder="e.g., Private Room"
-                          />
-                        </label>
-                        <label>
-                          Places Available
-                          <input
-                            type="number"
-                            name="newPlacesAvailable"
-                            required
-                            value={newPlacesAvailable}
-                            onChange={(event) => setNewPlacesAvailable(event.target.value)}
-                            placeholder="e.g., 2"
-                          />
-                        </label>
-                        <label>
-                          Image
-                          <input
-                            type="file"
-                            name="imageUrl"
-                            accept="image/png, image/jpg, image/jpeg"
-                          />
-                        </label>
-                        <motion.button 
-                          className="button w-full" 
-                          type="submit"
-                          disabled={isSaving}
-                          whileHover={{ y: -3, scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                        >
-                          {isSaving ? "Publishing..." : "Publish Listing"}
-                        </motion.button>
-                      </form>
-                    </Card>
+                      {/* Wave shimmer effect */}
+                      <div style={{
+                        position: 'absolute',
+                        top: '-50%',
+                        left: '-50%',
+                        width: '200%',
+                        height: '200%',
+                        background: 'linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.3) 25%, transparent 50%, rgba(255, 255, 255, 0.2) 75%, transparent 100%)',
+                        animation: 'waveShimmer 10s linear infinite',
+                        pointerEvents: 'none'
+                      }} />
+                      
+                      <div style={{ position: 'relative', zIndex: 1 }}>
+                        <h2 style={{ 
+                          fontSize: 'clamp(1.25rem, 2.5vw, 1.5rem)', 
+                          fontWeight: '700', 
+                          marginBottom: '1.5rem',
+                          textAlign: 'center'
+                        }}>Publish New Listing</h2>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                          <div>
+                            <label style={{ color: '#134e4a', fontWeight: '600', fontSize: '0.85rem', display: 'block', marginBottom: '0.35rem', textShadow: '0 1px 3px rgba(255, 255, 255, 0.95)' }}>
+                              Country
+                            </label>
+                            <input
+                              type="text"
+                              name="newCountry"
+                              required
+                              value={newCountry}
+                              onChange={(event) => setNewCountry(event.target.value)}
+                              placeholder="e.g., Germany"
+                              style={{ 
+                                background: 'rgba(255, 255, 255, 0.95)', 
+                                border: 'none', 
+                                borderRadius: '25px',
+                                padding: '0.875rem 1.25rem',
+                                width: '100%',
+                                boxSizing: 'border-box',
+                                color: '#374151',
+                                fontSize: '0.95rem',
+                                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+                                outline: 'none'
+                              }}
+                            />
+                          </div>
+                          <div>
+                            <label style={{ color: '#134e4a', fontWeight: '600', fontSize: '0.85rem', display: 'block', marginBottom: '0.35rem', textShadow: '0 1px 3px rgba(255, 255, 255, 0.95)' }}>
+                              City
+                            </label>
+                            <input
+                              type="text"
+                              name="newCity"
+                              required
+                              value={newCity}
+                              onChange={(event) => setNewCity(event.target.value)}
+                              placeholder="e.g., Berlin"
+                              style={{ 
+                                background: 'rgba(255, 255, 255, 0.95)', 
+                                border: 'none', 
+                                borderRadius: '25px',
+                                padding: '0.875rem 1.25rem',
+                                width: '100%',
+                                boxSizing: 'border-box',
+                                color: '#374151',
+                                fontSize: '0.95rem',
+                                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+                                outline: 'none'
+                              }}
+                            />
+                          </div>
+                          <div>
+                            <label style={{ color: '#134e4a', fontWeight: '600', fontSize: '0.85rem', display: 'block', marginBottom: '0.35rem', textShadow: '0 1px 3px rgba(255, 255, 255, 0.95)' }}>
+                              Type of Room
+                            </label>
+                            <input
+                              type="text"
+                              name="newTypeOfRoom"
+                              required
+                              value={newTypeOfRoom}
+                              onChange={(event) => setNewTypeOfRoom(event.target.value)}
+                              placeholder="e.g., Private Room"
+                              style={{ 
+                                background: 'rgba(255, 255, 255, 0.95)', 
+                                border: 'none', 
+                                borderRadius: '25px',
+                                padding: '0.875rem 1.25rem',
+                                width: '100%',
+                                boxSizing: 'border-box',
+                                color: '#374151',
+                                fontSize: '0.95rem',
+                                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+                                outline: 'none'
+                              }}
+                            />
+                          </div>
+                          <div>
+                            <label style={{ color: '#134e4a', fontWeight: '600', fontSize: '0.85rem', display: 'block', marginBottom: '0.35rem', textShadow: '0 1px 3px rgba(255, 255, 255, 0.95)' }}>
+                              Places Available
+                            </label>
+                            <input
+                              type="number"
+                              name="newPlacesAvailable"
+                              required
+                              value={newPlacesAvailable}
+                              onChange={(event) => setNewPlacesAvailable(event.target.value)}
+                              placeholder="e.g., 2"
+                              style={{ 
+                                background: 'rgba(255, 255, 255, 0.95)', 
+                                border: 'none', 
+                                borderRadius: '25px',
+                                padding: '0.875rem 1.25rem',
+                                width: '100%',
+                                boxSizing: 'border-box',
+                                color: '#374151',
+                                fontSize: '0.95rem',
+                                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+                                outline: 'none'
+                              }}
+                            />
+                          </div>
+                          <div>
+                            <label style={{ color: '#134e4a', fontWeight: '600', fontSize: '0.85rem', display: 'block', marginBottom: '0.35rem', textShadow: '0 1px 3px rgba(255, 255, 255, 0.95)' }}>
+                              Image
+                            </label>
+                            <input
+                              type="file"
+                              name="imageUrl"
+                              accept="image/png, image/jpg, image/jpeg"
+                              style={{ 
+                                background: 'rgba(255, 255, 255, 0.95)', 
+                                border: '2px dashed #0d9488', 
+                                borderRadius: '25px',
+                                padding: '0.875rem 1.25rem',
+                                width: '100%',
+                                boxSizing: 'border-box',
+                                color: '#374151',
+                                fontSize: '0.95rem',
+                                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+                                outline: 'none',
+                                cursor: 'pointer'
+                              }}
+                            />
+                          </div>
+                          <motion.button 
+                            className="button w-full" 
+                            type="submit"
+                            disabled={isSaving}
+                            whileHover={{ y: -3, scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              const formEvent = { 
+                                preventDefault: () => {}, 
+                                target: { 
+                                  imageUrl: { files: document.querySelector('input[name="imageUrl"]').files }
+                                }
+                              };
+                              handleSubmit(formEvent);
+                            }}
+                          >
+                            {isSaving ? "Publishing..." : "Publish Listing"}
+                          </motion.button>
+                        </div>
+                      </div>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
 
-              {/* Listings Grid */}
-              <div className="space-y-4">
-                {listings.map(
+              {/* Listings Grid - Card Layout */}
+              <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))', 
+                gap: '2rem',
+                justifyItems: 'center'
+              }}>
+                {listings && listings.length > 0 && listings.map(
                   ({ _id, image, country, city, typeOfRoom, placesAvailable }) => (
                     <motion.div 
                       key={_id}
-                      variants={itemVariants}
-                      layout
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 }}
+                      style={{ width: '100%', maxWidth: '500px' }}
                     >
-                      <Card 
-                        className="listing" 
-                        shadow="lg" 
-                        p="lg" 
-                        radius="lg"
-                        style={{ background: 'rgba(255, 255, 255, 0.12)', backdropFilter: 'blur(8px)' }}
+                      <div 
+                        style={{
+                          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(240, 253, 250, 0.12) 100%)',
+                          backdropFilter: 'blur(8px) saturate(130%)',
+                          WebkitBackdropFilter: 'blur(8px) saturate(130%)',
+                          borderRadius: '28px',
+                          padding: '1.5rem',
+                          boxShadow: '0 20px 60px rgba(13, 148, 136, 0.03)',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          position: 'relative',
+                          overflow: 'hidden'
+                        }}
                       >
-                        <div className="flex flex-col md:flex-row gap-4 items-center w-full">
-                          <Image
-                            radius="lg"
-                            width={150}
-                            height={100}
+                        {/* Wave shimmer effect */}
+                        <div style={{
+                          position: 'absolute',
+                          top: '-50%',
+                          left: '-50%',
+                          width: '200%',
+                          height: '200%',
+                          background: 'linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.3) 25%, transparent 50%, rgba(255, 255, 255, 0.2) 75%, transparent 100%)',
+                          animation: 'waveShimmer 15s linear infinite',
+                          pointerEvents: 'none'
+                        }} />
+                        
+                        {/* Image */}
+                        <div style={{ position: 'relative', zIndex: 1, marginBottom: '1.5rem' }}>
+                          <img
                             src={image}
                             alt="Listing"
-                            className="object-cover rounded-lg"
+                            style={{ 
+                              width: '100%', 
+                              height: '300px', 
+                              objectFit: 'cover', 
+                              borderRadius: '20px',
+                              boxShadow: '0 12px 35px rgba(0, 0, 0, 0.2)'
+                            }}
                           />
-                          <div className="listingTxt flex-1">
-                            <Text className="profileText" style={{ fontSize: '1.1rem', fontWeight: '600' }}>
-                              {city}, {country}
-                            </Text>
-                            <Text className="profileText" style={{ fontSize: '0.9rem', color: '#5f7c7c' }}>
-                              {typeOfRoom}
-                            </Text>
-                            <Text className="profileText" style={{ fontSize: '0.9rem', color: '#0d9488' }}>
-                              {placesAvailable} places available
-                            </Text>
-                          </div>
+                        </div>
+                        
+                        {/* Details */}
+                        <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', padding: '0 1rem' }}>
+                          <p style={{ 
+                            fontSize: '1.25rem', 
+                            fontWeight: '700', 
+                            color: '#134e4a', 
+                            margin: '0 0 0.75rem 0', 
+                            textShadow: '0 1px 3px rgba(255, 255, 255, 0.95)' 
+                          }}>
+                            <span style={{ color: '#0d9488' }}>Location:</span> {city}, {country}
+                          </p>
+                          <p style={{ 
+                            fontSize: '1.1rem', 
+                            color: '#1e3a3a', 
+                            fontWeight: '500',
+                            margin: '0 0 0.5rem 0', 
+                            textShadow: '0 1px 3px rgba(255, 255, 255, 1), 0 0 8px rgba(255, 255, 255, 0.8)' 
+                          }}>
+                            <span style={{ color: '#0d9488', fontWeight: '600' }}>Type of Room:</span> {typeOfRoom}
+                          </p>
+                          <p style={{ 
+                            fontSize: '1.1rem', 
+                            color: '#1e3a3a', 
+                            fontWeight: '500', 
+                            margin: '0 0 1.5rem 0', 
+                            textShadow: '0 1px 3px rgba(255, 255, 255, 1), 0 0 8px rgba(255, 255, 255, 0.8)' 
+                          }}>
+                            <span style={{ color: '#0d9488', fontWeight: '600' }}>Number of places:</span> {placesAvailable}
+                          </p>
                           <motion.button
                             className="button"
                             type="button"
                             onClick={() => handleModalListing(_id)}
                             whileHover={{ y: -3, scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
+                            style={{ width: '100%', padding: '0.875rem 1.5rem', fontSize: '1rem' }}
                           >
-                            Edit
+                            Edit Listing
                           </motion.button>
                         </div>
-                      </Card>
+                      </div>
                     </motion.div>
                   )
                 )}
               </div>
 
-              {listings.length === 0 && (
+              {(!listings || listings.length === 0) && (
                 <motion.div 
-                  className="text-center py-12"
-                  variants={itemVariants}
+                  className="text-center"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(240, 253, 250, 0.12) 100%)',
+                    backdropFilter: 'blur(8px) saturate(130%)',
+                    WebkitBackdropFilter: 'blur(8px) saturate(130%)',
+                    borderRadius: '28px',
+                    padding: '3rem 2rem',
+                    boxShadow: '0 20px 60px rgba(13, 148, 136, 0.03)',
+                    position: 'relative',
+                    overflow: 'hidden'
+                  }}
                 >
-                  <p style={{ color: '#5f7c7c', fontSize: '1.1rem', textShadow: '0 1px 3px rgba(255, 255, 255, 0.95), 0 0 8px rgba(255, 255, 255, 0.5)' }}>
+                  {/* Wave shimmer effect */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '-50%',
+                    left: '-50%',
+                    width: '200%',
+                    height: '200%',
+                    background: 'linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.3) 25%, transparent 50%, rgba(255, 255, 255, 0.2) 75%, transparent 100%)',
+                    animation: 'waveShimmer 10s linear infinite',
+                    pointerEvents: 'none'
+                  }} />
+                  <p style={{ color: '#134e4a', fontSize: '1.1rem', fontWeight: '600', margin: 0, position: 'relative', zIndex: 1, textShadow: '0 1px 3px rgba(255, 255, 255, 0.95)' }}>
                     You haven't created any listings yet.
                   </p>
-                  <p style={{ color: '#5f7c7c', fontSize: '0.9rem', marginTop: '0.5rem', textShadow: '0 1px 3px rgba(255, 255, 255, 0.95), 0 0 8px rgba(255, 255, 255, 0.5)' }}>
+                  <p style={{ color: '#5f7c7c', fontSize: '0.95rem', marginTop: '0.75rem', fontWeight: '500', position: 'relative', zIndex: 1, textShadow: '0 1px 2px rgba(255, 255, 255, 0.9)' }}>
                     Click "Add New Listing" to get started!
                   </p>
                 </motion.div>

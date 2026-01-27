@@ -5,7 +5,7 @@ export const SessionContextUser = createContext();
 
 const SessionContextUserProvider = ({ children }) => {
   const [token, setToken] = useLocalStorage({
-    key: "token",
+    key: "userToken",
     defaultValue: undefined,
   });
   const [currentUser, setCurrentUser] = useState("");
@@ -31,6 +31,7 @@ const SessionContextUserProvider = ({ children }) => {
       verifyToken();
     } else {
       setIsAuthenticated(false);
+      setIsLoading(false);
     }
   }, [token]);
 

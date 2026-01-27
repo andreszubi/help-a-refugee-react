@@ -5,7 +5,7 @@ export const SessionContextHost = createContext();
 
 const SessionContextHostProvider = ({ children }) => {
   const [token, setToken] = useLocalStorage({
-    key: "token",
+    key: "hostToken",
     defaultValue: undefined,
   });
   const [currentPayload, setCurrentPayload] = useState("")
@@ -32,6 +32,7 @@ const SessionContextHostProvider = ({ children }) => {
       verifyToken();
     } else {
       setIsAuthenticated(false);
+      setIsLoading(false);
     }
   }, [token]);
 
