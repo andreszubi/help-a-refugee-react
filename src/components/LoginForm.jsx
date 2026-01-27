@@ -1,6 +1,7 @@
 import { Alert } from "@mantine/core";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import { SessionContextUser } from "../contexts/SessionContextUser";
 
 const LoginForm = () => {
@@ -9,33 +10,56 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
+    setError("");
 
-    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/user/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
-    const parsed = await response.json();
+    try {
+      const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/user/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      const parsed = await response.json();
 
-    if (response.status === 200) {
-      setToken(parsed.token);
-      navigate("/user-profile");
-    } else if (response.status===400 || response.status===404){
-      setError(parsed.message);
+      if (response.status === 200) {
+        setToken(parsed.token);
+        navigate("/user-profile");
+      } else if (response.status === 400 || response.status === 404) {
+        setError(parsed.message);
+      }
+    } catch (err) {
+      setError("Connection error. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {error?.message && <p>error.message</p>}
-      <h2 className="largeTextForm">Get help now</h2>
+    <motion.form 
+      onSubmit={handleSubmit}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.3 }}
+    >
+      <h2 className="largeTextForm">Need Help?</h2>
+      <p style={{ 
+        color: '#334155', 
+        fontSize: '0.95rem', 
+        marginBottom: '1.5rem', 
+        textAlign: 'center',
+        textShadow: '0 1px 3px rgba(255, 255, 255, 0.95), 0 0 8px rgba(255, 255, 255, 0.5)'
+      }}>
+        Sign in to find a safe place to stay
+      </p>
+      
       <label>
         Email
         <input
@@ -44,8 +68,10 @@ const LoginForm = () => {
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           required
+          placeholder="your@email.com"
         />
       </label>
+      
       <label>
         Password
         <input
@@ -54,29 +80,40 @@ const LoginForm = () => {
           value={password}
           onChange={(event) => setPassword(event.target.value)}
           required
+          placeholder="Your password"
         />
       </label>
-      {error ? (<Alert title="Bummer!" color="red">
-      {error} Please try again!
-    </Alert>): ""}
-      <button className="button" type="submit">
-        Login
-      </button>
-      <div
-        className="signup-btns"
-        style={{ display: "flex", flexDirection: "column" }}
+
+      {error && (
+        <Alert title="Error" color="red" className="my-3">
+          {error}
+        </Alert>
+      )}
+
+      <motion.button 
+        className="button" 
+        type="submit"
+        disabled={isLoading}
+        style={{ width: '100%', marginTop: '0.5rem' }}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
       >
-        <p style={{ width: "20vw" }}>
-          Not a member yet? Sign up{" "}
-          <Link to={"/user-signup"} className="signUpLink">
-            here!
-            {/* <p style={{ color: "white" }}>
-              <button className="button">Sign up!</button>
-            </p> */}
-          </Link>{" "}
-        </p>
-      </div>
-    </form>
+        {isLoading ? "Signing in..." : "Sign In"}
+      </motion.button>
+
+      <p style={{ 
+        color: '#334155', 
+        textAlign: 'center', 
+        marginTop: '1.25rem', 
+        fontSize: '0.9rem',
+        textShadow: '0 1px 3px rgba(255, 255, 255, 0.95), 0 0 8px rgba(255, 255, 255, 0.5)'
+      }}>
+        New here?{" "}
+        <Link to="/user-signup" className="signUpLink">
+          Create an account
+        </Link>
+      </p>
+    </motion.form>
   );
 };
 
