@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import NavBar from "../components/NavBar";
 import { SessionContextHost } from "../contexts/SessionContextHost";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import Footer from "../components/Footer";
 import { Alert } from "@mantine/core";
 
@@ -20,12 +20,20 @@ const itemVariants = {
 };
 
 function HostLogin() {
-  const { setToken } = useContext(SessionContextHost);
+  const { setToken, isAuthenticated } = useContext(SessionContextHost);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [shouldRedirect, setShouldRedirect] = useState(false);
   const navigate = useNavigate();
+
+  // Watch for authentication state change and redirect when authenticated
+  useEffect(() => {
+    if (shouldRedirect && isAuthenticated) {
+      navigate("/host-profile");
+    }
+  }, [shouldRedirect, isAuthenticated, navigate]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -44,34 +52,16 @@ function HostLogin() {
       const parsed = await response.json();
 
       if (response.status === 200) {
-        // Set the token first
+        // Set the token - this will trigger the context to verify and set isAuthenticated
         setToken(parsed.token);
-        
-        // Verify the token is working before navigating
-        const verifyResponse = await fetch(
-          `${import.meta.env.VITE_REACT_APP_API_URL}/host/verify`,
-          {
-            headers: {
-              Authorization: `Bearer ${parsed.token}`,
-            },
-          }
-        );
-        const verifyParsed = await verifyResponse.json();
-        
-        if (verifyParsed.message === "Token OK") {
-          // Small delay to ensure context state is updated
-          setTimeout(() => {
-            navigate("/host-profile");
-          }, 100);
-        } else {
-          setError("Authentication failed. Please try again.");
-        }
+        // Flag that we want to redirect once authenticated
+        setShouldRedirect(true);
       } else if (response.status === 400 || response.status === 404) {
         setError(parsed.message);
+        setIsLoading(false);
       }
     } catch (err) {
       setError("Connection error. Please try again.");
-    } finally {
       setIsLoading(false);
     }
   };

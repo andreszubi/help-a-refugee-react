@@ -1,18 +1,26 @@
 import { Alert } from "@mantine/core";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { SessionContextUser } from "../contexts/SessionContextUser";
 
 const LoginForm = () => {
-  const { setToken } = useContext(SessionContextUser);
+  const { setToken, isAuthenticated } = useContext(SessionContextUser);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [shouldRedirect, setShouldRedirect] = useState(false);
 
   const navigate = useNavigate();
+
+  // Watch for authentication state change and redirect when authenticated
+  useEffect(() => {
+    if (shouldRedirect && isAuthenticated) {
+      navigate("/listings-search");
+    }
+  }, [shouldRedirect, isAuthenticated, navigate]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -30,34 +38,16 @@ const LoginForm = () => {
       const parsed = await response.json();
 
       if (response.status === 200) {
-        // Set the token first
+        // Set the token - this will trigger the context to verify and set isAuthenticated
         setToken(parsed.token);
-        
-        // Verify the token is working before navigating
-        const verifyResponse = await fetch(
-          `${import.meta.env.VITE_REACT_APP_API_URL}/user/verify`,
-          {
-            headers: {
-              Authorization: `Bearer ${parsed.token}`,
-            },
-          }
-        );
-        const verifyParsed = await verifyResponse.json();
-        
-        if (verifyParsed.message === "Token OK") {
-          // Small delay to ensure context state is updated
-          setTimeout(() => {
-            navigate("/listings-search");
-          }, 100);
-        } else {
-          setError("Authentication failed. Please try again.");
-        }
+        // Flag that we want to redirect once authenticated
+        setShouldRedirect(true);
       } else if (response.status === 400 || response.status === 404) {
         setError(parsed.message);
+        setIsLoading(false);
       }
     } catch (err) {
       setError("Connection error. Please try again.");
-    } finally {
       setIsLoading(false);
     }
   };
