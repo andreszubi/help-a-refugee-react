@@ -45,9 +45,9 @@ function Home() {
     return <Navigate to="/host-profile" replace />;
   }
 
-  // Redirect authenticated users to their profile
+  // Redirect authenticated users to listings search
   if (isUserAuthenticated) {
-    return <Navigate to="/user-profile" replace />;
+    return <Navigate to="/listings-search" replace />;
   }
 
   return (

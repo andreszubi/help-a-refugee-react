@@ -47,7 +47,7 @@ const LoginForm = () => {
         if (verifyParsed.message === "Token OK") {
           // Small delay to ensure context state is updated
           setTimeout(() => {
-            navigate("/user-profile");
+            navigate("/listings-search");
           }, 100);
         } else {
           setError("Authentication failed. Please try again.");
