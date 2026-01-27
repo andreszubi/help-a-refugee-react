@@ -30,8 +30,28 @@ const LoginForm = () => {
       const parsed = await response.json();
 
       if (response.status === 200) {
+        // Set the token first
         setToken(parsed.token);
-        navigate("/user-profile");
+        
+        // Verify the token is working before navigating
+        const verifyResponse = await fetch(
+          `${import.meta.env.VITE_REACT_APP_API_URL}/user/verify`,
+          {
+            headers: {
+              Authorization: `Bearer ${parsed.token}`,
+            },
+          }
+        );
+        const verifyParsed = await verifyResponse.json();
+        
+        if (verifyParsed.message === "Token OK") {
+          // Small delay to ensure context state is updated
+          setTimeout(() => {
+            navigate("/user-profile");
+          }, 100);
+        } else {
+          setError("Authentication failed. Please try again.");
+        }
       } else if (response.status === 400 || response.status === 404) {
         setError(parsed.message);
       }
