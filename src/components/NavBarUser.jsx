@@ -1,11 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useContext } from "react";
+import { SessionContextUser } from "../contexts/SessionContextUser";
 
 function NavBarUser({ place }) {
   const navigate = useNavigate();
+  const { setToken } = useContext(SessionContextUser);
   
   const logout = () => {
-    localStorage.removeItem("token");
+    setToken(undefined); // This will remove the token from localStorage via useLocalStorage
     navigate("/");
   };
 
@@ -31,7 +34,7 @@ function NavBarUser({ place }) {
         }}
         style={{ position: 'relative', zIndex: 1 }}
       >
-        <Link to="/" className="text-logo">
+        <Link to="/user-profile" className="text-logo">
           Host a <span>Refugee</span>
         </Link>
       </motion.div>

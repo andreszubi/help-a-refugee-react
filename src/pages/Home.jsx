@@ -1,8 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useContext } from "react";
 import NavBar from "../components/NavBar";
 import LoginForm from "../components/LoginForm";
 import Footer from "../components/Footer";
+import { SessionContextHost } from "../contexts/SessionContextHost";
+import { SessionContextUser } from "../contexts/SessionContextUser";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -25,6 +28,28 @@ const itemVariants = {
 };
 
 function Home() {
+  const { isAuthenticated: isHostAuthenticated, isLoading: isHostLoading } = useContext(SessionContextHost);
+  const { isAuthenticated: isUserAuthenticated, isLoading: isUserLoading } = useContext(SessionContextUser);
+
+  // Wait for auth check to complete
+  if (isHostLoading || isUserLoading) {
+    return (
+      <div className="appContainer" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+        <p style={{ color: 'white', fontSize: '1.2rem' }}>Loading...</p>
+      </div>
+    );
+  }
+
+  // Redirect authenticated hosts to their profile
+  if (isHostAuthenticated) {
+    return <Navigate to="/host-profile" replace />;
+  }
+
+  // Redirect authenticated users to their profile
+  if (isUserAuthenticated) {
+    return <Navigate to="/user-profile" replace />;
+  }
+
   return (
     <div className="appContainer">
       <NavBar />
