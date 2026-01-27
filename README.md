@@ -1,196 +1,215 @@
-# Host a refugee
-# by Andres Zubizarreta , Eric Coimbra and Tatiana Toledo
+# Host a Refugee
 
-# Description
-The host a refugee project was inspired by the ongoing crisis happening around the world. We felt compelled by this, and we felt that we needed to create a website where we can connect people to host refugees in their homes to help them flee from any life-threatening situation they may be experiencing in their country and to be able to move to a new home to build a better future for their family.
+**Connecting hearts, building homes.**
 
-On the website anyone can sign up to be become a host and publish a room, apartment, or house that they can share with any refugee who may be in need. 
+A humanitarian platform connecting refugees fleeing crisis situations with compassionate hosts who have room to share.
 
-Refugees will be able to make a profile on this website for free and to search for a home that they can easily book by just a click of a button. This will send an email to the host with the refugee’s information and then they may contact them to help facilitate details to help them.
+> Created by Andres Zubizarreta, Eric Coimbra, and Tatiana Toledo
 
+---
 
-# Backlog
-Nodemailer
-Upload Images
-Info User Update
+## About
 
+The Host a Refugee project was inspired by the ongoing crises happening around the world. We felt compelled to create a platform where we can connect people to host refugees in their homes—helping them flee life-threatening situations and build a better future for their families.
 
-# Routes 
-Back-End:
-Auth.host.routes
-auth.user.routes
-index.routes
+### How It Works
 
-Front-End:
-App()
-Home
-Host Sign up
-User Sign up
-Host Login
-User Login
-Host Profile
-User Profile
-Edit Host Profile
-Edit User Profile
-Listings Search
-Booking Confirmation
-Edit Listing
-Listing Details
-Error Page
+**For Hosts:**
+- Sign up and create a profile
+- Publish available rooms, apartments, or houses
+- Receive booking requests from refugees via email
+- Connect directly with refugees to facilitate their stay
 
-# Components
-All Listings
-Edit-Host-Profile
-Footer
-ListingBox
-LoginForm
-NavBar
-NavBarHost
-NavBarMain
-NavBarUser
-PrivateRouteHost
-PrivateRouteUser
-Publish Listing
+**For Refugees:**
+- Create a free profile
+- Search for available accommodations by location
+- Book a home with a simple click
+- Connect with hosts to arrange your stay
 
-# Contexts
-Session Context Host
-Session Context User
+---
 
+## Features
 
+- **Dual User System** — Separate authentication and profiles for hosts and refugees
+- **Listing Management** — Hosts can create, edit, and remove housing listings
+- **Smart Search** — Search accommodations by city or country
+- **One-Click Booking** — Refugees can request stays instantly
+- **Image Uploads** — Profile pictures and listing photos via Cloudinary
+- **Protected Routes** — Secure access to user-specific pages
+- **Responsive Design** — Works seamlessly on desktop and mobile
 
-# Models
-User: 
+---
 
-const UserSchema = new Schema(
-  {
-    email: {
-      type: String,
-      required: [true, "Email is required."],
-      unique: true,
-      lowercase: true,
-      trim: true,
-    },
-    hashedPassword: {
-      type: String,
-      required: [true, "Password is required."],
-    },
-    firstName: {
-      type: String,
-    },
-    lastName: {
-      type: String,
-    },
-    image: {
-      type: String,
-    },
-    aboutMe: {
-      type: String,
-    }
-  }
+## Tech Stack
 
+### Frontend
+| Technology | Purpose |
+|------------|---------|
+| React 18 | UI Framework |
+| Vite | Build Tool & Dev Server |
+| React Router v6 | Client-side Routing |
+| Tailwind CSS | Utility-first Styling |
+| Mantine UI | Component Library |
+| Framer Motion | Animations |
+| Axios | HTTP Client |
 
-Host :
+### Backend
+| Technology | Purpose |
+|------------|---------|
+| Node.js | Runtime |
+| Express | Web Framework |
+| MongoDB | Database |
+| Cloudinary | Image Storage |
+| JWT | Authentication |
 
-const HostSchema = new Schema(
-  {
-    email: {
-      type: String,
-      required: [true, "Email is required."],
-      unique: true,
-      lowercase: true,
-      trim: true,
-    },
-    hashedPassword: {
-      type: String,
-      required: [true, "Password is required."],
-    },
-    firstName: {
-      type: String,
-    },
-    lastName: {
-      type: String,
-    },
-    city: {
-      type: String,
-    },
-    country: {
-      type: String,
-    },
-    image: {
-      type: String,
-    },
-    aboutMe: {
-      type: String,
-    },
-    
-  }
-);
+---
 
+## UI/UX Design
 
-Housing: 
+The interface features a modern, calming design with:
 
-const HousingSchema = new Schema(
-  {
-    country: {
-      type: String,
-      required: [true, "Country is required"],
-    },
+- **Glassmorphism** — Frosted glass card effects with backdrop blur
+- **Animated Gradients** — Peaceful teal, cyan, and green color transitions
+- **Wave Shimmer Effects** — Subtle animated patterns on navigation and footer
+- **Smooth Animations** — Framer Motion transitions for a polished feel
+- **Modern Typography** — Plus Jakarta Sans and Inter font families
+- **Accessibility** — High contrast text with readable shadows
 
-    city: {
-      type: String,
-      required: [true, "City is required."],
-    },
-    typeOfRoom: {
-      type: String,
-      required: [true, "Type of room is required."],
-    },
-    placesAvailable: {
-      type: Number,
-      required: [true, "For how many people do you have space?"],
-    },
-    image: {
-      type: String,
-    },
-    owner: {
-      type: Schema.Types.ObjectId,
-      ref: "Host",
-    },
-    usedBy: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-    },
-  }
-);
+---
 
-# Trello
-Trello :
+## Pages & Routes
 
- https://trello.com/b/pE82zedM/project-3
+| Route | Description |
+|-------|-------------|
+| `/` | Home page with login form |
+| `/host-signup` | Host registration |
+| `/user-signup` | Refugee registration |
+| `/host-login` | Host authentication |
+| `/host-profile` | Host dashboard with listings (protected) |
+| `/user-profile` | User dashboard (protected) |
+| `/edit-host-profile` | Edit host information |
+| `/listings-search` | Browse available accommodations (protected) |
+| `/listing-details` | View listing information |
+| `/edit-listing/:id` | Modify a listing |
+| `/booking-confirmation` | Booking success page |
 
+---
 
+## Components
 
-# Github
+| Component | Description |
+|-----------|-------------|
+| `NavBar` | Dynamic navigation based on auth state |
+| `NavBarMain` | Logo and branding |
+| `NavBarHost` | Host-specific navigation |
+| `NavBarUser` | User-specific navigation |
+| `LoginForm` | Authentication form |
+| `ListingBox` | Individual listing card |
+| `AllListings` | Grid of all listings |
+| `Publish-Listing` | Create new listing form |
+| `Edit-Host-Profile` | Host profile editor |
+| `Footer` | Site footer with social links |
+| `PrivateRouteHost` | Protected route wrapper for hosts |
+| `PrivateRouteUser` | Protected route wrapper for users |
 
-Front-End: 
+---
 
-https://github.com/andreszubi/help-a-refugee-react
+## Data Models
 
-Back-End: 
+### User (Refugee)
+```javascript
+{
+  email: String,        // Required, unique
+  hashedPassword: String,
+  firstName: String,
+  lastName: String,
+  image: String,
+  aboutMe: String
+}
+```
 
-https://github.com/B4n3l1ng/help-a-refugee-backend
+### Host
+```javascript
+{
+  email: String,        // Required, unique
+  hashedPassword: String,
+  firstName: String,
+  lastName: String,
+  city: String,
+  country: String,
+  image: String,
+  aboutMe: String
+}
+```
 
+### Housing
+```javascript
+{
+  country: String,      // Required
+  city: String,         // Required
+  typeOfRoom: String,   // Required
+  placesAvailable: Number,
+  image: String,
+  owner: ObjectId,      // Reference to Host
+  usedBy: ObjectId      // Reference to User
+}
+```
 
+---
 
-Deploy links:
+## Getting Started
 
-Front-End :
+### Prerequisites
+- Node.js 16+
+- npm or yarn
 
- https://host-a-refugee.netlify.app
+### Installation
 
-Back-End :   
+```bash
+# Clone the repository
+git clone https://github.com/andreszubi/help-a-refugee-react.git
 
-https://puce-shiny-magpie.cyclic.app/
+# Navigate to project directory
+cd help-a-refugee-react
 
-# Slides
+# Install dependencies
+npm install
 
-https://docs.google.com/presentation/d/1U3pGyXWFXnbkNH9pVKRyl7c9EF-wsl7mPNCYsIjzvUU/edit?usp=sharing
+# Start development server
+npm run dev
+```
+
+### Environment Variables
+
+Create a `.env` file in the root directory:
+
+```env
+VITE_REACT_APP_API_URL=your_backend_url
+```
+
+---
+
+## Links
+
+| Resource | URL |
+|----------|-----|
+| **Live Site** | [host-a-refugee.netlify.app](https://host-a-refugee.netlify.app) |
+| **Frontend Repo** | [github.com/andreszubi/help-a-refugee-react](https://github.com/andreszubi/help-a-refugee-react) |
+| **Backend Repo** | [github.com/B4n3l1ng/help-a-refugee-backend](https://github.com/B4n3l1ng/help-a-refugee-backend) |
+| **Backend API** | [puce-shiny-magpie.cyclic.app](https://puce-shiny-magpie.cyclic.app/) |
+| **Presentation** | [Google Slides](https://docs.google.com/presentation/d/1U3pGyXWFXnbkNH9pVKRyl7c9EF-wsl7mPNCYsIjzvUU/edit?usp=sharing) |
+
+---
+
+## Future Improvements
+
+- [ ] Email notifications via Nodemailer
+- [ ] Enhanced image upload experience
+- [ ] User profile editing
+- [ ] Messaging system between hosts and refugees
+- [ ] Multi-language support
+- [ ] Advanced search filters
+
+---
+
+*Open your home, change a life.*
