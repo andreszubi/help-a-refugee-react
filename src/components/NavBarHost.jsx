@@ -9,7 +9,10 @@ function NavBarHost() {
   
   const logout = () => {
     setToken(undefined); // This will remove the token from localStorage via useLocalStorage
-    navigate("/");
+    // Small delay to ensure state is cleared before navigation
+    setTimeout(() => {
+      navigate("/");
+    }, 100);
   };
 
   return (
