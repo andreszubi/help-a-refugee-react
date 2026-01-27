@@ -274,7 +274,7 @@ For production, point to your deployed backend URL.
 | **Live Site** | [host-a-refugee.netlify.app](https://host-a-refugee.netlify.app) |
 | **Frontend Repo** | [github.com/andreszubi/help-a-refugee-react](https://github.com/andreszubi/help-a-refugee-react) |
 | **Backend Repo** | [github.com/B4n3l1ng/help-a-refugee-backend](https://github.com/B4n3l1ng/help-a-refugee-backend) |
-| **Backend API** | [puce-shiny-magpie.cyclic.app](https://puce-shiny-magpie.cyclic.app/) |
+| **Backend API** | [help-a-refugee-backend.onrender.com](https://help-a-refugee-backend.onrender.com) |
 | **Presentation** | [Google Slides](https://docs.google.com/presentation/d/1U3pGyXWFXnbkNH9pVKRyl7c9EF-wsl7mPNCYsIjzvUU/edit?usp=sharing) |
 
 ---
